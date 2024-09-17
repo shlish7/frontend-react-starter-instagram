@@ -1,5 +1,6 @@
 /* Pages */
 @import "./pages/homePage.css";
+@import "./pages/profile.css";
 
 /* Components */
 @import "./cmps/sideBar.css";

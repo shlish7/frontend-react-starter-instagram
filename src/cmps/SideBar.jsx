@@ -77,7 +77,7 @@ export function SideBar() {
             value={icon.name}
             className='side-bar-li'
           >
-            {icon.svg && <icon.svg />} {icon.name === 'Profile' && <ImageAvatars />} {icon.name}
+            {icon.svg && <icon.svg />} {icon.name === 'Profile' && <ImageAvatars avatarHeight='30px !important' avatarWidth='30px !important'/>} {icon.name}
             {/* { icon.name === 'profile' ? <ImageAvatars/>            */}
           </li>
         ))}

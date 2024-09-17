@@ -17,6 +17,8 @@ import { TaskDetails } from './pages/TaskDetails'
 import { AppHeader } from './cmps/AppHeader'
 import { AppFooter } from './cmps/AppFooter'
 import { SideBar } from './cmps/SideBar.jsx'
+import { Profile } from './pages/Profile.jsx'
+
 
 
 export function RootCmp() {
@@ -26,7 +28,8 @@ export function RootCmp() {
             <main>
                 <Routes>
                     <Route path="/" element={<HomePage />} />
-                        <Route path="/sidebar" element={<SideBar />} />
+                    <Route path='/profile' element={<Profile />} ></Route>  
+ 
 {/* 
                     <Route path="about" element={<AboutUs />}>
                         <Route path="team" element={<AboutTeam />} />
