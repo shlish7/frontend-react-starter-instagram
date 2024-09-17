@@ -1,8 +1,14 @@
+import { SideBar } from "../cmps/SideBar";
 
 export function HomePage() {
     return (
-        <section>
-            <h1>Home sweet Home</h1>
+        <section className="instagram-home-page">
+            <header className="home-header">header</header>
+            <aside className="home-left-side-bar">
+                <SideBar/>
+            </aside>
+            <main className="home-feed">feed</main>
+            <aside className="home-right-suggestion">suggestion</aside>
         </section >
     )
 }

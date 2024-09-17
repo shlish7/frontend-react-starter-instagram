@@ -1,5 +1,7 @@
 * {
     box-sizing: border-box;
+    margin:0;
+    padding: 0;
 }
 
 ::selection {
@@ -16,7 +18,7 @@ html {
 body {
     font-size: rem(18px);
     margin: 0;
-    max-width: 1024px;
+    // max-width: 1024px;
     margin: auto;
 }
 

@@ -16,14 +16,21 @@ import { TaskDetails } from './pages/TaskDetails'
 
 import { AppHeader } from './cmps/AppHeader'
 import { AppFooter } from './cmps/AppFooter'
+import { SideBar } from './cmps/SideBar.jsx'
+import { Profile } from './pages/Profile.jsx'
+
+
 
 export function RootCmp() {
     return (
-        <div>
-            <AppHeader />
+        <div className='instagram-app'>
+            {/* <AppHeader /> */}
             <main>
                 <Routes>
-                    <Route path="" element={<HomePage />} />
+                    <Route path="/" element={<HomePage />} />
+                    <Route path='/profile' element={<Profile />} ></Route>  
+ 
+{/* 
                     <Route path="about" element={<AboutUs />}>
                         <Route path="team" element={<AboutTeam />} />
                         <Route path="vision" element={<AboutVision />} />
@@ -37,10 +44,10 @@ export function RootCmp() {
                     </Route>
                     <Route path="review" element={<ReviewIndex />} />
                     <Route path="chat" element={<ChatApp />} />
-                    <Route path="admin" element={<AdminIndex />} />
+                    <Route path="admin" element={<AdminIndex />} /> */}
                 </Routes>
             </main>
-            <AppFooter />
+            {/* <AppFooter /> */}
         </div>
     )
 }
