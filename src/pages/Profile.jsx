@@ -36,7 +36,7 @@ export function Profile() {
                         </section>
                     </section>
 
-                    <h1>Test</h1>
+                    <h1>Test2</h1>
                 </header>
                 <div className="profile-main-container">
 
