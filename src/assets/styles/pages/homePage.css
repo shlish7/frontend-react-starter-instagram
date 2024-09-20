@@ -11,6 +11,9 @@
     grid-template-areas: 
     "left-aside main-header right-aside"
     "left-aside main-feed right-aside";
+    /* grid-template-areas: 
+    "left-aside main-header right-aside"
+    "left-aside main-feed right-aside"; */
     min-height: 100vh;
     width:100vw;
 }
