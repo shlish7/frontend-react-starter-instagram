@@ -11,7 +11,9 @@ export function HomePage() {
 
     return (
         <section className="instagram-home-page">
-            <AvatarsStoryView/>
+            <header className="home-header">
+                <AvatarsStoryView/>
+            </header>
             <aside className="home-left-side-bar">
                 <SideBar />
             </aside>

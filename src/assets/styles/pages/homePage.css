@@ -25,6 +25,7 @@ body, html {
 .home-header{
     grid-area: main-header;
     background-color: yellow;
+    width: 100%;
 }
 
 .home-left-side-bar{
@@ -44,10 +45,6 @@ body, html {
 .home-right-suggestion{
 grid-area: right-aside;
 background-color: blanchedalmond;
-}
-
-.home-header{
-    color: green;
 }
 
 .instagram-logo{
