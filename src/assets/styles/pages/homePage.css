@@ -4,6 +4,10 @@
     margin: 0;
 }
 
+body, html {
+    overflow-x: hidden; /* Prevent horizontal scrolling on the entire page */
+}
+
 .instagram-home-page{
     display: grid;
     grid-template-columns: 1fr 8fr 1fr;
@@ -34,6 +38,7 @@
 
 .home-feed{
     grid-area: main-feed;
+    overflow-x: hidden;
 }
 
 .home-right-suggestion{

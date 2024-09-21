@@ -5,12 +5,13 @@ import { Link } from 'react-router-dom'
 import Verified from '../assets/svg/verified.svg?react'
 import MoreOptions from '../assets/svg/more-options-icon.svg?react'
 import hazinor from '../assets/images/hazinor.jpg'
+import AvatarsStoryView from "../cmps/Story/AvatarsStoryView";
 
 export function HomePage() {
 
     return (
         <section className="instagram-home-page">
-            <header className="home-header">header</header>
+            <AvatarsStoryView/>
             <aside className="home-left-side-bar">
                 <SideBar />
             </aside>
