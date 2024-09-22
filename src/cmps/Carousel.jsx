@@ -6,6 +6,7 @@ import Potatos from '../assets/images/potatos.jpg'
 import Petitim from '../assets/images/petitim.jpg'
 
 
+
 export function Carousel(props) {
 
     const [currentIndex, setCurrentIndex] = useState(0);
@@ -45,16 +46,17 @@ export function Carousel(props) {
     return (<>
 
         <div className="carousel-container">
-            <div className="carousel-arrow">
-                <button className='carousel-btn' value='left' onClick={onChangeImg}>
+            <div className="carousel-left-arrow">
+                <button className='carousel-left-btn' value='left' onClick={onChangeImg}>
                     <Arrow className='left-arrow-icon' />
                 </button>
             </div>
             <div className="carousel-main-frame">
                 <div className="img-container">
-                    <img
+                    <img className='carousel-img'
                         src={carouselImages[currentIndex].src}
-                        alt={carouselImages[currentIndex].name} />
+                        alt={carouselImages[currentIndex].name} 
+                        />
                     {/* <div className="dot"></div> */}
                     
                     {carouselImages.length>1 &&
@@ -69,8 +71,8 @@ export function Carousel(props) {
                     </div> }
                 </div>
             </div>
-            <div className="carousel-arrow">
-                <button className='carousel-btn' value='right' onClick={onChangeImg}>
+            <div className="carousel-right-arrow">
+                <button className='carousel-right-btn' value='right' onClick={onChangeImg}>
                     <Arrow className='right-arrow-icon' />
                 </button>
             </div>
