@@ -15,8 +15,8 @@ export function CommnetsView({onOpenFeedItem}) {
       type="text"
       className="home-add-comment"
       placeholder="Add a comment…"
-      autocomplete="off"
-      autocorrect="off"
+      autoComplete="off"
+      autoCorrect="off"
       dir=""
       aria-label="Add a comment…"
     />
