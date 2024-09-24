@@ -18,7 +18,8 @@ import { AppHeader } from "./cmps/AppHeader";
 import { AppFooter } from "./cmps/AppFooter";
 import { SideBar } from "./cmps/SideBar.jsx";
 import { Profile } from "./pages/Profile.jsx";
-import { FeedItem } from "./cmps/feedItem";
+// import { FeedItemFullScreen } from "./pages/FeedItemFullScreen.jsx";
+import { FeedItemFullScreen } from "./pages/FeedItemFullScreen.jsx";
 import { Stories } from "./pages/Stories";
 
 export function RootCmp() {
@@ -29,7 +30,7 @@ export function RootCmp() {
 
         <Routes>
           <Route path="/" element={<HomePage />}>
-            <Route path="/p/:pId?" element={<FeedItem />} />
+            <Route path="/p/:pId?" element={<FeedItemFullScreen />} />
             {/* <Route path="/stories/:userName?" element={<Stories />} /> */}
           </Route>
           <Route path="/profile" element={<Profile />}></Route>

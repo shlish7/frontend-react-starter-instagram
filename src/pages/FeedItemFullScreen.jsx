@@ -3,7 +3,7 @@ import { useParams } from "react-router";
 import { useOutletContext } from "react-router-dom";
 import {Carousel} from "../cmps/Carousel.jsx";
 
-export function FeedItem() {
+export function FeedItemFullScreen() {
   // const {pId} = useParams()
   const { pId } = useOutletContext();
 
