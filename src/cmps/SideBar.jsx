@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 // import { instagramIcons } from '../assets/icons/icons'
 import HomeIcon from '../assets/svg/home-icon.svg?react'
 import InstagramIconLogo from '../assets/svg/instagram-side-bar-logo.svg?react'
@@ -11,10 +11,13 @@ import CreateIcon from '../assets/svg/create-icon.svg?react'
 import ThreadsIcon from '../assets/svg/threads-icon.svg?react'
 import MoreIcon from '../assets/svg/more-icon.svg?react'
 import ImageAvatars from './ImageAvatars'
+import { CreatePost } from './CreatePost'
 
 
 
 export function SideBar() {
+
+  const [openModal,setOpenModal]= useState(false)
 
   const instagramIcons = [
 
@@ -66,6 +69,13 @@ export function SideBar() {
 
   console.log(instagramIcons)
 
+  function onOpenCreateModal({target}){
+      const { value, name,textContext } = target
+      setOpenModal(prev => !prev)
+      
+
+  }
+
   return (
     <>
       
@@ -76,7 +86,9 @@ export function SideBar() {
           <li key={idx}
             value={icon.name}
             className='side-bar-li'
+            onClick={onOpenCreateModal}
           >
+            {openModal ? <CreatePost/> : null}
             {icon.svg && <icon.svg />} {icon.name === 'Profile' && <ImageAvatars avatarHeight='30px !important' avatarWidth='30px !important'/>} {icon.name}
             {/* { icon.name === 'profile' ? <ImageAvatars/>            */}
           </li>
