@@ -16,10 +16,12 @@ export function CreatePost() {
                     <section className="modal-internal-container">
                         <ModalIcon />
                         <span className='drag-photos-span'>Drag photos and videos here</span>
-                        <button className='select-from-computer'>Select from computer</button>
+                        {/* <button className='select-from-computer'>Select from computer</button> */}
+                        <ImageUploader/>
+
                     </section>
+
                 </section>
-                <ImageUploader/>
 
                 </section>
 
