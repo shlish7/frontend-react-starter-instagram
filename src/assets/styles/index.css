@@ -1,0 +1,10 @@
+/* Pages */
+@import "./pages/homePage.css";
+@import "./pages/profile.css";
+
+/* Components */
+@import "./cmps/sideBar.css";
+/* @import "./cmps/home-feed.css"; */
+@import "./cmps/AvatarsStoryView.css";
+@import "./cmps/StoryAvatar.css";
+@import "./cmps/feed-item.css";
