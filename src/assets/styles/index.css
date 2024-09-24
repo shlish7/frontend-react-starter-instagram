@@ -6,4 +6,5 @@
 @import "./cmps/sideBar.css";
 /* @import "./cmps/home-feed.css"; */
 @import "./cmps/AvatarsStoryView.css";
-@import "./cmps/StoryAvatar.css"
+@import "./cmps/StoryAvatar.css";
+@import "./cmps/feed-item.css";

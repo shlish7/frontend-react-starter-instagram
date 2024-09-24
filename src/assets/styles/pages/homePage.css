@@ -20,6 +20,8 @@ body, html {
     grid-template-areas: 
     "left-aside main-header"
     "left-aside main-feed";
+    height: 100vh;
+    width: 100vw;
 }
 
 .home-header{
@@ -31,7 +33,7 @@ body, html {
     display: flex;
     align-items: center;
     margin-top: 16px;
- 
+
 }
 
 .home-left-side-bar{
@@ -47,9 +49,15 @@ body, html {
     grid-area: main-feed;
     display: flex;
     justify-content: center;
+    overflow-y: scroll;
     /* border: 1px solid black; */
 
-    overflow-x: hidden;
+    /* overflow-x: hidden; */
+    /* overflow-y: hidden; */
+}
+
+.home-feed-container{
+    width: 468px;
 }
 
 
@@ -92,6 +100,8 @@ align-items: flex-start;
 .feed-item-img-icons{
     display: flex;
     justify-content: space-between;
+    padding-top: 10px;
+    padding-bottom: 10px;
 }
 
 .feed-item-img-icons-group{
@@ -155,5 +165,55 @@ line-height: 16px;
 
 a{
     text-decoration: none;
+
+}
+
+.like-count-container{
+    display: flex;
+    gap: 4px;
+    font-family: -apple-system, "system-ui", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.home-img-description-container{
+    display: flex;
+    gap: 2px;
+    width: 100%;
+}
+
+.home-img-user-name{
+    display: flex;
+    flex-wrap: nowrap;
+    /* width:fit-content; */
+    font-family: -apple-system, "system-ui", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.home-img-detailes{
+
+
+    display: flex;
+    flex-wrap: wrap;
+    flex-grow: 1; /* Allow the span to grow and fill the available space */
+    /* Ensure it spans the full width */
+}
+
+.home-comments-container{
+width: 100%;
+}
+
+.home-add-comment{
+    max-height: 80px;
+    width: 100%;
+    display: flex;
+    align-items: center; /* Center vertically */
+    padding: 0 10px; /* Optional: Add some padding for better appearance */
+    border: none;
+    outline: none;
+    margin-top: 10px;
+    resize: none ;
+
 
 }
