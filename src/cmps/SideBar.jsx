@@ -24,6 +24,7 @@ export function SideBar() {
   const [openModal,setOpenModal]= useState(false)
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
   const [changeToNarrow, setChangeToNarrow] = useState(false);
+  const [openSerachBar, setOpenSearchBar] = useState(false)
 
   useEffect(() => {
     const handleResize = () => {
@@ -139,6 +140,11 @@ export function SideBar() {
       console.log('textContext: ', textContext)
       setOpenModal(prev => !prev)
     }
+    else if (name.toLowerCase() === 'search') {
+      setOpenSearchBar(prev => !prev)
+    }
+
+  
   }
 
   function onCloseModal() {
