@@ -17,14 +17,17 @@ import { CreatePost } from './CreatePost'
 import { LoginSignup } from './LoginSignup'
 import { showErrorMsg, showSuccessMsg } from '../services/event-bus.service.js'
 import { login, logout, signup } from '../store/user.actions.js'
+import { SearchBar } from './SearchBar'
+
 
 export function SideBar() {
   const user = useSelector(storeState => storeState.userModule.user)
 
-  const [openModal,setOpenModal]= useState(false)
+  const [openModal, setOpenModal] = useState(false)
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
   const [changeToNarrow, setChangeToNarrow] = useState(false);
-  const [openSerachBar, setOpenSearchBar] = useState(false)
+  const [openSearchBar, setOpenSearchBar] = useState(false)
+
 
   useEffect(() => {
     const handleResize = () => {
@@ -102,41 +105,41 @@ export function SideBar() {
 
   async function onLogin(credentials) {
     try {
-        const user = await login(credentials)
-        showSuccessMsg(`Welcome: ${user.fullname}`)
+      const user = await login(credentials)
+      showSuccessMsg(`Welcome: ${user.fullname}`)
     } catch (err) {
-        showErrorMsg('Cannot login')
+      showErrorMsg('Cannot login')
     }
-}
+  }
 
   async function onSignup(credentials) {
-      try {
-          const user = await signup(credentials)
-          showSuccessMsg(`Welcome new user:${user.fullname}`)
-      } catch (err) {
-          showErrorMsg('Cannot signup')
-      }
+    try {
+      const user = await signup(credentials)
+      showSuccessMsg(`Welcome new user:${user.fullname}`)
+    } catch (err) {
+      showErrorMsg('Cannot signup')
+    }
   }
 
   async function onLogout() {
-      try {
-          await logout()
-          showSuccessMsg(`Bye now`)
-      } catch (err) {
-          showErrorMsg('Cannot logout')
-      }
+    try {
+      await logout()
+      showSuccessMsg(`Bye now`)
+    } catch (err) {
+      showErrorMsg('Cannot logout')
+    }
   }
 
 
-  function onOpenCreateModal(ev) {
+  function onChooseOption(ev) {
     console.log('test')
-   
+
     ev.stopPropagation()
     const { value, name, textContext } = ev.currentTarget.dataset
     console.log('target.dataset: ', ev.currentTarget.dataset)
     console.log('name: ', name)
-    
-    if (name.toLowerCase()==='create'){
+
+    if (name.toLowerCase() === 'create') {
       console.log('textContext: ', textContext)
       setOpenModal(prev => !prev)
     }
@@ -144,64 +147,68 @@ export function SideBar() {
       setOpenSearchBar(prev => !prev)
     }
 
-  
+
   }
 
   function onCloseModal() {
     setOpenModal(prev => !prev)
   }
 
+  function onCloseSearchBar() {
+    setOpenSearchBar(prev => !prev)
+
+  }
   return (
     <>
 
       <section className={!changeToNarrow ? "wide-side-bar-container" : "narrow-side-bar-container"} >
         <ul className="side-bar-ul">
-        {!changeToNarrow ? <InstagramIconLogo className='instagram-logo' /> :<InstagramNarrowLogo className='instagram-narrow-logo'/>}
-          
+          {!changeToNarrow ? <InstagramIconLogo className='instagram-logo' /> : <InstagramNarrowLogo className='instagram-narrow-logo' />}
           {instagramIcons.map((icon, idx) => (
             <li key={idx}
               data-value={icon.name}
               data-name={icon.name}
 
               className='side-bar-li'
-              onClick={onOpenCreateModal}
+              onClick={onChooseOption}
             >
 
 
+              {openSearchBar && icon.name.toLowerCase() === 'search' ? <SearchBar onCloseModal={onCloseSearchBar} /> : null}
 
               {openModal ? <CreatePost onCloseModal={onCloseModal} /> : null}
-              {icon.svg && <icon.svg />} 
-              {icon.name === 'Profile' && <ImageAvatars avatarHeight='30px !important' avatarWidth='30px !important' />} 
+              {icon.svg && <icon.svg />}
+              {icon.name === 'Profile' && <ImageAvatars avatarHeight='30px !important' avatarWidth='30px !important' />}
               {!changeToNarrow && icon.name}
               {/* { icon.name === 'profile' ? <ImageAvatars/>            */}
             </li>
           ))}
         </ul>
-  
-      <section className="signup-signin">
-        {user &&
-            <span className="user-info">
-                { user.imgUrl && <img src={user.imgUrl} /> }
-                { user.fullname }
-                <span className="score">{user.balance?.toLocaleString()}</span>
-                <button onClick={onLogout}>Logout</button>
-            </span>
-        }
-        {!user &&
-            <div className="user-info">
-                <LoginSignup onLogin={onLogin} onSignup={onSignup} />
-            </div>
-        }
-      </section>
 
-      <section className='left-side-bar-footer'>
-          <section className='side-bar-botton-icons'>
-         <ThreadsIcon />
-         {!changeToNarrow ? <span>Threads</span> : null}
+        <section className="signup-signin">
+          {user &&
+            <span className="user-info">
+              {user.imgUrl && <img src={user.imgUrl} />}
+              {user.fullname}
+              <span className="score">{user.balance?.toLocaleString()}</span>
+              <button onClick={onLogout}>Logout</button>
+            </span>
+          }
+          {!user &&
+            <div className="user-info">
+              <LoginSignup onLogin={onLogin} onSignup={onSignup} />
+            </div>
+          }
         </section>
-        <section className='side-bar-botton-icons'>
+
+        <section className='left-side-bar-footer'>
+          <section className='side-bar-botton-icons'>
+            <ThreadsIcon />
+            {!changeToNarrow ? <span>Threads</span> : null}
+          </section>
+          <section className='side-bar-botton-icons'>
             <MoreIcon />
-            {!changeToNarrow ? <span>More</span> :null}
+            {!changeToNarrow ? <span>More</span> : null}
           </section>
 
         </section>
