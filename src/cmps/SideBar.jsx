@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import { useSelector } from 'react-redux'
 // import { instagramIcons } from '../assets/icons/icons'
 import HomeIcon from '../assets/svg/home-icon.svg?react'
 import InstagramIconLogo from '../assets/svg/instagram-side-bar-logo.svg?react'
@@ -13,12 +14,14 @@ import ThreadsIcon from '../assets/svg/threads-icon.svg?react'
 import MoreIcon from '../assets/svg/more-icon.svg?react'
 import ImageAvatars from './ImageAvatars'
 import { CreatePost } from './CreatePost'
-
-
+import { LoginSignup } from './LoginSignup'
+import { showErrorMsg, showSuccessMsg } from '../services/event-bus.service.js'
+import { login, logout, signup } from '../store/user.actions.js'
 
 export function SideBar() {
+  const user = useSelector(storeState => storeState.userModule.user)
 
-  const [openModal, setOpenModal] = useState(false)
+  const [openModal,setOpenModal]= useState(false)
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
   const [changeToNarrow, setChangeToNarrow] = useState(false);
 
@@ -43,6 +46,7 @@ export function SideBar() {
       window.removeEventListener('resize', handleResize);
     };
   }, []);
+
 
 
   const instagramIcons = [
@@ -93,17 +97,45 @@ export function SideBar() {
     // }
   ]
 
+  console.log(instagramIcons)
 
+  async function onLogin(credentials) {
+    try {
+        const user = await login(credentials)
+        showSuccessMsg(`Welcome: ${user.fullname}`)
+    } catch (err) {
+        showErrorMsg('Cannot login')
+    }
+}
+
+  async function onSignup(credentials) {
+      try {
+          const user = await signup(credentials)
+          showSuccessMsg(`Welcome new user:${user.fullname}`)
+      } catch (err) {
+          showErrorMsg('Cannot signup')
+      }
+  }
+
+  async function onLogout() {
+      try {
+          await logout()
+          showSuccessMsg(`Bye now`)
+      } catch (err) {
+          showErrorMsg('Cannot logout')
+      }
+  }
 
 
   function onOpenCreateModal(ev) {
-
     console.log('test')
+   
     ev.stopPropagation()
     const { value, name, textContext } = ev.currentTarget.dataset
     console.log('target.dataset: ', ev.currentTarget.dataset)
     console.log('name: ', name)
-    if (name.toLowerCase() === 'create') {
+    
+    if (name.toLowerCase()==='create'){
       console.log('textContext: ', textContext)
       setOpenModal(prev => !prev)
     }
@@ -111,7 +143,6 @@ export function SideBar() {
 
   function onCloseModal() {
     setOpenModal(prev => !prev)
-
   }
 
   return (
@@ -140,15 +171,31 @@ export function SideBar() {
             </li>
           ))}
         </ul>
-        <section className='left-side-bar-footer'>
+  
+      <section className="signup-signin">
+        {user &&
+            <span className="user-info">
+                { user.imgUrl && <img src={user.imgUrl} /> }
+                { user.fullname }
+                <span className="score">{user.balance?.toLocaleString()}</span>
+                <button onClick={onLogout}>Logout</button>
+            </span>
+        }
+        {!user &&
+            <div className="user-info">
+                <LoginSignup onLogin={onLogin} onSignup={onSignup} />
+            </div>
+        }
+      </section>
+
+      <section className='left-side-bar-footer'>
           <section className='side-bar-botton-icons'>
          <ThreadsIcon />
          {!changeToNarrow ? <span>Threads</span> : null}
-          </section>
-          <section className='side-bar-botton-icons'>
+        </section>
+        <section className='side-bar-botton-icons'>
             <MoreIcon />
             {!changeToNarrow ? <span>More</span> :null}
-
           </section>
 
         </section>

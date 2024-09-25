@@ -1,5 +1,4 @@
 import { storageService } from './async-storage.service'
-import { httpService } from './http.service'
 
 const STORAGE_KEY_LOGGEDIN_USER = 'loggedinUser'
 
@@ -13,7 +12,8 @@ export const userService = {
     getById,
     remove,
     update,
-    changeScore
+    changeScore,
+    getEmptyUser,
 }
 
 window.userService = userService
@@ -88,6 +88,14 @@ function getLoggedinUser() {
     return JSON.parse(sessionStorage.getItem(STORAGE_KEY_LOGGEDIN_USER))
 }
 
+function getEmptyUser() {
+    return {
+        username: '',
+        fullname: '',
+        password: '',
+        imgUrl: '',
+    }
+}
 
 // ;(async ()=>{
 //     await userService.signup({fullname: 'Puki Norma', username: 'puki', password:'123',score: 10000, isAdmin: false})
