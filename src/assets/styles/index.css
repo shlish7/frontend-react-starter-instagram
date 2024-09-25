@@ -1,6 +1,7 @@
 /* Pages */
 @import "./pages/homePage.css";
 @import "./pages/profile.css";
+@import "./pages/feed-item-full-screen.css";
 
 /* Components */
 @import "./cmps/sideBar.css";
