@@ -13,12 +13,14 @@ import ThreadsIcon from '../assets/svg/threads-icon.svg?react'
 import MoreIcon from '../assets/svg/more-icon.svg?react'
 import ImageAvatars from './ImageAvatars'
 import { CreatePost } from './CreatePost'
+import { SearchBar } from './SearchBar'
 
 
 
 export function SideBar() {
 
   const [openModal, setOpenModal] = useState(false)
+  const [openSerachBar, setOpenSearchBar] = useState(false)
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
   const [changeToNarrow, setChangeToNarrow] = useState(false);
 
@@ -96,21 +98,28 @@ export function SideBar() {
 
 
 
-  function onOpenCreateModal(ev) {
+  function onChooseOption(ev) {
 
-    console.log('test')
     ev.stopPropagation()
     const { value, name, textContext } = ev.currentTarget.dataset
-    console.log('target.dataset: ', ev.currentTarget.dataset)
-    console.log('name: ', name)
+
     if (name.toLowerCase() === 'create') {
-      console.log('textContext: ', textContext)
       setOpenModal(prev => !prev)
     }
+
+    else if (name.toLowerCase() === 'search') {
+      setOpenSearchBar(prev => !prev)
+    }
+
   }
 
   function onCloseModal() {
     setOpenModal(prev => !prev)
+
+  }
+
+  function onCloseSearchBar(){
+    setOpenSearchBar(prev => !prev)
 
   }
 
@@ -119,22 +128,24 @@ export function SideBar() {
 
       <section className={!changeToNarrow ? "wide-side-bar-container" : "narrow-side-bar-container"} >
         <ul className="side-bar-ul">
-        {!changeToNarrow ? <InstagramIconLogo className='instagram-logo' /> :<InstagramNarrowLogo className='instagram-narrow-logo'/>}
-          
+          {!changeToNarrow ? <InstagramIconLogo className='instagram-logo' /> : <InstagramNarrowLogo className='instagram-narrow-logo' />}
+
           {instagramIcons.map((icon, idx) => (
             <li key={idx}
               data-value={icon.name}
               data-name={icon.name}
 
               className='side-bar-li'
-              onClick={onOpenCreateModal}
+              onClick={onChooseOption}
+
+
             >
 
-
-
+              {openSerachBar  && icon.name.toLowerCase()  ==='search' ? <SearchBar onCloseModal={onCloseSearchBar} /> : null}
               {openModal ? <CreatePost onCloseModal={onCloseModal} /> : null}
-              {icon.svg && <icon.svg />} 
-              {icon.name === 'Profile' && <ImageAvatars avatarHeight='30px !important' avatarWidth='30px !important' />} 
+
+              {icon.svg && <icon.svg />}
+              {icon.name === 'Profile' && <ImageAvatars avatarHeight='30px !important' avatarWidth='30px !important' />}
               {!changeToNarrow && icon.name}
               {/* { icon.name === 'profile' ? <ImageAvatars/>            */}
             </li>
@@ -142,12 +153,12 @@ export function SideBar() {
         </ul>
         <section className='left-side-bar-footer'>
           <section className='side-bar-botton-icons'>
-         <ThreadsIcon />
-         {!changeToNarrow ? <span>Threads</span> : null}
+            <ThreadsIcon />
+            {!changeToNarrow ? <span>Threads</span> : null}
           </section>
           <section className='side-bar-botton-icons'>
             <MoreIcon />
-            {!changeToNarrow ? <span>More</span> :null}
+            {!changeToNarrow ? <span>More</span> : null}
 
           </section>
 
