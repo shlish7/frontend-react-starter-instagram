@@ -12,8 +12,33 @@
     
 }
 
+/* --nav-narrow-width: 72px;
+--nav-medium-width: 244px;
+--nav-wide-width: 335px; */
+
+.wide-side-bar-container{
+    width:244px;
+    height: 100vh;
+    border-right: 1px solid rgb(215, 215, 215);
+    display:flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.narrow-side-bar-container{
+    width:72px;
+    height: 100vh;
+    border-right: 1px solid rgb(215, 215, 215);
+    display:flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
 .side-bar-ul{
     list-style-type: none;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
 
 }
 
@@ -65,4 +90,9 @@
     cursor: pointer;
 
 
+}
+
+.instagram-narrow-logo{
+    margin: 10px;
+    height: 92px;
 }
