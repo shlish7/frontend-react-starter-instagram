@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 // import { instagramIcons } from '../assets/icons/icons'
 import HomeIcon from '../assets/svg/home-icon.svg?react'
 import InstagramIconLogo from '../assets/svg/instagram-side-bar-logo.svg?react'
+import InstagramNarrowLogo from '../assets/svg/instagram-icon-logo.svg?react'
 import SearchIcon from '../assets/svg/search-icon.svg?react'
 import ExploreIcon from '../assets/svg/explore-icon.svg?react'
 import ReelsIcon from '../assets/svg/reels-icon.svg?react'
@@ -17,24 +18,33 @@ import { CreatePost } from './CreatePost'
 
 export function SideBar() {
 
-  const [openModal,setOpenModal]= useState(false)
+  const [openModal, setOpenModal] = useState(false)
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
+  const [changeToNarrow, setChangeToNarrow] = useState(false);
 
   useEffect(() => {
     const handleResize = () => {
-      setIsSidebarOpen(window.innerWidth >= 768); // Adjust the breakpoint as needed
+      // Check if the window width is less than 1264px
+      const isSmallScreen = window.innerWidth < 1264;
+      setChangeToNarrow(isSmallScreen);  // Update the state based on the screen size
+      setIsSidebarOpen(window.innerWidth >= 768); // Adjust the sidebar visibility as needed
+      console.log(window.innerWidth)
+
     };
 
-    window.addEventListener('resize', handleResize);
-
-    // Initial check
+    // Initial check on component mount
     handleResize();
 
-    return () => {
-      window.removeEventListener('resize', handleResize);   
+    // Add resize event listener
+    window.addEventListener('resize', handleResize);
 
+    // Clean up the event listener on component unmount
+    return () => {
+      window.removeEventListener('resize', handleResize);
     };
   }, []);
+
+
   const instagramIcons = [
 
     // {
@@ -83,57 +93,65 @@ export function SideBar() {
     // }
   ]
 
-  console.log(instagramIcons)
 
-  function onOpenCreateModal(ev){
+
+
+  function onOpenCreateModal(ev) {
 
     console.log('test')
     ev.stopPropagation()
-      const { value, name, textContext } = ev.currentTarget.dataset
-      console.log('target.dataset: ', ev.currentTarget.dataset)
-      console.log('name: ', name)
-    if(name.toLowerCase()==='create'){
+    const { value, name, textContext } = ev.currentTarget.dataset
+    console.log('target.dataset: ', ev.currentTarget.dataset)
+    console.log('name: ', name)
+    if (name.toLowerCase() === 'create') {
       console.log('textContext: ', textContext)
       setOpenModal(prev => !prev)
     }
   }
 
-  function onCloseModal(){
+  function onCloseModal() {
     setOpenModal(prev => !prev)
 
   }
 
   return (
     <>
-      
 
-      <ul className="side-bar-ul">
-      <InstagramIconLogo className='instagram-logo' />
-        {instagramIcons.map((icon, idx) => (
-          <li key={idx}
-            data-value={icon.name}
-            data-name = {icon.name}
+      <section className={!changeToNarrow ? "wide-side-bar-container" : "narrow-side-bar-container"} >
+        <ul className="side-bar-ul">
+        {!changeToNarrow ? <InstagramIconLogo className='instagram-logo' /> :<InstagramNarrowLogo className='instagram-narrow-logo'/>}
+          
+          {instagramIcons.map((icon, idx) => (
+            <li key={idx}
+              data-value={icon.name}
+              data-name={icon.name}
 
-            className='side-bar-li'
-            onClick={onOpenCreateModal}
-          >
-            {openModal ? <CreatePost onCloseModal={onCloseModal}/> : null}
-            {icon.svg && <icon.svg />} {icon.name === 'Profile' && <ImageAvatars avatarHeight='30px !important' avatarWidth='30px !important'/>} {icon.name}
-            {/* { icon.name === 'profile' ? <ImageAvatars/>            */}
-          </li>
-        ))}
-      </ul>
-      <section className='left-side-bar-footer'>
-        <section className='side-bar-botton-icons'>
-          <ThreadsIcon />
-          <span>Threads</span>
+              className='side-bar-li'
+              onClick={onOpenCreateModal}
+            >
+
+
+
+              {openModal ? <CreatePost onCloseModal={onCloseModal} /> : null}
+              {icon.svg && <icon.svg />} 
+              {icon.name === 'Profile' && <ImageAvatars avatarHeight='30px !important' avatarWidth='30px !important' />} 
+              {!changeToNarrow && icon.name}
+              {/* { icon.name === 'profile' ? <ImageAvatars/>            */}
+            </li>
+          ))}
+        </ul>
+        <section className='left-side-bar-footer'>
+          <section className='side-bar-botton-icons'>
+         <ThreadsIcon />
+         {!changeToNarrow ? <span>Threads</span> : null}
           </section>
           <section className='side-bar-botton-icons'>
-          <MoreIcon/>
-          <span>More</span>
+            <MoreIcon />
+            {!changeToNarrow ? <span>More</span> :null}
 
           </section>
-        
+
+        </section>
       </section>
 
 
