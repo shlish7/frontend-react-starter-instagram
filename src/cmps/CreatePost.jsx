@@ -4,11 +4,18 @@ import CloseModal from '../assets/svg/close-modal-icon.svg?react'
 import { ImageUploader } from './Imageuploader'
 
 
-export function CreatePost() {
+export function CreatePost({onCloseModal}) {
+
+    function onClickX(ev){
+        ev.stopPropagation()
+        ev.preventDefault()
+        onCloseModal()
+    }
+
     return (
         <>
             <section className="create-modal-container">
-                <CloseModal className='close-modal-icon' />
+                <CloseModal className='close-modal-icon' onClick= {onClickX} />
 
                 <section className="create-post-container">
 
