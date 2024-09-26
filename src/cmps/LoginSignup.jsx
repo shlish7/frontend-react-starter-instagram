@@ -50,16 +50,16 @@ export function LoginSignup(props) {
             <p>
                 <button className="btn-link" onClick={toggleSignup}>Go To {!isSignup ? 'Signup' : 'Login'}</button>
             </p>
-            {!isSignup &&
+            { !isSignup &&
                 <form className="login-form" onSubmit={onLogin}>
-                    <select
+                   <select
                         key={"username"}
                         name="username"
                         value={credentials.username}
                         onChange={handleChange}
                     >
                         <option key={"Select-User"} value="">Select User</option>
-                        {users.map(user => <option key={user.id} value={user.username}>{user.fullname}</option>)}
+                        {users.map(user => <option key={user._id} value={user.username}>{user.fullname}</option>)}
                     </select>
                     <button>Login!</button>
                 </form>

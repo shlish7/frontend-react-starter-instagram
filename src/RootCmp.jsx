@@ -2,20 +2,8 @@ import React from "react";
 import {  Routes, Route } from "react-router";
 
 import { HomePage } from "./pages/HomePage";
-import { AboutUs, AboutTeam, AboutVision } from "./pages/AboutUs";
-import { CarIndex } from "./pages/CarIndex.jsx";
-import { BoardIndex } from "./pages/BoardIndex.jsx";
-import { ReviewIndex } from "./pages/ReviewIndex.jsx";
 import { ChatApp } from "./pages/Chat.jsx";
-import { AdminIndex } from "./pages/AdminIndex.jsx";
-
-import { CarDetails } from "./pages/CarDetails";
 import { UserDetails } from "./pages/UserDetails";
-import { BoardDetails } from "./pages/BoardDetails";
-import { TaskDetails } from "./pages/TaskDetails";
-
-import { AppHeader } from "./cmps/AppHeader";
-import { AppFooter } from "./cmps/AppFooter";
 import { SideBar } from "./cmps/SideBar.jsx";
 import { Profile } from "./pages/Profile.jsx";
 // import { FeedItemFullScreen } from "./pages/FeedItemFullScreen.jsx";

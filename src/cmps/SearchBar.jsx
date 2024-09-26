@@ -6,7 +6,7 @@ export function SearchBar() {
         <section className="search-bar-container">
             <span className='search-span'>Search</span>
             <section className="search-box">
-                <input className='search-input' cleplaceholder="Search" type="text" value="" />
+                <input className='search-input' placeholder="Search" type="text" value="" />
             </section>
 
 
