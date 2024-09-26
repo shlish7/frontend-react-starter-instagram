@@ -1,6 +1,5 @@
 import { useRef, useState } from 'react';
 import StoryAvatar from './StoryAvatar';
-// import Arrow from '.../assets/svg/carousel-arrow.svg?react'
 import Arrow from '../../assets/svg/carousel-arrow.svg?react'
 import { useSelector } from 'react-redux'
 import { useEffect } from 'react'
@@ -32,7 +31,6 @@ const AvatarsStoryView = () => {
     const scrollRight = () => {
         setStartIndex((prevIndex) => Math.min(prevIndex + 4, stories.length - 8)); // Increase index by 4 but not more than stories.length - 8
     };
-
 
     if (!stories.length) return <div>Loading...</div>
 
