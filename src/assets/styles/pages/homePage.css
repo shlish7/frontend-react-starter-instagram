@@ -1,30 +1,32 @@
-*{
+* {
     box-sizing: border-box;
     padding: 0;
     margin: 0;
 }
 
-body, html {
-    overflow-x: hidden; /* Prevent horizontal scrolling on the entire page */
+body,
+html {
+    overflow-x: hidden;
+    /* Prevent horizontal scrolling on the entire page */
 }
 
-.instagram-app{
+.instagram-app {
     width: 100vw;
     height: 100vh;
 }
 
-.instagram-home-page{
+.instagram-home-page {
     display: grid;
-    grid-template-columns: 220px 1fr;
+    grid-template-columns: 220px 1fr 319px;
     grid-template-rows: 1fr 9fr;
-    grid-template-areas: 
-    "left-aside main-header"
-    "left-aside main-feed";
+    grid-template-areas:
+        "left-aside main-header right-aside"
+        "left-aside main-feed right-aside";
     height: 100vh;
     width: 100vw;
 }
 
-.home-header{
+.home-header {
     grid-area: main-header;
     /* max-width: 1690px; */
     display: flex;
@@ -36,7 +38,7 @@ body, html {
 
 }
 
-.home-left-side-bar{
+.home-left-side-bar {
     grid-area: left-aside;
     display: flex;
     flex-direction: column;
@@ -45,7 +47,15 @@ body, html {
     padding-right: 12px;
 }
 
-.home-feed{
+.home-right-bar {
+    grid-area: right-aside;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    margin-top: 16px;
+}
+
+.home-feed {
     grid-area: main-feed;
     display: flex;
     justify-content: center;
@@ -56,12 +66,12 @@ body, html {
     /* overflow-y: hidden; */
 }
 
-.home-feed-container{
+.home-feed-container {
     width: 468px;
 }
 
 
-.instagram-logo{
+.instagram-logo {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -77,38 +87,40 @@ body, html {
     /* justify-content: flex-start; */
     justify-content: space-between;
 }
-.avatar-and-user-details{
+
+.avatar-and-user-details {
     display: flex;
     justify-content: flex-start;
 }
 
 .home-page-img-title {
-display: flex;
-flex-direction: column;
-align-items: flex-start;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
 
 }
 
 
-.home-user-title-container{
+.home-user-title-container {
     display: flex;
     align-items: center;
     gap: 4px;
 }
 
 
-.feed-item-img-icons{
+.feed-item-img-icons {
     display: flex;
     justify-content: space-between;
     padding-top: 10px;
     padding-bottom: 10px;
 }
 
-.feed-item-img-icons-group{
+.feed-item-img-icons-group {
     display: flex;
     justify-content: flex-start;
     gap: 16px;
 }
+
 .home-title-user-name {
     font-family: -apple-system, "system-ui", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
     font-size: 14px;
@@ -116,7 +128,7 @@ align-items: flex-start;
 }
 
 .home-title-dot {
-    display:flex;
+    display: flex;
     align-items: center;
     color: #737373;
     height: 18px;
@@ -128,47 +140,47 @@ align-items: flex-start;
     line-height: 18px;
 }
 
-.home-title-verified{
+.home-title-verified {
     width: auto;
     height: auto;
 }
 
-.home-posted-time{
-color: #737373;
-font-family: -apple-system, "system-ui", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-font-size: 14px;
-font-weight: 400;
-height: auto;
-line-height: 18px;
+.home-posted-time {
+    color: #737373;
+    font-family: -apple-system, "system-ui", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    height: auto;
+    line-height: 18px;
 }
 
-.home-more-options-icon{
-    display:flex;
-    align-items: center; 
+.home-more-options-icon {
+    display: flex;
+    align-items: center;
 }
 
-.home-title-details{
-font-family: -apple-system, "system-ui", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-font-size: 12px;
-font-weight: 400;
-height: 18px;
-line-height: 16px;
+.home-title-details {
+    font-family: -apple-system, "system-ui", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    font-size: 12px;
+    font-weight: 400;
+    height: 18px;
+    line-height: 16px;
 }
 
-.home-title-caption{
-font-family: -apple-system, "system-ui", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-font-size: 12px;
-font-weight: 400;
-height: 18px;
-line-height: 16px;
+.home-title-caption {
+    font-family: -apple-system, "system-ui", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    font-size: 12px;
+    font-weight: 400;
+    height: 18px;
+    line-height: 16px;
 }
 
-a{
+a {
     text-decoration: none;
 
 }
 
-.like-count-container{
+.like-count-container {
     display: flex;
     gap: 4px;
     font-family: -apple-system, "system-ui", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
@@ -176,13 +188,13 @@ a{
     font-weight: 600;
 }
 
-.home-img-description-container{
+.home-img-description-container {
     display: flex;
     gap: 2px;
     width: 100%;
 }
 
-.home-img-user-name{
+.home-img-user-name {
     display: flex;
     flex-wrap: nowrap;
     /* width:fit-content; */
@@ -191,29 +203,33 @@ a{
     font-weight: 600;
 }
 
-.home-img-detailes{
+.home-img-detailes {
 
 
     display: flex;
     flex-wrap: wrap;
-    flex-grow: 1; /* Allow the span to grow and fill the available space */
+    flex-grow: 1;
+    /* Allow the span to grow and fill the available space */
     /* Ensure it spans the full width */
 }
 
-.home-comments-container{
-width: 100%;
+.home-comments-container {
+    width: 100%;
 }
 
-.home-add-comment{
+.home-add-comment {
     max-height: 80px;
     width: 100%;
     display: flex;
-    align-items: center; /* Center vertically */
-    padding: 0 10px; /* Optional: Add some padding for better appearance */
+    align-items: center;
+    /* Center vertically */
+    padding: 0 10px;
+    /* Optional: Add some padding for better appearance */
     border: none;
     outline: none;
     margin-top: 10px;
-    resize: none ;
+    resize: none;
 
 
 }
+

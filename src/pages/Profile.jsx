@@ -1,14 +1,14 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
 
-import { SideBar } from '../cmps/SideBar.jsx'
+import { LeftSideBar } from '../cmps/LeftSideBar.jsx'
 import ImageAvatars from '../cmps/ImageAvatars.jsx'
 
 export function Profile() {
     return (<>
         <section className='profile-page'>
             <aside className="profie-left-side-bar">
-                <SideBar />
+                <LeftSideBar />
             </aside>
             <main className='profile-main-side'>
                 <header className='profile-main-header'>

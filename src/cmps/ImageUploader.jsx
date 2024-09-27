@@ -1,36 +1,3 @@
-// import { useState } from 'react'
-// import { uploadService } from '../services/upload.service'
-
-// export function ImageUploader({ onUploaded = null }) {
-//     const [imgData, setImgData] = useState({
-//         imgUrl: null,
-//         height: 500,
-//         width: 500,
-//     })
-//     const [isUploading, setIsUploading] = useState(false)
-
-//     async function uploadImg(ev) {
-//         setIsUploading(true)
-//         const { secure_url, height, width } = await uploadService.uploadImg(ev)
-//         setImgData({ imgUrl: secure_url, width, height })
-//         setIsUploading(false)
-//         onUploaded?.(secure_url)
-//     }
-
-//     function getUploadLabel() {
-//         if (imgData.imgUrl) return 'Upload Another?'
-//         return isUploading ? 'Uploading....' : 'Upload Image'
-//     }
-
-//     return (
-//         <div className="upload-preview">
-//             {imgData.imgUrl && <img src={imgData.imgUrl} style={{ maxWidth: '200px', float: 'right' }} />}
-//             <label htmlFor="imgUpload">{getUploadLabel()}</label>
-//             <input className='select-from-computer' type="file" onChange={uploadImg} accept="img/*" id="imgUpload" />
-//         </div>
-//     )
-// }
-
 
 import React, { useRef, useState } from 'react';
 import { uploadService } from '../services/upload.service';
@@ -50,15 +17,15 @@ export function ImageUploader({ onUploaded = null }) {
     const handleButtonClick = () => {
         fileInputRef.current.click();
     };
-
-    // Handle the file upload
+    
     async function uploadImg(ev) {
-        setIsUploading(true);
-        const { secure_url, height, width } = await uploadService.uploadImg(ev);
-        setImgData({ imgUrl: secure_url, width, height });
-        setIsUploading(false);
-        onUploaded?.(secure_url);
-    }
+        setIsUploading(true)
+        const { secure_url, height, width } = await uploadService.uploadImg(ev)
+        setImgData({ imgUrl: secure_url, width, height })
+        setIsUploading(false)
+        onUploaded && onUploaded(secure_url)
+      }
+
 
     function getUploadLabel() {
         if (imgData.imgUrl) return 'Upload Another?';
@@ -76,13 +43,16 @@ export function ImageUploader({ onUploaded = null }) {
             </button>
 
             {/* Hidden file input */}
-            <input
-                type="file"
-                ref={fileInputRef}
-                style={{ display: 'none' }} // Hide the file input
-                onChange={uploadImg}
-                accept="image/*"
-            />
+        
+                <input
+                    type="file"
+                    ref={fileInputRef}
+                    style={{ display: 'none' }} // Hide the file input
+                    onChange={uploadImg}
+                    accept="image/*"
+                />
+            
+        
         </div>
     );
 }
