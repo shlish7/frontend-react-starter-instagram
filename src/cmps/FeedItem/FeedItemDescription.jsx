@@ -1,16 +1,27 @@
-import React from 'react'
+import { useState } from 'react';
 
 export function FeedItemDescription() {
+  const [isExpanded, setIsExpanded] = useState(false);
+
+  function toggleExpand() {
+    setIsExpanded(true);
+  }
+
   return (
     <section className="home-img-description-container">
-    <span className="home-img-user-name">User Name</span>
-    <span className="home-img-detailes">
-      Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ut ipsa
-      nam incidunt, illo, harum in quae perferendis quas minima error,
-      id facere architecto hic blanditiis! Ratione explicabo porro
-      veniam error.
-    </span>
-  </section>
-    )
+      <span className="home-img-user-name">User Name</span>
+      <span className={`home-img-detailes ${isExpanded ? 'expanded' : ''}`}>
+        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ut ipsa
+        nam incidunt, illo, harum in quae perferendis quas minima error,
+        id facere architecto hic blanditiis! Ratione explicabo porro
+        veniam error.
+      </span>
+      {!isExpanded && (
+        <button className="toggle-btn" onClick={toggleExpand}>
+          more
+        </button>
+      )}
+    </section>
+  );
 }
 

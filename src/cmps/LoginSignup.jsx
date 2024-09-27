@@ -45,30 +45,32 @@ export function LoginSignup(props) {
     function onUploaded(imgUrl) {
         setCredentials(prevCredentials => ({ ...prevCredentials, imgUrl }))
     }
+    
     return (
         <div className="login-page">
             <p>
                 <button className="btn-link" onClick={toggleSignup}>Go To {!isSignup ? 'Signup' : 'Login'}</button>
             </p>
-            { !isSignup &&
+            {!isSignup &&
                 <form className="login-form" onSubmit={onLogin}>
-                   <select 
-                        key={"username"}
+                    <select 
                         name="username"
                         value={credentials.username}
                         onChange={handleChange}
                     >
                         <option key={"Select-User"} value="">Select User</option>
-                        {users.map(user => <option key={user._id} value={user.username}>{user.fullname}</option>)}
+                        {users.map(user => (
+                            <option key={user.fullname} value={user.username}>{user.fullname}</option>
+                        ))}
                     </select>
                     <button>Login!</button>
                 </form>
             }
+
             <div className="signup-section">
                 {isSignup &&
                     <form className="signup-form" onSubmit={onSignup}>
                         <input
-                            key={"fullname"}
                             type="text"
                             name="fullname"
                             value={credentials.fullname}
@@ -77,7 +79,6 @@ export function LoginSignup(props) {
                             required
                         />
                         <input
-                            key={"username"}
                             type="text"
                             name="username"
                             value={credentials.username}
@@ -86,7 +87,6 @@ export function LoginSignup(props) {
                             required
                         />
                         <input
-                            key={"password"}
                             type="password"
                             name="password"
                             value={credentials.password}
@@ -95,7 +95,7 @@ export function LoginSignup(props) {
                             required
                         />
                         <ImgUploader onUploaded={onUploaded} />
-                        <button >Signup!</button>
+                        <button>Signup!</button>
                     </form>
                 }
             </div>

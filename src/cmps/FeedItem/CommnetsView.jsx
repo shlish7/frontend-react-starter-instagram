@@ -18,9 +18,9 @@ export function CommnetsView({ onOpenFeedItem }) {
       <section className="home-comments">
         <Link to='/p/pId'>
           <span onClick={onOpenFeedItem}>View all 61 comments</span>
-
         </Link>
       </section>
+      
       <section className="add-comment-and-emoji">
         <textarea
           type="text"
@@ -31,13 +31,11 @@ export function CommnetsView({ onOpenFeedItem }) {
           dir=""
           aria-label="Add a comment…"
         />
-
         
         {/* <EmojiPickerIcon className='emoji-picker' onClick={onOpenEmojiPicker} />
-
         {isEmojiPicker ? <EmojiPicker /> : null} */}
 
-<div className="emoji-picker-container">
+        <div className="emoji-picker-container">
           <EmojiPickerIcon className='emoji-picker' onClick={onOpenEmojiPicker} />
           {isEmojiPicker && (
             <div className="emoji-picker-wrapper">
