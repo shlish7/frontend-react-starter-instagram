@@ -10,6 +10,7 @@
 @import "./cmps/AvatarsStoryView.css";
 @import "./cmps/StoryAvatar.css";
 @import "./cmps/feed-item.css";
+@import "./cmps/comments-view.css";
 @import "./cmps/comments-index.css";
 @import "./cmps/comments-preview.css";
 @import "./cmps/create-post.css";
