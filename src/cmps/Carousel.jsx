@@ -7,9 +7,10 @@ import Petitim from '../assets/images/petitim.jpg'
 
 
 
-export function Carousel(props) {
+export function Carousel({onDoubleClick, isImgDoubleClicked}) {
 
     const [currentIndex, setCurrentIndex] = useState(0);
+    const [doubleClick, setDoubleClick] =useState( isImgDoubleClicked|| false)
 
 
     const carouselImages = [
@@ -43,6 +44,20 @@ export function Carousel(props) {
 
     }
 
+    function onImgDoubledClicked(){
+ 
+        setDoubleClick(prev => {
+            const newDoubleClickState = !prev
+
+            // Pass the updated state to the parent component
+            onDoubleClick(newDoubleClickState)
+
+            // Return the updated state
+            return newDoubleClickState
+        });
+
+    }
+
     return (<>
 
         <div className="carousel-container">
@@ -56,6 +71,8 @@ export function Carousel(props) {
                     <img className='carousel-img'
                         src={carouselImages[currentIndex].src}
                         alt={carouselImages[currentIndex].name} 
+                        onDoubleClick={onImgDoubledClicked}
+
                         />
                     {/* <div className="dot"></div> */}
                     

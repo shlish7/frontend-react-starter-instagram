@@ -12,13 +12,13 @@ import NotificationsIcon from '../assets/svg/notifications-icon.svg?react'
 import CreateIcon from '../assets/svg/create-icon.svg?react'
 import ThreadsIcon from '../assets/svg/threads-icon.svg?react'
 import MoreIcon from '../assets/svg/more-icon.svg?react'
-import ImageAvatars from './ImageAvatars'
-import { CreatePost } from './CreatePost'
-import { LoginSignup } from './LoginSignup'
+import ImageAvatars from './ImageAvatars.jsx'
+import { CreatePost } from './CreatePost.jsx'
+import { LoginSignup } from './LoginSignup.jsx'
 import { showErrorMsg, showSuccessMsg } from '../services/event-bus.service.js'
 import { login, logout, signup } from '../store/user.actions.js'
 
-export function SideBar() {
+export function LeftSideBar() {
   const user = useSelector(storeState => storeState.userModule.user)
 
   const [openModal,setOpenModal]= useState(false)
@@ -143,14 +143,28 @@ export function SideBar() {
     <>
       <section className={!changeToNarrow ? "wide-side-bar-container" : "narrow-side-bar-container"} >
         <ul className="side-bar-ul">
-        {!changeToNarrow ? <InstagramIconLogo className='instagram-logo' /> :<InstagramNarrowLogo className='instagram-narrow-logo'/>}
+        {/* {!changeToNarrow ?  <InstagramIconLogo className='instagram-logo' /> :<InstagramNarrowLogo className='instagram-narrow-logo'/>} */}
+
+        {!changeToNarrow ?
+            (
+              <section className='instagram-logo' >
+                <InstagramIconLogo />
+              </section>)
+            :
+            (<section className='instagram-narrow-logo' >
+              <InstagramNarrowLogo />
+            </section>)
+
+          }
+
           
           {instagramIcons.map((icon, idx) => (
             <li key={idx}
               data-value={icon.name}
               data-name={icon.name}
 
-              className='side-bar-li'
+              className={!changeToNarrow ? "wide-side-bar-li" : "narrow-side-bar-li"}
+              // className='side-bar-li'
               onClick={onOpenCreateModal}
             >
               {openModal ? <CreatePost onCloseModal={onCloseModal} /> : null}
@@ -162,7 +176,7 @@ export function SideBar() {
           ))}
         </ul>
   
-      <section className="signup-signin">
+      {/* <section className="signup-signin">
         {user &&
             <span className="user-info">
                 { user.imgUrl && <img src={user.imgUrl} /> }
@@ -176,7 +190,7 @@ export function SideBar() {
                 <LoginSignup onLogin={onLogin} onSignup={onSignup} />
             </div>
         }
-      </section>
+      </section> */}
 
       <section className='left-side-bar-footer'>
           <section className='side-bar-botton-icons'>

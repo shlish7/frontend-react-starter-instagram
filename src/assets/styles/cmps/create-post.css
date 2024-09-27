@@ -5,6 +5,7 @@
 }
 
 
+
 .create-post-container {
 
     display: flex;
@@ -21,20 +22,20 @@
     /* box-shadow:
         0 0 0 100vmax rgba(0, 0, 0, 0.5),
         -3px 1px 28px #00000043; */
-        box-shadow:
-        0 0 0 100vmax rgba(0, 0, 0, 0.2); 
-        /* -3px 1px 28px #00000043; */
-        /* This is for the overlay shadow, adjust opacity as needed */
+    box-shadow:
+        0 0 0 100vmax rgba(0, 0, 0, 0.16);
+    /* -3px 1px 28px #00000043; */
+    /* This is for the overlay shadow, adjust opacity as needed */
     padding: 0;
     background-color: rgb(255, 255, 255);
     border-radius: 4px;
     z-index: 4;
     border-radius: 12px;
-    max-height: calc(100vh - 40px);    
+    max-height: calc(100vh - 40px);
     max-width: 855px;
     min-height: 391px;
     min-width: 348px;
-    opacity: 0.6;
+    /* opacity: 0.6; */
 }
 
 
@@ -56,11 +57,11 @@
     width: 100%;
 }
 
-.modal-internal-container{
+.modal-internal-container {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    gap:10px;
+    gap: 10px;
     align-items: center;
     text-align: center;
     height: 100%;
@@ -85,13 +86,17 @@
 }
 
 
-.close-modal-icon{
+.close-modal-icon {
     position: absolute;
     top: 10px;
     right: 10px;
     /* color: rgb(255, 255, 255); */
-    color:#fcffff;
+    color: #fcffff;
     cursor: pointer;
 
+
+}
+
+.create-post-img {
 
 }

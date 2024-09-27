@@ -4,7 +4,7 @@ import {  Routes, Route } from "react-router";
 import { HomePage } from "./pages/HomePage";
 import { ChatApp } from "./pages/Chat.jsx";
 import { UserDetails } from "./pages/UserDetails";
-import { SideBar } from "./cmps/SideBar.jsx";
+import { LeftSideBar } from "./cmps/LeftSideBar.jsx";
 import { Profile } from "./pages/Profile.jsx";
 // import { FeedItemFullScreen } from "./pages/FeedItemFullScreen.jsx";
 import { FeedItemFullScreen } from "./pages/FeedItemFullScreen.jsx";

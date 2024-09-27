@@ -52,7 +52,7 @@ export function LoginSignup(props) {
             </p>
             { !isSignup &&
                 <form className="login-form" onSubmit={onLogin}>
-                   <select
+                   <select 
                         key={"username"}
                         name="username"
                         value={credentials.username}

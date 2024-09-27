@@ -4,7 +4,8 @@
 @import "./pages/feed-item-full-screen.css";
 
 /* Components */
-@import "./cmps/sideBar.css";
+@import "./cmps/left-side-bar.css";
+@import "./cmps/right-side-bar.css";
 /* @import "./cmps/home-feed.css"; */
 @import "./cmps/AvatarsStoryView.css";
 @import "./cmps/StoryAvatar.css";

@@ -127,9 +127,11 @@
 
 .carousel-img {
     /* height: 468px; */
-    max-height: 920px;
+    /* max-height: 920px; */
+    max-height: 585;
     max-width: 920px;
     position: relative;
+    cursor: pointer;
 }
 
 .right-arrow-icon {
