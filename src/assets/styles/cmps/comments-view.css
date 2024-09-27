@@ -1,0 +1,48 @@
+.home-add-comment {
+    max-height: 80px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    /* Center vertically */
+    padding: 0 10px;
+    /* Optional: Add some padding for better appearance */
+    border: none;
+    outline: none;
+    margin-top: 10px;
+    resize: none;
+
+
+}
+
+
+
+.add-comment-and-emoji {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 0 10px;
+    position: relative; /* This ensures the emoji picker will be positioned relative to this container */
+}
+
+.emoji-picker-container {
+    position: relative;
+}
+
+/* .emoji-picker-wrapper {
+    position: absolute;
+    bottom: 40px; 
+    Adjust this to control how high the emoji picker opens
+    right: 0; 
+    Align to the right side of the input
+    z-index: 10;
+     Ensure it's above other elements
+} */
+
+.emoji-picker-wrapper {
+    position: absolute;
+    bottom: 40px; /* Adjust height to open upwards */
+    right: -350px; /* Adjust to move picker to the right */
+    z-index: 100; /* Ensure it's on top of other elements */
+    background-color: white; /* Ensure it's visible with a background */
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); /* Optional: Add a shadow */
+}
