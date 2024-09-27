@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { Link } from "react-router-dom";
 import EmojiPicker from 'emoji-picker-react';
 import EmojiPickerIcon from '../../assets/svg/emoji-picker.svg?react';

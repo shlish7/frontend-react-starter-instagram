@@ -13,7 +13,6 @@ export function FeedItem({ onOpenFeedItem }) {
 
   const [isImgDoubleClicked, setIsImgDoubleClicked] = useState(false);
 
-
   function onDoubleClick(isDoubleClickedFromCarousel) {
     console.log('double clicked feed item: ', isDoubleClickedFromCarousel)
     setIsImgDoubleClicked(isDoubleClickedFromCarousel)   
@@ -25,7 +24,7 @@ export function FeedItem({ onOpenFeedItem }) {
       <section className="home-feed-container">
         <FeedItemCreatorDetails />
         <Carousel onDoubleClick={onDoubleClick} isImgDoubleClicked={isImgDoubleClicked}/>
-        <ButtonsView isImgDoubleClicked = {isImgDoubleClicked}/>
+        <ButtonsView isImgDoubleClicked={isImgDoubleClicked} onOpenFeedItem={onOpenFeedItem}/>
         <LikesCount />
         <FeedItemDescription />
         <CommnetsView onOpenFeedItem={onOpenFeedItem} />
