@@ -210,6 +210,7 @@ a {
     overflow: hidden;
     text-overflow: ellipsis;
     flex-grow: 1; 
+}
 
 .home-img-detailes.expanded {
     white-space: normal;
