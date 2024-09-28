@@ -6,12 +6,12 @@ import EmojiPickerIcon from '../../assets/svg/emoji-picker.svg?react';
 export function CommnetsView({ onOpenFeedItem, handleCommentSubmit }) {
 
   const [isEmojiPicker, setIsEmojiPicker] = useState(false)
-  const [comment, setComment] = useState(''); // State to store the comment
+  const [comment, setComment] = useState(''); 
 
   const onHandleCommentSubmit = () => {
     if (comment.trim() !== '') {
       console.log('Comment submitted:', comment);
-      handleCommentSubmit(comment.trim()) //todo: call server api
+      handleCommentSubmit(comment.trim())
       setComment(''); // Optionally clear the textarea after submission
     }
   };
