@@ -3,7 +3,6 @@ import StoryAvatar from './StoryAvatar';
 import Arrow from '../../assets/svg/carousel-arrow.svg?react'
 import { useSelector } from 'react-redux'
 import { useEffect } from 'react'
-import { loadUsers } from '../../store/user.actions.js'
 
 const AvatarsStoryView = () => {
     const users = useSelector(storeState => storeState.userModule.users)
@@ -11,10 +10,6 @@ const AvatarsStoryView = () => {
     const [stories, setStories] = useState([])
     const [startIndex, setStartIndex] = useState(0);
     const visibleStories = stories.slice(startIndex, startIndex + 8); // Show 8 stories at a time
-
-    useEffect(() => {
-        loadUsers()
-    }, [])
 
     useEffect(() => {
         setStories(Array.from({ length: 20 }, (_, i) => ({

@@ -9,7 +9,7 @@ import { FeedItemDescription } from './FeedItemDescription.jsx';
 import { CommnetsView } from './CommnetsView.jsx';
 import { FeedItemCreatorDetails } from './FeedItemCreatorDetails.jsx';
 
-export function FeedItem({ onOpenFeedItem }) {
+export function FeedItem({ onOpenFeedItem, handleCommentSubmit }) {
 
   const [isImgDoubleClicked, setIsImgDoubleClicked] = useState(false);
 
@@ -27,7 +27,7 @@ export function FeedItem({ onOpenFeedItem }) {
         <ButtonsView isImgDoubleClicked={isImgDoubleClicked} onOpenFeedItem={onOpenFeedItem}/>
         <LikesCount />
         <FeedItemDescription />
-        <CommnetsView onOpenFeedItem={onOpenFeedItem} />
+        <CommnetsView onOpenFeedItem={onOpenFeedItem} handleCommentSubmit={handleCommentSubmit} />
       </section>
     </main>
   )

@@ -1,21 +1,19 @@
 import { useSelector } from 'react-redux'
-import { login, logout, signup } from '../store/user.actions.js'
-
-
+import { useEffect } from 'react'
 import { LeftSideBar } from "../cmps/LeftSideBar";
 import { Outlet, useNavigate } from "react-router-dom";
 import AvatarsStoryView from "../cmps/Story/AvatarsStoryView";
 import { FeedItem } from "../cmps/FeedItem/FeedItem";
-import { LoginSignup } from '../cmps/LoginSignup'
-import ImageAvatars from '../cmps/ImageAvatars.jsx';
 import { RightSideBar } from '../cmps/RightSideBar.jsx';
-
+import { loadUsers } from '../store/user.actions.js';
 
 export function HomePage() {
   const user = useSelector(storeState => storeState.userModule.user)
-
-
   const navigate = useNavigate()
+
+  useEffect(() => {
+    loadUsers()
+}, [])
 
   function onOpenFeedItem(ev) {
     ev.stopPropagation()
@@ -23,7 +21,10 @@ export function HomePage() {
     navigate('/p')
   }
 
-
+  function handleCommentSubmit(comment) {
+    console.log(comment)
+    //feeditemService.save()
+  }
 
   return (
     <section className="instagram-home-page">
@@ -34,7 +35,8 @@ export function HomePage() {
       <aside className="home-left-side-bar">
         <LeftSideBar />
       </aside>
-      <FeedItem onOpenFeedItem={onOpenFeedItem} />
+      
+      <FeedItem onOpenFeedItem={onOpenFeedItem} handleCommentSubmit={handleCommentSubmit} />
       <Outlet context={{ onOpenFeedItem }} />
       <aside className="home-right-bar">
         <RightSideBar/>

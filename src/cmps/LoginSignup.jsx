@@ -1,17 +1,12 @@
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import { userService } from '../services/user.service.js'
 import { useSelector } from 'react-redux';
-import { loadUsers } from '../store/user.actions.js';
 import { ImgUploader } from './ImgUploader.jsx';
 
 export function LoginSignup(props) {
     const users = useSelector(storeState => storeState.userModule.users)
     const [credentials, setCredentials] = useState(userService.getEmptyUser())
     const [isSignup, setIsSignup] = useState(false)
-
-    useEffect(() => {
-        loadUsers()
-    }, [])
 
     function clearState() {
         setCredentials(userService.getEmptyUser())
