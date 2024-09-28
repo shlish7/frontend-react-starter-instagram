@@ -4,14 +4,20 @@ import Comment from "../../assets/svg/comment.svg?react";
 import Share from "../../assets/svg/share.svg?react";
 import SaveIcon from "../../assets/svg/SaveIcon.svg?react";
 import RedLike from "../../assets/svg/red-like.svg?react";
+import PressedSaveIcon from "../../assets/svg/pressed-save-icon.svg?react";
 
 export function ButtonsView({isImgDoubleClicked, onOpenFeedItem}) {
 
   const [isLiked,setIsLiked] = useState()
+  const [isSaved,setIsSaved] = useState()
 
   function onChangeLike(){
     console.log('changeLike');
     setIsLiked(prev => !prev)
+  }
+
+  function onSaveItem(){
+    setIsSaved(prev => !prev)
   }
   
   return (
@@ -22,7 +28,7 @@ export function ButtonsView({isImgDoubleClicked, onOpenFeedItem}) {
       <Share />
     </section>
     <section className="feed-item-img-save-icon">
-      <SaveIcon />
+      {isSaved ?  <PressedSaveIcon onClick={onSaveItem} /> : <SaveIcon onClick={onSaveItem} />}
     </section>
   </section>
     )
