@@ -1,6 +1,7 @@
 import { storageService } from './async-storage.service'
 
 const STORAGE_KEY_LOGGEDIN_USER = 'loggedinUser'
+const STORAGE_KEY = 'user'
 
 export const userService = {
     login,
@@ -12,7 +13,6 @@ export const userService = {
     getById,
     remove,
     update,
-    changeScore,
     getEmptyUser,
 }
 
@@ -20,7 +20,7 @@ window.userService = userService
 
 async function getUsers() {
     try {
-        const results = await storageService.query('user')
+        const results = await storageService.query(STORAGE_KEY)
         if (!results || !results.length) {
             return _createMockUsers()
         }
@@ -34,20 +34,20 @@ async function getUsers() {
 }
 
 async function getById(userId) {
-    const user = await storageService.get('user', userId)
+    const user = await storageService.get(STORAGE_KEY, userId)
     // const user = await httpService.get(`user/${userId}`)
     return user
 }
 
 function remove(userId) {
-    return storageService.remove('user', userId)
+    return storageService.remove(STORAGE_KEY, userId)
     // return httpService.delete(`user/${userId}`)
 }
 
 async function update({ _id, score }) {
-    const user = await storageService.get('user', _id)
+    const user = await storageService.get(STORAGE_KEY, _id)
     user.score = score
-    await storageService.put('user', user)
+    await storageService.put(STORAGE_KEY, user)
 
     // const user = await httpService.put(`user/${_id}`, {_id, score})
 
@@ -75,14 +75,6 @@ async function logout() {
     // return await httpService.post('auth/logout')
 }
 
-async function changeScore(by) {
-    const user = getLoggedinUser()
-    if (!user) throw new Error('Not loggedin')
-    user.score = user.score + by || by
-    await update(user)
-    return user.score
-}
-
 function saveLocalUser(user) {
     user = { _id: user._id, fullname: user.fullname, imgUrl: user.imgUrl }
     sessionStorage.setItem(STORAGE_KEY_LOGGEDIN_USER, JSON.stringify(user))
@@ -107,6 +99,13 @@ function getEmptyUser() {
 //     await userService.signup({fullname: 'Master Adminov', username: 'admin', password:'123', score: 10000, isAdmin: true})
 //     await userService.signup({fullname: 'Muki G', username: 'muki', password:'123', score: 10000})
 // })()
+
+const getRandomInt = (min, max) => Math.floor(Math.random() * (max - min)) + min;
+const getRandomTags = () => {
+  const tags = ['nature', 'tech', 'fashion', 'travel', 'food', 'art', 'music'];
+  const randomTagCount = getRandomInt(1, 4); // Randomly choose between 1 and 3 tags
+  return Array.from({ length: randomTagCount }, () => tags[getRandomInt(0, tags.length)]);
+};
 
 async function _createMockUsers() {
     const mockUsers = [
@@ -182,7 +181,7 @@ async function _createMockUsers() {
         },
         {
           fullname: "testUser9",
-          imgUrl: "https://res.cloudinary.com/dz9gxtvp9/image/upload/v1727288040/testuser9.png",
+          imgUrl: "https://res.cloudinary.com/dz9gxtvp9/image/upload/v1727288022/jawucsl5tovifnvr6599.png",
           password: "pass9",
           username: "testuser9",
           _id: "uid011",
@@ -250,80 +249,23 @@ async function _createMockUsers() {
           username: "mockuser18",
           _id: "uid020",
         },
-        {
-          fullname: "randomUser19",
-          imgUrl: "https://res.cloudinary.com/dz9gxtvp9/image/upload/v1727288022/jawucsl5tovifnvr6599.png",
-          password: "pass19",
-          username: "randomuser19",
-          _id: "uid021",
-        },
-        {
-          fullname: "testUser20",
-          imgUrl: "https://res.cloudinary.com/dz9gxtvp9/image/upload/v1727288022/jawucsl5tovifnvr6599.png",
-          password: "pass20",
-          username: "testuser20",
-          _id: "uid022",
-        },
-        {
-          fullname: "user21",
-          imgUrl: "https://res.cloudinary.com/dz9gxtvp9/image/upload/v1727288052/user21.png",
-          password: "pass21",
-          username: "user21",
-          _id: "uid023",
-        },
-        {
-          fullname: "mockUser22",
-          imgUrl: "https://res.cloudinary.com/dz9gxtvp9/image/upload/v1727288053/mockuser22.png",
-          password: "pass22",
-          username: "mockuser22",
-          _id: "uid024",
-        },
-        {
-          fullname: "testUser23",
-          imgUrl: "https://res.cloudinary.com/dz9gxtvp9/image/upload/v1727288054/testuser23.png",
-          password: "pass23",
-          username: "testuser23",
-          _id: "uid025",
-        },
-        {
-          fullname: "randomUser24",
-          imgUrl: "https://res.cloudinary.com/dz9gxtvp9/image/upload/v1727288055/randomuser24.png",
-          password: "pass24",
-          username: "randomuser24",
-          _id: "uid026",
-        },
-        {
-          fullname: "user25",
-          imgUrl: "https://res.cloudinary.com/dz9gxtvp9/image/upload/v1727288056/user25.png",
-          password: "pass25",
-          username: "user25",
-          _id: "uid027",
-        },
-        {
-          fullname: "randomUser26",
-          imgUrl: "https://res.cloudinary.com/dz9gxtvp9/image/upload/v1727288057/randomuser26.png",
-          password: "pass26",
-          username: "randomuser26",
-          _id: "uid028",
-        },
-        {
-          fullname: "mockUser27",
-          imgUrl: "https://res.cloudinary.com/dz9gxtvp9/image/upload/v1727288058/mockuser27.png",
-          password: "pass27",
-          username: "mockuser27",
-          _id: "uid029",
-        },
-        {
-          fullname: "testUser28",
-          imgUrl: "https://res.cloudinary.com/dz9gxtvp9/image/upload/v1727288059/testuser28.png",
-          password: "pass28",
-          username: "testuser28",
-          _id: "uid031",
-        },
       ];
     
-      const results = []
-      for (const user of mockUsers) {
+    const mockFeedItems = mockUsers.flatMap(user => {
+        return Array.from({ length: 5 }, (_, index) => ({
+            id: `feed_${user._id}_${index}`,
+            userId: user._id,
+            imageUrl: user.imgUrl, // You can replace this with dynamic image URLs
+            caption: `This is a caption for ${user.username} post ${index + 1}`,
+            tags: getRandomTags(),
+            likesCount: getRandomInt(10, 100), // Random likes count
+            commentsCount: getRandomInt(1, 20), // Random comments count
+            createdAt: new Date().toISOString(), // Current timestamp
+        }));
+    });
+
+    const results = []
+    for (const user of mockUsers) {
         try {
             const newUser = await userService.signup(user);
             results.push(newUser)

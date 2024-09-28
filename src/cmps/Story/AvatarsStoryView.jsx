@@ -17,7 +17,7 @@ const AvatarsStoryView = () => {
     }, [])
 
     useEffect(() => {
-        setStories(Array.from({ length: 30 }, (_, i) => ({
+        setStories(Array.from({ length: 20 }, (_, i) => ({
             imgUrl: users[i]?.imgUrl || 'https://via.placeholder.com/150',
             username: users[i]?.username,
             isSeen: i % 2 === 0,

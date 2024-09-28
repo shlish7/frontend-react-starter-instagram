@@ -1,0 +1,67 @@
+
+import { storageService } from './async-storage.service'
+
+const STORAGE_KEY = 'feeditem'
+
+export const feeditemService = {
+    query,
+    getById,
+    save,
+    remove,
+}
+
+window.cs = feeditemService
+
+async function query(filterBy = { txt: '' }) {
+    try {
+        const results = await storageService.query(STORAGE_KEY)
+        //todo: do the filter here - before saveing to store filter post.userId is in connectedUser.followingIds
+        return results
+    } catch {
+        console.log("faild query feed items")
+    }
+    
+    // return httpService.get(STORAGE_KEY, filterBy)
+}
+
+async function getById(feeditemId) {
+    try {
+        const feeditem = await storageService.get(STORAGE_KEY, feeditemId)
+        return feeditem
+        // return httpService.get(`feeditem/${feeditemId}`)
+    } catch {
+        console.log("faild getById feed item")
+    }
+}
+
+async function remove(feeditemId) {
+    try {
+        return storageService.remove(STORAGE_KEY, feeditemId)
+        // return httpService.delete(`feeditem/${feeditemId}`)
+    } catch {
+        console.log("faild remove feed item")
+    }
+}
+
+async function save(feeditem) {
+    var savedFeeditem
+   
+    try {
+        if (feeditem._id) {
+            savedFeeditem = await storageService.put(STORAGE_KEY, feeditem)
+            // savedFeeditem = await httpService.put(`feeditem/${feeditem._id}`, feeditem)
+        } else {
+            savedFeeditem = await storageService.post(STORAGE_KEY, feeditem)
+            // savedFeeditem = await httpService.post(STORAGE_KEY, feeditem)
+        }
+        return savedFeeditem
+    } catch {
+        console.log("faild save feed item")
+    }
+}
+
+
+
+
+
+
