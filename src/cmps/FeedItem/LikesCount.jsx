@@ -1,9 +1,9 @@
 import React from 'react'
 
-export function LikesCount() {
+export function LikesCount({feedItem}) {
   return (
     <section className="like-count-container">
-    <span>520</span>
+    <span>{feedItem.likesCount}</span>
     <span>likes</span>
   </section>
     )

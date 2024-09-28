@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-export function FeedItemDescription() {
+export function FeedItemDescription({feedItem}) {
   const [isExpanded, setIsExpanded] = useState(false);
 
   function toggleExpand() {
@@ -10,11 +10,14 @@ export function FeedItemDescription() {
   return (
     <section className="home-img-description-container">
       <span className="home-img-user-name">User Name</span>
-      <span className={`home-img-detailes ${isExpanded ? 'expanded' : ''}`}>
+      {/* <span className={`home-img-detailes ${isExpanded ? 'expanded' : ''}`}>
         Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ut ipsa
         nam incidunt, illo, harum in quae perferendis quas minima error,
         id facere architecto hic blanditiis! Ratione explicabo porro
         veniam error.
+      </span> */}
+      <span className={`home-img-detailes ${isExpanded ? 'expanded' : ''}`}>
+          {feedItem.caption}
       </span>
       {!isExpanded && (
         <button className="toggle-btn" onClick={toggleExpand}>

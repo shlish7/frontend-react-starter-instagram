@@ -7,7 +7,7 @@ import Petitim from '../assets/images/petitim.jpg'
 
 
 
-export function Carousel({onDoubleClick, isImgDoubleClicked}) {
+export function Carousel({feedItem, onDoubleClick, isImgDoubleClicked}) {
 
     const [currentIndex, setCurrentIndex] = useState(0);
     const [doubleClick, setDoubleClick] =useState( isImgDoubleClicked|| false)
@@ -70,7 +70,8 @@ export function Carousel({onDoubleClick, isImgDoubleClicked}) {
                 <div className="img-container">
                     <img className='carousel-img'
                         src={carouselImages[currentIndex].src}
-                        alt={carouselImages[currentIndex].name} 
+                        // src={feedItem.imageUrl}
+                        // alt={carouselImages[currentIndex].name} 
                         onDoubleClick={onImgDoubledClicked}
 
                         />
