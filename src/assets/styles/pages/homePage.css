@@ -70,6 +70,8 @@ html {
 
 .home-feed-container {
     width: 468px;
+    border-bottom: 1px solid rgb(215, 215, 215);
+
 }
 
 

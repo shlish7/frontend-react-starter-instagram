@@ -23,7 +23,7 @@ export function FeedItemFullScreen() {
     <CloseModal className='close-modal-icon' onClick={onNavigateBack}/>
 
     <section className="feed-item-container">
-      <Carousel></Carousel>
+      <Carousel/>      
       {/* <section>test1</section> */}
       <CommentsIndex/>
       {/* <section className="feed-item-comments">test2</section> */}
