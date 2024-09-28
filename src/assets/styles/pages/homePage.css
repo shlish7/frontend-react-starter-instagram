@@ -58,7 +58,9 @@ html {
 .home-feed {
     grid-area: main-feed;
     display: flex;
+    flex-direction: column;
     justify-content: center;
+    align-items: center;
     overflow-y: scroll;
     /* border: 1px solid black; */
 

@@ -272,11 +272,11 @@ async function _createMockFeeditems() {
             continue;
         } catch (error) {
             console.error('Error creating feeditem:', error);
-            return new Promise.reject(error)
+            return Promise.reject(error)
         }
     }
 
-    return new Promise.resolve(feedItemsResults)
+    return  Promise.resolve(feedItemsResults)
   }
 
 

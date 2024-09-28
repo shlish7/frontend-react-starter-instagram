@@ -7,13 +7,15 @@ import MoreOptions from '../../assets/svg/more-options-icon.svg?react'
 import hazinor from "../../assets/images/Hazinor.jpg";
 
 
-export function FeedItemCreatorDetails() {
+export function FeedItemCreatorDetails({feedItem}) {
+
+  console.log('feed Item creator ' , feedItem);
   return (
     <section className="img-title-container">
     <section className="avatar-and-user-details">
       <section className="avatar">
         <ImageAvatars
-          img={hazinor}
+          img={feedItem.imgUrl}
           avatarHeight="30px !important"
           avatarWidth="30px !important"
         />
@@ -21,7 +23,7 @@ export function FeedItemCreatorDetails() {
       <section className="home-img-title-user-details">
         <section className="home-user-title-container">
           <Link to="/" className="home-title-user-name">
-            User.Name
+            {feedItem.userId}
           </Link>
           <Verified className="home-title-verified" />
           <span className="home-title-dot">.</span>
@@ -30,9 +32,9 @@ export function FeedItemCreatorDetails() {
         <section className="home-title-details">
           <Link to="/">
             <span className="home-title-caption">
-              veneris
-              <span>.</span>
-              Vivaldi Winter Drill #2
+            {feedItem.caption}
+            <span>.</span>
+              {feedItem.caption}
             </span>
           </Link>
         </section>

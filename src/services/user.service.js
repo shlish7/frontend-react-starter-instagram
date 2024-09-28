@@ -253,10 +253,10 @@ async function _createMockUsers() {
             continue;
         } catch (error) {
             console.error('Error creating user:', error);
-            return new Promise.reject(error)
+            return  Promise.reject(error)
         }
     }
 
-    return new Promise.resolve(results)
+    return  Promise.resolve(results)
   }
 
