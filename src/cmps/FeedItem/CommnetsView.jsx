@@ -43,7 +43,6 @@ export function CommnetsView({ feedItem, handleCommentSubmit }) {
     setIsEmojiPicker(prev => !prev)
   }
 
-
 function onEmojiClick(emojiData) {
   console.log('Selected Emoji:', emojiData.emoji); // This should now print the selected emoji.
   setComment(prevComment => prevComment + emojiData.emoji)// Append emoji to comment
@@ -75,7 +74,6 @@ function onLikeComment(){
   setIsLikedComment(prev => !prev)
 
 }
-
 
   return (
     <section className="home-comments-container" >

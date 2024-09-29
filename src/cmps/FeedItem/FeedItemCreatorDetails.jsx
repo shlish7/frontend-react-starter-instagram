@@ -25,13 +25,13 @@ export function FeedItemCreatorDetails({feedItem}) {
           <time className="home-posted-time">15h</time>
         </section>
         <section className="home-title-details">
-          <Link to="/">
+          {/* <Link to="/">
             <span className="home-title-caption">
             {feedItem.caption}
             <span>.</span>
               {feedItem.caption}
             </span>
-          </Link>
+          </Link> */}
         </section>
       </section>
     </section>
