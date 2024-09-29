@@ -1,11 +1,7 @@
-import React from 'react'
 import { Link } from "react-router-dom";
-
 import ImageAvatars from "../ImageAvatars.jsx";
 import Verified from "../../assets/svg/verified.svg?react";
 import MoreOptions from '../../assets/svg/more-options-icon.svg?react'
-import hazinor from "../../assets/images/Hazinor.jpg";
-
 
 export function FeedItemCreatorDetails({feedItem}) {
 

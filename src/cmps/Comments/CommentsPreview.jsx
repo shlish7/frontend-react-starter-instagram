@@ -1,5 +1,4 @@
 import React from 'react'
-
 import ImageAvatars from '../ImageAvatars'
 
 export function CommentsPreview({comment}) {
@@ -8,7 +7,6 @@ export function CommentsPreview({comment}) {
     <li className='comments-preview'>
         <ImageAvatars/>
         <span>{comment.username}</span>
-
     </li>
   )
 }
