@@ -35,7 +35,7 @@ export async function removefeedItem(feedItemId) {
 
 export async function addfeedItem(feedItem) {
     try {
-        const savedfeedItem = await feedItemService.save(feedItem)
+        const savedfeedItem = await feeditemService.save(feedItem)
         console.log('Added feedItem', savedfeedItem)
         store.dispatch(getCmdAddfeedItem(savedfeedItem))
         return savedfeedItem

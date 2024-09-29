@@ -64,7 +64,6 @@ async function create(feeditem) {
     try {
         savedFeeditem = await storageService.post(STORAGE_KEY, feeditem)
         // savedFeeditem = await httpService.post(STORAGE_KEY, feeditem)
-        console.log("or debug db savedFeeditem: ", savedFeeditem)
         return savedFeeditem
     } catch {
         console.log("faild save feed item")
@@ -94,14 +93,14 @@ async function _createMockFeeditems() {
           fullname: "newTest",
           imgUrl: "https://res.cloudinary.com/dz9gxtvp9/image/upload/v1727287997/orynyuzism6ogoclldks.png",
           password: "fhgj",
-          username: "newTest",
+          username: "fhgjhk",
           _id: "mwut3",
         },
         {
-          fullname: "DemoUser",
+          fullname: "hgvjh",
           imgUrl: "https://res.cloudinary.com/dz9gxtvp9/image/upload/8-Fun-Facts-About-Your-Dog-s-Ears_i3fnw8.png",
           password: "hv",
-          username: "DemoUser",
+          username: "hcgj",
           _id: "OWyfg",
         },
         {
@@ -250,20 +249,13 @@ async function _createMockFeeditems() {
             };
         });
     };
-    
-    const imgsPublicIds = ["cld-sample-5", "samples/dessert-on-a-plate", "cld-sample-4", "samples/coffee", "samples/breakfast", "samples/food/spices", "samples/food/fish-vegetables", "samples/food/dessert", "samples/food/pot-mussels", "samples/people/kitchen-bar", "fish-vegetables", "cup-on-a-table"];
-
-    const getRandomImageUrl = () => {
-      const randomIndex = Math.floor(Math.random() * imgsPublicIds.length);
-      return `https://res.cloudinary.com/dz9gxtvp9/image/upload/${imgsPublicIds[randomIndex]}`;
-    };
 
     const feedItemsResults = []
     const mockFeedItems = mockUsers.flatMap(user => {
         return Array.from({ length: 5 }, (_, index) => ({
-            _id: `feed_${user._id}_${index}`,
+            id: `feed_${user._id}_${index}`,
             userId: user._id,
-            imageUrl: getRandomImageUrl(), 
+            imageUrl: user.imgUrl, 
             caption: `This is a caption for ${user.username} post ${index + 1}`,
             tags: getRandomTags(),
             comments: getRandomComments(),
@@ -276,6 +268,7 @@ async function _createMockFeeditems() {
         try {
             const newFeedItem = await feeditemService.create(item);
             feedItemsResults.push(newFeedItem)
+            console.log("newFeedItem: " , newFeedItem);
             continue;
         } catch (error) {
             console.error('Error creating feeditem:', error);

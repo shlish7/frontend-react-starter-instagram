@@ -34,6 +34,9 @@ export function feedItemReducer(state = initialState, action) {
                 ...state,
                 feedItems: [...state.feedItems, action.feedItem]
             }
+            console.log('action.feedItem',action.feedItem);
+            console.log(newState)
+
                 break
 
                 // case ADD_FEED_ITEM_MSG:
