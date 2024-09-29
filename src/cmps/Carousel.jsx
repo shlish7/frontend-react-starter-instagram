@@ -5,13 +5,10 @@ import chocolateCake from '../assets/images/chocolate_cake.jpg'
 import Potatos from '../assets/images/potatos.jpg'
 import Petitim from '../assets/images/petitim.jpg'
 
-
-
-export function Carousel({feedItem, onDoubleClick, isImgDoubleClicked}) {
+export function Carousel({ feedItem, onDoubleClick, isImgDoubleClicked }) {
 
     const [currentIndex, setCurrentIndex] = useState(0);
     const [doubleClick, setDoubleClick] =useState( isImgDoubleClicked|| false)
-
 
     const carouselImages = [
         {
@@ -41,25 +38,20 @@ export function Carousel({feedItem, onDoubleClick, isImgDoubleClicked}) {
             const newIndex = currentIndex === carouselImages.length - 1 ? 0 : currentIndex + 1;
             setCurrentIndex(newIndex);
         }
-
     }
 
     function onImgDoubledClicked(){
- 
         setDoubleClick(prev => {
             const newDoubleClickState = !prev
-
             // Pass the updated state to the parent component
             onDoubleClick(newDoubleClickState)
-
             // Return the updated state
             return newDoubleClickState
         });
-
     }
 
-    return (<>
-
+    return (
+    <>
         <div className="carousel-container">
             <div className="carousel-left-arrow">
                 <button className='carousel-left-btn' value='left' onClick={onChangeImg}>
@@ -73,7 +65,6 @@ export function Carousel({feedItem, onDoubleClick, isImgDoubleClicked}) {
                         src={feedItem.imageUrl}
                         // alt={carouselImages[currentIndex].name} 
                         onDoubleClick={onImgDoubledClicked}
-
                         />
                     {/* <div className="dot"></div> */}
                     

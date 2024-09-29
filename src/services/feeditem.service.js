@@ -254,7 +254,7 @@ async function _createMockFeeditems() {
     const feedItemsResults = []
     const mockFeedItems = mockUsers.flatMap(user => {
         return Array.from({ length: 5 }, (_, index) => ({
-            id: `feed_${user._id}_${index}`,
+            _id: `feed_${user._id}_${index}`,
             userId: user._id,
             imageUrl: user.imgUrl, 
             caption: `This is a caption for ${user.username} post ${index + 1}`,
@@ -269,7 +269,6 @@ async function _createMockFeeditems() {
         try {
             const newFeedItem = await feeditemService.create(item);
             feedItemsResults.push(newFeedItem)
-            console.log("newFeedItem: " , newFeedItem);
             continue;
         } catch (error) {
             console.error('Error creating feeditem:', error);

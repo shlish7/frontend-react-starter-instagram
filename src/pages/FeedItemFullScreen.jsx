@@ -19,7 +19,6 @@ async function loadFeedItem() {
   try {
     const feedItem = await feeditemService.getById(pId)
     setFeedItem(feedItem)
-    console.log("feed item from getById: ", feedItem)
   } catch {
     console.log("error loading feed item")
   }
@@ -33,7 +32,7 @@ async function loadFeedItem() {
     <CloseModal className='close-modal-icon' onClick={onNavigateBack}/>
 
     <section className="feed-item-container">
-      <Carousel/>      
+      {feedItem && <Carousel feedItem={feedItem}/> }     
       {/* <section>test1</section> */}
       <CommentsIndex/>
       {/* <section className="feed-item-comments">test2</section> */}

@@ -6,7 +6,7 @@ import AvatarsStoryView from "../cmps/Story/AvatarsStoryView";
 import { FeedItem } from "../cmps/FeedItem/FeedItem";
 import { RightSideBar } from '../cmps/RightSideBar.jsx';
 import { loadUsers } from '../store/user.actions.js';
-import { loadfeedItem, loadfeedItems } from '../store/feedItem.actions.js';
+import { loadfeedItems } from '../store/feedItem.actions.js';
 
 export function HomePage() {
   const user = useSelector(storeState => storeState.userModule.user)
@@ -22,7 +22,6 @@ export function HomePage() {
   function onOpenFeedItem(ev, id) {
     ev.stopPropagation()
     ev.preventDefault()
-    console.log("onOpenFeedItem id: ", id)
     navigate(`/p/${id}`)
   }
 
@@ -45,7 +44,7 @@ export function HomePage() {
 
       {feedItems.map(feedItem => (
         <FeedItem
-          key={feedItem.id}  // Ensure you add a unique key for each item
+          key={feedItem._id}  
           feedItem={feedItem}
           onOpenFeedItem={onOpenFeedItem}
           handleCommentSubmit={handleCommentSubmit}

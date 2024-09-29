@@ -25,16 +25,15 @@ export function ButtonsView({ feedItem, isImgDoubleClicked, onOpenFeedItem }) {
     <section className="feed-item-img-icons-group">
       {isLiked || isImgDoubleClicked ?  <RedLike onClick={onChangeLike}/> : <Like onClick={onChangeLike} />}
       <Comment onClick={(ev) => { 
-          console.log("or debg=: ", feedItem)
-          const id = feedItem.id
-        onOpenFeedItem(ev, id) 
+          const id = feedItem._id
+          onOpenFeedItem(ev, id) 
         }}/>
       <Share />
     </section>
     <section className="feed-item-img-save-icon">
       {isSaved ? <PressedSaveIcon onClick={onSaveItem} /> : <SaveIcon onClick={onSaveItem} />}
     </section>
-  </section>
-    )
+    </section>
+  )
 }
 

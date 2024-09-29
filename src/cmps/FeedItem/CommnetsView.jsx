@@ -80,7 +80,7 @@ function onLikeComment(){
   return (
     <section className="home-comments-container" >
       <section className="home-comments">
-        <Link to={`/p/${feedItem.id}`}>
+        <Link to={`/p/${feedItem._id}`}>
           <span> View all 61 comments</span>
         </Link>
       </section>
