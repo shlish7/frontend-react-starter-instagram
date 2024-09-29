@@ -34,7 +34,7 @@ async function loadFeedItem() {
     <section className="feed-item-container">
       {feedItem && <Carousel feedItem={feedItem}/> }     
       {/* <section>test1</section> */}
-      <CommentsIndex/>
+      <CommentsIndex feedItem={feedItem} />
       {/* <section className="feed-item-comments">test2</section> */}
     </section>
     </>
