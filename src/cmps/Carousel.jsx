@@ -5,11 +5,11 @@ import chocolateCake from '../assets/images/chocolate_cake.jpg'
 import Potatos from '../assets/images/potatos.jpg'
 import Petitim from '../assets/images/petitim.jpg'
 
-export function Carousel({ feedItem, onDoubleClick, isImgDoubleClicked }) {
+export function Carousel({ feedItem, onDoubleClick, isImgDoubleClicked,fullScreen }) {
 
     const [currentIndex, setCurrentIndex] = useState(0);
     const [doubleClick, setDoubleClick] =useState( isImgDoubleClicked|| false)
-
+    // const [isFullScreen, setIsFullScreen] = useState( fullScreen || false)
     const carouselImages = [
         {
             name: 'Chocolate Cake',
@@ -29,8 +29,7 @@ export function Carousel({ feedItem, onDoubleClick, isImgDoubleClicked }) {
         event.stopPropagation()
         const { value } = event.currentTarget
         const arrowDirection = value
-        console.log('target', event.currentTarget);
-        console.log('arrowDirection', arrowDirection);
+  
         if (arrowDirection === 'left') {
             const newIndex = currentIndex === 0 ? carouselImages.length - 1 : currentIndex - 1;
             setCurrentIndex(newIndex);
@@ -52,7 +51,8 @@ export function Carousel({ feedItem, onDoubleClick, isImgDoubleClicked }) {
 
     return (
     <>
-        <div className="carousel-container">
+        {/* <div className="carousel-container"> */}
+        <div className={fullScreen ? 'carousel-full-item-screen-container' : "carousel-container"}>
             <div className="carousel-left-arrow">
                 <button className='carousel-left-btn' value='left' onClick={onChangeImg}>
                     <Arrow className='left-arrow-icon' />
