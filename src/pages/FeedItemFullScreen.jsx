@@ -9,8 +9,7 @@ import CloseModal from '../assets/svg/close-modal-icon.svg?react'
 
 
 export function FeedItemFullScreen() {
-  // const {pId} = useParams()
-  const { pId } = useOutletContext();
+  const { pId } = useOutletContext()
   const navigate = useNavigate()
 
 

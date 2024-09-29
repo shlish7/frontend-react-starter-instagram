@@ -69,8 +69,8 @@ export function Carousel({feedItem, onDoubleClick, isImgDoubleClicked}) {
             <div className="carousel-main-frame">
                 <div className="img-container">
                     <img className='carousel-img'
-                        src={carouselImages[currentIndex].src}
-                        // src={feedItem.imageUrl}
+                        // src={carouselImages[currentIndex].src}
+                        src={feedItem.imageUrl}
                         // alt={carouselImages[currentIndex].name} 
                         onDoubleClick={onImgDoubledClicked}
 
