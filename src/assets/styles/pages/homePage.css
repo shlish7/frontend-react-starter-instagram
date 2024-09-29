@@ -57,15 +57,13 @@ html {
 
 .home-feed {
     grid-area: main-feed;
+
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     overflow-y: scroll;
-    /* border: 1px solid black; */
 
-    /* overflow-x: hidden; */
-    /* overflow-y: hidden; */
 }
 
 .home-feed-container {
@@ -115,8 +113,9 @@ html {
 .feed-item-img-icons {
     display: flex;
     justify-content: space-between;
-    padding-top: 10px;
-    padding-bottom: 10px;
+    /* padding-top: 10px;
+    padding-bottom: 10px; */
+    padding: 10px 0 10px 0;
 }
 
 .feed-item-img-icons-group {

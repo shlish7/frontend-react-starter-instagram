@@ -4,7 +4,7 @@
     display: flex;
     align-items: center;
     /* Center vertically */
-    padding: 0 10px;
+    /* padding: 0 10px; */
     /* Optional: Add some padding for better appearance */
     border: none;
     outline: none;
@@ -20,7 +20,8 @@
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    padding: 0 10px;
+    /* padding: 0 10px; */
+    padding: 10px 0 5px 0; 
     position: relative;
     /* This ensures the emoji picker will be positioned relative to this container */
 }
@@ -60,6 +61,8 @@
     color: rgb(0, 149, 246);
     background-color: white;
     width: 100%;
+    display: flex;
+    justify-content: flex-end;
 }
 
 .new-comment-container {
@@ -85,4 +88,8 @@
     display: flex;
     align-items: center;
     gap:4px;
+}
+
+.home-comments{
+    padding: 0;
 }
