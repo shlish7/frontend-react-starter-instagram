@@ -1,5 +1,8 @@
 import { useEffect, useState } from 'react'
 import { userService } from '../../services/user.service'
+import ImageAvatars from '../ImageAvatars';
+import LikeIconComment from '../../assets/svg/like-comment-icon.svg?react'
+import { CommentsPreview } from './CommentsPreview';
 
 export function CommentsList({feedItem}) {
     const [commentsWithUsers, setCommentsWithUsers] = useState([]);
@@ -22,10 +25,13 @@ export function CommentsList({feedItem}) {
   return (
     // <div>CommentsList</div>
     <section className="comments-list-section">
-    <ul className="comments-list-ul">
-    {feedItem.comments.map((item, index) => (
-        <li key={index}>
-          <p>{item.comment}</p>
+    <ul className="comments-list-ul-full-screen">
+    {commentsWithUsers.map((item, index) => (
+        <li className='comments-list-li-full-screen' key={index}>
+          <ImageAvatars/>
+          <p className ='comments-user-name-full-screen'>{item.user.fullname}</p>
+          <p className ='comment-full-screen'>{item.comment}</p>
+          <LikeIconComment/>
         </li>
       ))}
     </ul>
@@ -33,14 +39,3 @@ export function CommentsList({feedItem}) {
   )
 }
 
-// {comments.map(comment => (
-//   // <div key={comment.comment_id
-//   <div key={comment.userId
-//   } className='comment-item'>
-//        <CommentsPreview comment={comment}  key={comment.userId}  />
-//        {/* onUpdateComment={onUpdateComment} */}
-
-//   </div>
-
-
-// ))}

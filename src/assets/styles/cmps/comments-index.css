@@ -5,3 +5,41 @@
     max-width: 500px;
     width: 100%;
 }
+
+.comments-list-ul-full-screen{
+    list-style-type: none;
+  
+}
+
+.comments-list-li-full-screen{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+
+    gap:8px
+}
+
+.comments-user-name-full-screen{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    font-family:-apple-system, "system-ui", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    color:black;
+    font-weight: 600;
+
+}
+
+.comment-full-screen{
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: nowrap;
+    font-family:-apple-system, "system-ui", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    color:black;
+    font-weight: 400;
+
+}
+
+
+
