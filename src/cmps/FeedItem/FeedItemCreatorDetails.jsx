@@ -9,7 +9,6 @@ import hazinor from "../../assets/images/Hazinor.jpg";
 
 export function FeedItemCreatorDetails({feedItem}) {
 
-  console.log('feed Item creator ' , feedItem);
   return (
     <section className="img-title-container">
     <section className="avatar-and-user-details">

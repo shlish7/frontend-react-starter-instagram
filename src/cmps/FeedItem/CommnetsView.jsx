@@ -4,11 +4,11 @@ import EmojiPicker from 'emoji-picker-react';
 import EmojiPickerIcon from '../../assets/svg/emoji-picker.svg?react';
 import LikeCommentIcon from '../../assets/svg/like-comment-icon.svg?react';
 
-export function CommnetsView({ onOpenFeedItem, handleCommentSubmit }) {
+export function CommnetsView({ feedItem, handleCommentSubmit }) {
 
   const [isEmojiPicker, setIsEmojiPicker] = useState(false)
   const [comment, setComment] = useState('')
-  const [newComment, setNewComment] =useState()
+  const [newComment, setNewComment] = useState()
   const [postCommentBtn, setPostCommentBtn] = useState(false)
 
   // Event listener for closing emoji picker on 'Esc' key press
@@ -42,40 +42,39 @@ export function CommnetsView({ onOpenFeedItem, handleCommentSubmit }) {
   }
 
 
-  function onEmojiClick(emojiData) {
-    console.log('Selected Emoji:', emojiData.emoji); // This should now print the selected emoji.
-    setComment(prevComment => prevComment + emojiData.emoji)// Append emoji to comment
-    setIsEmojiPicker(prev => !prev)
+function onEmojiClick(emojiData) {
+  console.log('Selected Emoji:', emojiData.emoji); // This should now print the selected emoji.
+  setComment(prevComment => prevComment + emojiData.emoji)// Append emoji to comment
+  setIsEmojiPicker(prev => !prev)
 
     if (comment.trim() !== '' || emojiData.emoji) {
       setPostCommentBtn(true)
     }
   }
 
-  function onUpdateComment({ target }) {
-    const { value } = target
-    setComment(value)
-    if (value.trim() !== '') {
-      setPostCommentBtn(true)
-    } else {
-      setPostCommentBtn(false)
-    }
-  }
-
-  function onDisplayNewComment(ev){
-    ev.stopPropagation()
-    setNewComment(prev => !prev)
-    setComment('')
+function onUpdateComment({target}){
+  const { value } = target
+  setComment(value)
+  if (value.trim() !== '') {
+    setPostCommentBtn(true)
+  } else {
     setPostCommentBtn(false)
-
   }
+}
+
+function onDisplayNewComment(ev){
+  ev.stopPropagation()
+  setNewComment(prev => !prev)
+  setComment('')
+  setPostCommentBtn(false)
+}
 
 
   return (
     <section className="home-comments-container" >
       <section className="home-comments">
-        <Link to='/p/pId'>
-          <span onClick={onOpenFeedItem}>View all 61 comments</span>
+        <Link to={`/p/${feedItem.id}`}>
+          <span> View all 61 comments</span>
         </Link>
       </section>
     {newComment &&
@@ -86,14 +85,12 @@ export function CommnetsView({ onOpenFeedItem, handleCommentSubmit }) {
         </section>
         <LikeCommentIcon className='like-comment-icon' />
       </section>
-}
-
+    }
       <section className="add-comment-and-emoji">
         <textarea
           type="text"
           className="home-add-comment"
           placeholder="Add a comment…"
-
           aria-label="Add a comment…"
           value={comment} // Bind the state to the textarea's value
           // onChange={(e) => setComment(e.target.value)} // Update the state on input change

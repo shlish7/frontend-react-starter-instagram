@@ -64,6 +64,7 @@ async function create(feeditem) {
     try {
         savedFeeditem = await storageService.post(STORAGE_KEY, feeditem)
         // savedFeeditem = await httpService.post(STORAGE_KEY, feeditem)
+        console.log("or debug db savedFeeditem: ", savedFeeditem)
         return savedFeeditem
     } catch {
         console.log("faild save feed item")

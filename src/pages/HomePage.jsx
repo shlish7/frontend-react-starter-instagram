@@ -19,17 +19,17 @@ export function HomePage() {
     loadfeedItems()
   }, [])
 
-  function onOpenFeedItem(ev) {
+  function onOpenFeedItem(ev, id) {
     ev.stopPropagation()
     ev.preventDefault()
-    navigate('/p')
+    console.log("onOpenFeedItem id: ", id)
+    navigate(`/p/${id}`)
   }
 
   function handleCommentSubmit(comment) {
     console.log(comment)
     //feeditemService.save()
   }
-
 
   return (
     <section className="instagram-home-page">
@@ -41,7 +41,6 @@ export function HomePage() {
         <LeftSideBar />
       </aside>
 
-      {/* <FeedItem onOpenFeedItem={onOpenFeedItem} handleCommentSubmit={handleCommentSubmit} /> */}
       <main className="home-feed">
 
       {feedItems.map(feedItem => (

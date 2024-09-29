@@ -6,7 +6,7 @@ import SaveIcon from "../../assets/svg/SaveIcon.svg?react";
 import RedLike from "../../assets/svg/red-like.svg?react";
 import PressedSaveIcon from "../../assets/svg/pressed-save-icon.svg?react";
 
-export function ButtonsView({isImgDoubleClicked, onOpenFeedItem}) {
+export function ButtonsView({ feedItem, isImgDoubleClicked, onOpenFeedItem }) {
 
   const [isLiked,setIsLiked] = useState()
   const [isSaved,setIsSaved] = useState()
@@ -24,11 +24,15 @@ export function ButtonsView({isImgDoubleClicked, onOpenFeedItem}) {
     <section className="feed-item-img-icons">
     <section className="feed-item-img-icons-group">
       {isLiked || isImgDoubleClicked ?  <RedLike onClick={onChangeLike}/> : <Like onClick={onChangeLike} />}
-      <Comment onClick={onOpenFeedItem}/>
+      <Comment onClick={(ev) => { 
+          console.log("or debg=: ", feedItem)
+          const id = feedItem.id
+        onOpenFeedItem(ev, id) 
+        }}/>
       <Share />
     </section>
     <section className="feed-item-img-save-icon">
-      {isSaved ?  <PressedSaveIcon onClick={onSaveItem} /> : <SaveIcon onClick={onSaveItem} />}
+      {isSaved ? <PressedSaveIcon onClick={onSaveItem} /> : <SaveIcon onClick={onSaveItem} />}
     </section>
   </section>
     )

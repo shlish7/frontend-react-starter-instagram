@@ -75,7 +75,7 @@ export function CommentsList() {
     {comments.map(comment => (
         <div key={comment.comment_id
         } className='comment-item'>
-             <CommentsPreview   comment={comment}  key={comment.comment_id}  />
+             <CommentsPreview comment={comment}  key={comment.comment_id}  />
              {/* onUpdateComment={onUpdateComment} */}
 
         </div>
