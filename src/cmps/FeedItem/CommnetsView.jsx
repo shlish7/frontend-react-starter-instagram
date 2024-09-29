@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import EmojiPicker from 'emoji-picker-react';
 import EmojiPickerIcon from '../../assets/svg/emoji-picker.svg?react';
 import LikeCommentIcon from '../../assets/svg/like-comment-icon.svg?react';
+import UnLikeCommentIcon from '../../assets/svg/red-like-comment-icon.svg?react';
 
 export function CommnetsView({ feedItem, handleCommentSubmit }) {
 
@@ -10,6 +11,7 @@ export function CommnetsView({ feedItem, handleCommentSubmit }) {
   const [comment, setComment] = useState('')
   const [newComment, setNewComment] = useState()
   const [postCommentBtn, setPostCommentBtn] = useState(false)
+  const[isLikedComment,setIsLikedComment] = useState(false)
 
   // Event listener for closing emoji picker on 'Esc' key press
   useEffect(() => {
@@ -69,6 +71,11 @@ function onDisplayNewComment(ev){
   setPostCommentBtn(false)
 }
 
+function onLikeComment(){
+  setIsLikedComment(prev => !prev)
+
+}
+
 
   return (
     <section className="home-comments-container" >
@@ -83,7 +90,7 @@ function onDisplayNewComment(ev){
           <span className="new-comment-user-name">{'User Name'}</span>
           <span className="new-comment">{'New Comment'}</span>
         </section>
-        <LikeCommentIcon className='like-comment-icon' />
+        { !isLikedComment ? <LikeCommentIcon className='like-comment-icon' onClick={onLikeComment}/> : <UnLikeCommentIcon onClick={onLikeComment}/>}
       </section>
     }
       <section className="add-comment-and-emoji">
