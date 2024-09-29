@@ -36,10 +36,13 @@ export function CreatePost({ onCloseModal }) {
                                         <ImageUploader onUploaded={onUploaded} />
                                     </section>
                                 ) : (
+                                    <>
                                     <img src={imageUrl} alt=""  className='create-post-img'/>
+                                    <button className="save-img-to-db-btn">Save Post</button>
+                                    </>
+
                                 )
                             }
-
                 </section>
 
             </section>

@@ -6,6 +6,8 @@ import { CommentsIndex } from "../cmps/Comments/CommentsIndex.jsx";
 import CloseModal from '../assets/svg/close-modal-icon.svg?react'
 import { feeditemService } from "../services/feedItem.service.js";
 import ImageAvatars from '../cmps/ImageAvatars.jsx';
+import { ButtonsView } from '../cmps/FeedItem/ButtonsView.jsx';
+import { LikesCount } from '../cmps/FeedItem/LikesCount.jsx';
 
 export function FeedItemFullScreen() {
   const { pId } = useParams()
@@ -40,9 +42,13 @@ export function FeedItemFullScreen() {
             <ImageAvatars/>
             <span className="full-screen-comments-user-name">{'User Name'}</span>
           </section>
+          {feedItem && <CommentsIndex feedItem={feedItem} />}
+          {/* <ButtonsView />
+          <LikesCount feedItem={feedItem}/> */}
+          
         </section>
 
-        {feedItem && <CommentsIndex feedItem={feedItem} />}
+        
         {/* <section className="feed-item-comments">test2</section> */}
       </section>
     </>

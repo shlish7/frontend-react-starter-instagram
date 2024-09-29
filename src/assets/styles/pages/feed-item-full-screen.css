@@ -7,7 +7,8 @@
     align-items: center;
     text-align: center;
     max-height: 920;
-    max-width: 762px;    
+    /* max-width: 762px;     */
+    max-width: 900px;    
     aspect-ratio: 1;
     position: fixed;
     inset: 0;
