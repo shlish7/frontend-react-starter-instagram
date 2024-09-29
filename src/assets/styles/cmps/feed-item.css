@@ -4,13 +4,12 @@
         margin: 0;
 } */
 
-.feed-item-container{
+/* .feed-item-container{
 
     display: flex;
     flex-direction: row;
     align-items: center;
     text-align: center;
-    /* max-height: 896px; */
     max-height: 920;
 
     max-width: 762px;    
@@ -21,16 +20,12 @@
     box-shadow:
         0 0 0 100vmax rgba(0, 0, 0, 0.5),
         -3px 1px 28px #00000043;
-    /* padding: 50px; */
     padding: 0;
     background-color: rgb(236, 239, 236); 
     background-color: white; 
-
-    /* border: solid 3px hsl(230, 100%, 85%); */
-    /* border-radius: 10px;  */
     border-radius: 4px; 
     z-index: 3;
-  }
+  } */
 
   .feed-item-comments{
     background-color: green;
