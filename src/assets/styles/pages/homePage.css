@@ -39,7 +39,7 @@ html {
 }
 
 .home-left-side-bar {
-    position: fixed;
+    position: absolute;
     grid-area: left-aside;
     display: flex;
     flex-direction: column;
