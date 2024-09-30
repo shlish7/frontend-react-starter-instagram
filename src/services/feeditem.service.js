@@ -17,9 +17,11 @@ async function getFeedItems() {
     try {
         const results = await storageService.query(STORAGE_KEY)
         if (!results || !results.length) {
-            return _createMockFeeditems()
+          const mockFeedItems = await _createMockFeeditems();
+          return mockFeedItems.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)); // Sort by createdAt
         }
-        return results
+        
+        return results.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
     } catch {
         console.log("faild mock users")
     }
@@ -239,13 +241,27 @@ async function _createMockFeeditems() {
         return Array.from({ length: randomTagCount }, () => tags[getRandomInt(0, tags.length)]);
       };
       
-    const getRandomComments = () => {
+      const getRandomComments = () => {
         const commentsCount = getRandomInt(1, 10); 
+        const commentTemplates = [
+            "I love this! Such an amazing shot. I’ve never seen something like this before!",
+            "This picture is absolutely stunning! The colors and composition are on point.",
+            "Wow, what a fantastic capture! I can feel the emotion through this image.",
+            "This is beautiful! It makes me want to travel and explore more.",
+            "The vibe of this picture is incredible. You've truly captured something special.",
+            "Such a creative and unique perspective. Keep sharing more!",
+            "This is so inspiring! Definitely adding this to my list of favorite posts.",
+            "I can’t stop looking at this. Everything about this photo is perfect!",
+            "This shot is pure art. You have an amazing eye for detail!",
+            "I absolutely adore this! Thanks for sharing such a beautiful moment."
+        ];
+    
         return Array.from({ length: commentsCount }, () => {
             const randomUser = mockUsers[getRandomInt(0, mockUsers.length)];
+            const randomComment = commentTemplates[getRandomInt(0, commentTemplates.length)];
             return {
                 userId: randomUser._id,
-                comment: "I love this! Such an amazing shot. I’ve never seen something like this before!",
+                comment: randomComment,
             };
         });
     };
@@ -273,7 +289,36 @@ async function _createMockFeeditems() {
       return captions[index % captions.length];
     };
 
-    const imgsPublicIds = ["samples/dessert-on-a-plate", "cld-sample-5", "cld-sample-4", "samples/coffee", "samples/breakfast", "samples/food/spices", "samples/food/fish-vegetables", "samples/food/dessert", "samples/food/pot-mussels", "samples/people/kitchen-bar", "fish-vegetables", "cup-on-a-table"];
+    const imgsPublicIds = [
+      "samples/dessert-on-a-plate", 
+      "cld-sample-5", 
+      "cld-sample-4", 
+      "samples/coffee", 
+      "samples/breakfast",
+      "samples/food/spices", 
+      "samples/food/fish-vegetables", 
+      "samples/food/dessert", 
+      "samples/food/pot-mussels",
+      "samples/people/kitchen-bar",
+      "pexels-ella-olsson-572949-1640777_lsaat3.jpg",
+      "pexels-ash-craig-122861-376464_ejvtyw.jpg",
+      "pexels-robinstickel-70497_ccgxil.jpg",
+      "pexels-ella-olsson-572949-1640772_wsw4xp.jpg",
+      "pexels-fotios-photos-1279330_xrxqxr.jpg",
+      "pexels-janetrangdoan-1099680_egivoy.jpg",
+      "pexels-chanwalrus-958545_bmn70n.jpg",
+      "pexels-valeriya-1199957_axxgug.jpg",
+      "pexels-valeriya-842571_hjugfj.jpg",
+      "pexels-ella-olsson-572949-1640774_rmiwoc.jpg",
+      "pexels-xmtnguyen-699953_fa5qql.jpg",
+      "pexels-janetrangdoan-1128678_emew35.jpg",
+      "pexels-julieaagaard-2097090_daknfj.jpg",
+      "pexels-lum3n-44775-1410235_dg0uyh.jpg",
+      "pexels-dana-tentis-118658-262959_l2ag0d.jpg",
+      "pexels-willpicturethis-2641886_wsgqxp.jpg",
+      "pexels-chevanon-323682_myqayc.jpg",
+      "pexels-janetrangdoan-1092730_vv2t5r.jpg",
+    ];
 
     const getRandomImageUrl = () => {
       const randomIndex = Math.floor(Math.random() * imgsPublicIds.length);
