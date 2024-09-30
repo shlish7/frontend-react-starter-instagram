@@ -19,6 +19,8 @@ export function HomePage() {
     loadUsers()
     loadfeedItems()
   }, [])
+  
+  console.log('loadfeedItems',feedItems);
 
   function onOpenFeedItem(ev, id) {
     ev.stopPropagation()

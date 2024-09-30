@@ -27,7 +27,7 @@ export function CreatePost({ onCloseModal }) {
 
         try {
             const newPost = {
-                _id: `feed_mwut3_1`,
+                _id: `test now`,
                 userId: 'mwut3',
                 imageUrl,
                 caption: `Test caption`,
