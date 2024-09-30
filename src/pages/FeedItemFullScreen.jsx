@@ -45,10 +45,7 @@ export function FeedItemFullScreen() {
           {feedItem && <CommentsIndex feedItem={feedItem} />}
           {/* <ButtonsView />
           <LikesCount feedItem={feedItem}/> */}
-          
         </section>
-
-        
         {/* <section className="feed-item-comments">test2</section> */}
       </section>
     </>

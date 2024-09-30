@@ -93,14 +93,14 @@ async function _createMockFeeditems() {
           fullname: "newTest",
           imgUrl: "https://res.cloudinary.com/dz9gxtvp9/image/upload/v1727287997/orynyuzism6ogoclldks.png",
           password: "fhgj",
-          username: "fhgjhk",
+          username: "newTest",
           _id: "mwut3",
         },
         {
-          fullname: "hgvjh",
+          fullname: "DemoUser",
           imgUrl: "https://res.cloudinary.com/dz9gxtvp9/image/upload/8-Fun-Facts-About-Your-Dog-s-Ears_i3fnw8.png",
           password: "hv",
-          username: "hcgj",
+          username: "DemoUser",
           _id: "OWyfg",
         },
         {
@@ -245,24 +245,54 @@ async function _createMockFeeditems() {
             const randomUser = mockUsers[getRandomInt(0, mockUsers.length)];
             return {
                 userId: randomUser._id,
-                comment: `This is a comment by ${randomUser.username}`,
+                comment: "I love this! Such an amazing shot. I’ve never seen something like this before!",
             };
         });
     };
 
+    const getImagesForFeed = (index) => {
+      if (index < 5) {
+          return [
+              `https://res.cloudinary.com/dz9gxtvp9/image/upload/${imgsPublicIds[Math.floor(Math.random() * imgsPublicIds.length)]}`,
+              `https://res.cloudinary.com/dz9gxtvp9/image/upload/${imgsPublicIds[Math.floor(Math.random() * imgsPublicIds.length)]}`,
+              `https://res.cloudinary.com/dz9gxtvp9/image/upload/${imgsPublicIds[Math.floor(Math.random() * imgsPublicIds.length)]}`
+          ];
+      } else {
+          return [`https://res.cloudinary.com/dz9gxtvp9/image/upload/${imgsPublicIds[Math.floor(Math.random() * imgsPublicIds.length)]}`];
+      }
+    };
+
+    const getRandomCaption = (user, index) => {
+      const captions = [
+          `Just enjoying a peaceful morning with my coffee and some good vibes ☕ #morningroutine #coffee`,
+          `Had the best time exploring new recipes today! 🍽️ #FoodieLife #CookingAdventures`,
+          `Nature at its finest 🌿 Couldn't resist taking a snap of this beautiful scenery. #NatureLovers`,
+          `A little bit of spice and everything nice 🌶️🍜 #SpicyLife #FoodGoals`,
+          `Sunset and seafood - what more can I ask for? 🌅🍤 #BeachLife #SeafoodLovers`
+      ];
+      return captions[index % captions.length];
+    };
+
+    const imgsPublicIds = ["samples/dessert-on-a-plate", "cld-sample-5", "cld-sample-4", "samples/coffee", "samples/breakfast", "samples/food/spices", "samples/food/fish-vegetables", "samples/food/dessert", "samples/food/pot-mussels", "samples/people/kitchen-bar", "fish-vegetables", "cup-on-a-table"];
+
+    const getRandomImageUrl = () => {
+      const randomIndex = Math.floor(Math.random() * imgsPublicIds.length);
+      return `https://res.cloudinary.com/dz9gxtvp9/image/upload/${imgsPublicIds[randomIndex]}`;
+    };
+
     const feedItemsResults = []
-    const mockFeedItems = mockUsers.flatMap(user => {
-        return Array.from({ length: 5 }, (_, index) => ({
-            id: `feed_${user._id}_${index}`,
-            userId: user._id,
-            imageUrl: user.imgUrl, 
-            caption: `This is a caption for ${user.username} post ${index + 1}`,
-            tags: getRandomTags(),
-            comments: getRandomComments(),
-            likesCount: getRandomInt(10, 100), 
-            createdAt: new Date().toISOString(), 
-        }));
-    });
+    const mockFeedItems = mockUsers.flatMap((user, userIndex) => {
+      return Array.from({ length: 5 }, (_, index) => ({
+          _id: `feed_${user._id}_${index}`,
+          userId: user._id,
+          imageUrl: getImagesForFeed(index), 
+          caption: getRandomCaption(user, index), 
+          tags: getRandomTags(),
+          comments: getRandomComments(),
+          likesCount: getRandomInt(10, 100),
+          createdAt: new Date().toISOString(),
+      }));
+  });
 
     for (const item of mockFeedItems) {
         try {

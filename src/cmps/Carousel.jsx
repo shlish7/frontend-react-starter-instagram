@@ -10,6 +10,7 @@ export function Carousel({ feedItem, onDoubleClick, isImgDoubleClicked,fullScree
     const [currentIndex, setCurrentIndex] = useState(0);
     const [doubleClick, setDoubleClick] =useState( isImgDoubleClicked|| false)
     // const [isFullScreen, setIsFullScreen] = useState( fullScreen || false)
+    
     const carouselImages = [
         {
             name: 'Chocolate Cake',
@@ -62,21 +63,21 @@ export function Carousel({ feedItem, onDoubleClick, isImgDoubleClicked,fullScree
                 <div className="img-container">
                     <img className='carousel-img'
                         // src={carouselImages[currentIndex].src}
-                        src={feedItem.imageUrl}
+                        src={feedItem.imageUrl[0]}
                         // alt={carouselImages[currentIndex].name} 
                         onDoubleClick={onImgDoubledClicked}
                         />
                     {/* <div className="dot"></div> */}
                     
-                    {carouselImages.length>1 &&
-                    <div className="dot-container">
-                        {carouselImages.map((_, idx) => (
-                            <span
-                                key={idx}
-                                className="dot"
-                                style={{ backgroundColor: currentIndex === idx ? 'white' : 'white' }}
-                            ></span>
-                        ))}
+                    { carouselImages.length > 1 &&
+                        <div className="dot-container">
+                            {carouselImages.map((_, idx) => (
+                                <span
+                                    key={idx}
+                                    className="dot"
+                                    style={{ backgroundColor: currentIndex === idx ? 'white' : 'white' }}
+                                ></span>
+                            ))}
                     </div> }
                 </div>
             </div>
@@ -85,8 +86,6 @@ export function Carousel({ feedItem, onDoubleClick, isImgDoubleClicked,fullScree
                     <Arrow className='right-arrow-icon' />
                 </button>
             </div>
-
-
         </div>
     </>
     )
