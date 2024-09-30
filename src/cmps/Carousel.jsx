@@ -77,7 +77,7 @@ export function Carousel({ feedItem, onDoubleClick, isImgDoubleClicked, fullScre
                                     <span
                                         key={idx}
                                         className="dot"
-                                        style={{ backgroundColor: currentIndex === idx ? 'white' : 'white' }}
+                                        style={{ backgroundColor: currentIndex === idx ? 'white' : 'lightgray' }}
                                     ></span>
                                 ))}
                             </div>}
