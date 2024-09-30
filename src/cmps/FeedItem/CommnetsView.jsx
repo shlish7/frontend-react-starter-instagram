@@ -4,6 +4,7 @@ import EmojiPicker from 'emoji-picker-react';
 import EmojiPickerIcon from '../../assets/svg/emoji-picker.svg?react';
 import LikeCommentIcon from '../../assets/svg/like-comment-icon.svg?react';
 import UnLikeCommentIcon from '../../assets/svg/red-like-comment-icon.svg?react';
+import { NewComment } from '../Comments/NewComment';
 
 export function CommnetsView({ feedItem, handleCommentSubmit }) {
 
@@ -11,87 +12,93 @@ export function CommnetsView({ feedItem, handleCommentSubmit }) {
   const [comment, setComment] = useState('')
   const [newComment, setNewComment] = useState()
   const [postCommentBtn, setPostCommentBtn] = useState(false)
-  const[isLikedComment,setIsLikedComment] = useState(false)
+  const [isLikedComment, setIsLikedComment] = useState(false)
 
-  // Event listener for closing emoji picker on 'Esc' key press
-  useEffect(() => {
-    function handleKeyDown(event) {
-      if (event.key === 'Escape' && isEmojiPicker) {
-        setIsEmojiPicker(false);
-      }
-    }
+  // // Event listener for closing emoji picker on 'Esc' key press
+  // useEffect(() => {
+  //   function handleKeyDown(event) {
+  //     if (event.key === 'Escape' && isEmojiPicker) {
+  //       setIsEmojiPicker(false);
+  //     }
+  //   }
 
-    // Attach the event listener to the document
-    document.addEventListener('keydown', handleKeyDown);
+  //   // Attach the event listener to the document
+  //   document.addEventListener('keydown', handleKeyDown);
 
-    // Cleanup the event listener when component unmounts or updates
-    return () => {
-      document.removeEventListener('keydown', handleKeyDown);
-    };
-  }, [isEmojiPicker]);
+  //   // Cleanup the event listener when component unmounts or updates
+  //   return () => {
+  //     document.removeEventListener('keydown', handleKeyDown);
+  //   };
+  // }, [isEmojiPicker]);
 
 
-  const onHandleCommentSubmit = () => {
-    if (comment.trim() !== '') {
-      console.log('Comment submitted:', comment);
-      handleCommentSubmit(comment.trim())
-      setComment(''); // Optionally clear the textarea after submission
-    }
-  };
+  // const onHandleCommentSubmit = () => {
+  //   if (comment.trim() !== '') {
+  //     console.log('Comment submitted:', comment);
+  //     handleCommentSubmit(comment.trim())
+  //     setComment(''); // Optionally clear the textarea after submission
+  //   }
+  // };
 
-  function onOpenEmojiPicker() {
-    setIsEmojiPicker(prev => !prev)
+  // function onOpenEmojiPicker() {
+  //   setIsEmojiPicker(prev => !prev)
+  // }
+
+  // function onEmojiClick(emojiData) {
+  //   console.log('Selected Emoji:', emojiData.emoji); // This should now print the selected emoji.
+  //   setComment(prevComment => prevComment + emojiData.emoji)// Append emoji to comment
+  //   setIsEmojiPicker(prev => !prev)
+
+  //     if (comment.trim() !== '' || emojiData.emoji) {
+  //       setPostCommentBtn(true)
+  //     }
+  //   }
+
+  // function onUpdateComment({target}){
+  //   const { value } = target
+  //   setComment(value)
+  //   if (value.trim() !== '') {
+  //     setPostCommentBtn(true)
+  //   } else {
+  //     setPostCommentBtn(false)
+  //   }
+  // }
+
+  // function onDisplayNewComment(ev){
+  //   ev.stopPropagation()
+  //   setNewComment(prev => !prev)
+  //   setComment('')
+  //   setPostCommentBtn(false)
+  // }
+
+  function onLikeComment() {
+    setIsLikedComment(prev => !prev)
+
   }
-
-function onEmojiClick(emojiData) {
-  console.log('Selected Emoji:', emojiData.emoji); // This should now print the selected emoji.
-  setComment(prevComment => prevComment + emojiData.emoji)// Append emoji to comment
-  setIsEmojiPicker(prev => !prev)
-
-    if (comment.trim() !== '' || emojiData.emoji) {
-      setPostCommentBtn(true)
-    }
-  }
-
-function onUpdateComment({target}){
-  const { value } = target
-  setComment(value)
-  if (value.trim() !== '') {
-    setPostCommentBtn(true)
-  } else {
-    setPostCommentBtn(false)
-  }
-}
-
-function onDisplayNewComment(ev){
-  ev.stopPropagation()
-  setNewComment(prev => !prev)
-  setComment('')
-  setPostCommentBtn(false)
-}
-
-function onLikeComment(){
-  setIsLikedComment(prev => !prev)
-
-}
 
   return (
     <section className="home-comments-container" >
       <section className="home-comments">
         <Link to={`/p/${feedItem._id}`}>
-          <span> View all 61 comments</span>
+        {/* <Link
+          to={{
+            pathname: `/p/${feedItem._id}`,
+            state: {fullScreen: true}
+          }}
+        > */}
+          <span> View all {feedItem.comments.length} comments</span>
         </Link>
       </section>
-    {newComment &&
-      <section className="new-comment-container">
-        <section className='new-comment-details'>
-          <span className="new-comment-user-name">{'User Name'}</span>
-          <span className="new-comment">{'New Comment'}</span>
+      {newComment &&
+        <section className="new-comment-container">
+          <section className='new-comment-details'>
+            <span className="new-comment-user-name">{'User Name'}</span>
+            <span className="new-comment">{'New Comment'}</span>
+          </section>
+          {!isLikedComment ? <LikeCommentIcon className='like-comment-icon' onClick={onLikeComment} /> : <UnLikeCommentIcon onClick={onLikeComment} />}
         </section>
-        { !isLikedComment ? <LikeCommentIcon className='like-comment-icon' onClick={onLikeComment}/> : <UnLikeCommentIcon onClick={onLikeComment}/>}
-      </section>
-    }
-      <section className="add-comment-and-emoji">
+      }
+      {/* <section className="add-comment-and-emoji">
         <textarea
           type="text"
           className="home-add-comment"
@@ -116,7 +123,8 @@ function onLikeComment(){
             </div>
           )}
         </div>
-      </section>
+      </section> */}
+      <NewComment />
     </section>
   )
 }

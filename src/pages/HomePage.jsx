@@ -51,6 +51,7 @@ export function HomePage() {
           feedItem={feedItem}
           onOpenFeedItem={onOpenFeedItem}
           handleCommentSubmit={handleCommentSubmit}
+          user={user}
         />
       ))}
       </main>

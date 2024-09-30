@@ -7,13 +7,14 @@ import { FeedItemDescription } from './FeedItemDescription.jsx';
 import { CommnetsView } from './CommnetsView.jsx';
 import { FeedItemCreatorDetails } from './FeedItemCreatorDetails.jsx';
 
-export function FeedItem({ feedItem, onOpenFeedItem, handleCommentSubmit }) {
+export function FeedItem({ feedItem, onOpenFeedItem, handleCommentSubmit,user }) {
 
   const [ isImgDoubleClicked, setIsImgDoubleClicked ] = useState(false);
 
   function onDoubleClick(isDoubleClickedFromCarousel) {
     setIsImgDoubleClicked(isDoubleClickedFromCarousel)   
   }
+
 
   return (
     // <main className="home-feed">
@@ -22,8 +23,8 @@ export function FeedItem({ feedItem, onOpenFeedItem, handleCommentSubmit }) {
         <Carousel feedItem={feedItem} onDoubleClick={onDoubleClick} isImgDoubleClicked={isImgDoubleClicked} fullScreen={false}/>
         <ButtonsView feedItem={feedItem} isImgDoubleClicked={isImgDoubleClicked} onOpenFeedItem={onOpenFeedItem}/>
         <LikesCount feedItem={feedItem}/>
-        <FeedItemDescription feedItem={feedItem}/>
-        <CommnetsView feedItem={feedItem} handleCommentSubmit={handleCommentSubmit} />
+        <FeedItemDescription feedItem={feedItem} user={user}/>
+        <CommnetsView feedItem={feedItem} handleCommentSubmit={handleCommentSubmit} user={user} />
       </section>
     // </main>
   )

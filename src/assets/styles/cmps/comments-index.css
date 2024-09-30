@@ -1,13 +1,21 @@
-
+.comments-list-section{
+}
 
 .comments-index{
     max-height: 920;
     max-width: 500px;
     width: 100%;
+    padding: 0;
+    border-bottom: 1px solid rgb(239, 239, 239);
+    height:100%;
 }
 
 .comments-list-ul-full-screen{
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
     list-style-type: none;
+    padding: 0;
   
 }
 
