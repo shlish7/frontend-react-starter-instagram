@@ -2,10 +2,12 @@
 @import "./pages/homePage.css";
 @import "./pages/profile.css";
 @import "./pages/feed-item-full-screen.css";
+@import "./pages/login-page.css";
 
 /* Components */
 @import "./cmps/left-side-bar.css";
 @import "./cmps/right-side-bar.css";
+
 /* @import "./cmps/home-feed.css"; */
 @import "./cmps/AvatarsStoryView.css";
 @import "./cmps/StoryAvatar.css";
