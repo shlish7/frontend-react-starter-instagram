@@ -249,7 +249,7 @@ async function _createMockUsers() {
         try {
             const newUser = await userService.signup(user);
             results.push(newUser)
-            console.log("new user: " , newUser);
+            // console.log("new user: " , newUser);
             continue;
         } catch (error) {
             console.error('Error creating user:', error);

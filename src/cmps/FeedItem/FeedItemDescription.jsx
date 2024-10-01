@@ -6,7 +6,7 @@ export function FeedItemDescription({feedItem,user}) {
   function toggleExpand() {
     setIsExpanded(true);
   }
-  console.log('user Name: ',user);
+  // console.log('user Name: ',user);
 
   return (
     <section className="home-img-description-container">

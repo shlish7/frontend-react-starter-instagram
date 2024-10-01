@@ -89,7 +89,7 @@ export function CommnetsView({ feedItem, handleCommentSubmit }) {
           <span> View all {feedItem.comments.length} comments</span>
         </Link>
       </section>
-      {newComment &&
+      { newComment &&
         <section className="new-comment-container">
           <section className='new-comment-details'>
             <span className="new-comment-user-name">{'User Name'}</span>

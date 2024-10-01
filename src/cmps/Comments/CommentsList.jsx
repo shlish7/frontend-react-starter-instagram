@@ -25,16 +25,16 @@ export function CommentsList({feedItem}) {
   return (
     // <div>CommentsList</div>
     <section className="comments-list-section">
-    <ul className="comments-list-ul-full-screen">
-    {commentsWithUsers.map((item, index) => (
-        <li className='comments-list-li-full-screen' key={index}>
-          <ImageAvatars/>
-          <p className ='comments-user-name-full-screen'>{item.user.fullname}</p>
-          <p className ='comment-full-screen'>{item.comment}</p>
-          <LikeIconComment/>
-        </li>
-      ))}
-    </ul>
+      <ul className="comments-list-ul-full-screen">
+      { commentsWithUsers.map((item, index) => (
+          <li className='comments-list-li-full-screen' key={index}>
+            <ImageAvatars img={item.user.imgUrl}/>
+            <p className ='comments-user-name-full-screen'>{item.user.fullname}</p>
+            <p className ='comment-full-screen'>{item.comment}</p>
+            <LikeIconComment/>
+          </li>
+        ))}
+      </ul>
     </section>
   )
 }
