@@ -4,13 +4,24 @@ import EmojiPickerIcon from '../../assets/svg/emoji-picker.svg?react';
 import EmojiIconFullScreen from '../../assets/svg/emoji-icon-full-screen.svg?react';
 import { useLocation } from 'react-router';
 
+import LikeCommentIcon from '../../assets/svg/like-comment-icon.svg?react';
+import UnLikeCommentIcon from '../../assets/svg/red-like-comment-icon.svg?react';
 
-export function NewComment() {
+
+export function NewComment({handleCommentSubmit}) {
     const [comment, setComment] = useState('')
     const [newComment, setNewComment] = useState()
 
     const [postCommentBtn, setPostCommentBtn] = useState(false)
     const [isEmojiPicker, setIsEmojiPicker] = useState(false)
+    const [isLikedComment, setIsLikedComment] = useState(false)
+
+
+    function onLikeComment() {
+      setIsLikedComment(prev => !prev)
+  
+    }
+  
 
     // const location = useLocation();
     // const { fullScreen } = location.state || {};  // Access `state` directly
@@ -50,12 +61,25 @@ export function NewComment() {
         setIsEmojiPicker(prev => !prev)
       }
 
-      function onDisplayNewComment(ev){
-        ev.stopPropagation()
-        setNewComment(prev => !prev)
-        setComment('')
-        setPostCommentBtn(false)
-      }
+      const onHandleCommentSubmit = () => {
+
+        if (comment.trim() !== '') {
+          setNewComment(prev => !prev)
+          setPostCommentBtn(false)
+
+          console.log('Comment submitted:', comment);
+          handleCommentSubmit(comment.trim())
+
+          setComment(''); // Optionally clear the textarea after submission
+
+        }
+      };
+      // function onDisplayNewComment(ev){
+      //   ev.stopPropagation()
+      //   setNewComment(prev => !prev)
+      //   setComment('')
+      //   setPostCommentBtn(false)
+      // }
 
       function onEmojiClick(emojiData) {
         console.log('Selected Emoji:', emojiData.emoji); // This should now print the selected emoji.
@@ -67,7 +91,18 @@ export function NewComment() {
           }
         }
 
-  return (
+
+
+  return (<>
+    { newComment &&
+      <section className="new-comment-container">
+        <section className='new-comment-details'>
+          <span className="new-comment-user-name">{'User Name'}</span>
+          <span className="new-comment">{'New Comment'}</span>
+        </section>
+        {!isLikedComment ? <LikeCommentIcon className='like-comment-icon' onClick={onLikeComment} /> : <UnLikeCommentIcon onClick={onLikeComment} />}
+      </section>
+    }
     <section className="add-comment-and-emoji">
     <textarea
       type="text"
@@ -84,7 +119,7 @@ export function NewComment() {
         }
       }}
     />
-    {postCommentBtn && <button className="post-comment-btn" onClick={onDisplayNewComment}>Post</button>}
+    {postCommentBtn && <button className="post-comment-btn" onClick={onHandleCommentSubmit}>Post</button>}
     <div className="emoji-picker-container">
       <EmojiPickerIcon className='emoji-picker' onClick={onOpenEmojiPicker} />
       {isEmojiPicker && (
@@ -94,6 +129,7 @@ export function NewComment() {
       )}
     </div>
   </section>
+  </>
 )
 }
 
