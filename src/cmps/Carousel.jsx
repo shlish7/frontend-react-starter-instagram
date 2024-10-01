@@ -6,7 +6,7 @@ import chocolateCake from '../assets/images/chocolate_cake.jpg'
 import Potatos from '../assets/images/potatos.jpg'
 import Petitim from '../assets/images/petitim.jpg'
 
-export function Carousel({ feedItem, onDoubleClick, isImgDoubleClicked, fullScreen }) {
+export function Carousel({ feedItem, onDoubleClicked, isImgDoubleClicked, fullScreen }) {
 
     const [currentIndex, setCurrentIndex] = useState(0);
     const [doubleClick, setDoubleClick] = useState(isImgDoubleClicked || false)
@@ -45,7 +45,7 @@ export function Carousel({ feedItem, onDoubleClick, isImgDoubleClicked, fullScre
         setDoubleClick(prev => {
             const newDoubleClickState = !prev
             // Pass the updated state to the parent component
-            onDoubleClick(newDoubleClickState)
+            onDoubleClicked()
             // Return the updated state
             return newDoubleClickState
         });

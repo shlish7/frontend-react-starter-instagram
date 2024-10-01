@@ -11,8 +11,8 @@ export function FeedItem({ feedItem, onOpenFeedItem, handleCommentSubmit,user })
 
   const [ isImgDoubleClicked, setIsImgDoubleClicked ] = useState(false);
 
-  function onDoubleClick(isDoubleClickedFromCarousel) {
-    setIsImgDoubleClicked(isDoubleClickedFromCarousel)   
+  function onDoubleClicked() {
+    setIsImgDoubleClicked(true)   
   }
 
 
@@ -20,7 +20,7 @@ export function FeedItem({ feedItem, onOpenFeedItem, handleCommentSubmit,user })
     // <main className="home-feed">
       <section className="home-feed-container">
         <FeedItemCreatorDetails feedItem={feedItem} />
-        <Carousel feedItem={feedItem} onDoubleClick={onDoubleClick} isImgDoubleClicked={isImgDoubleClicked} fullScreen={false}/>
+        <Carousel feedItem={feedItem} onDoubleClicked={onDoubleClicked} isImgDoubleClicked={isImgDoubleClicked} fullScreen={false}/>
         <ButtonsView feedItem={feedItem} isImgDoubleClicked={isImgDoubleClicked} onOpenFeedItem={onOpenFeedItem}/>
         <LikesCount feedItem={feedItem}/>
         <FeedItemDescription feedItem={feedItem} user={user}/>

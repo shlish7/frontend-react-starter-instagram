@@ -18,6 +18,13 @@ export function FeedItemFullScreen() {
   const [user, setUser] = useState(null)
   const navigate = useNavigate()
 
+  const [ isImgDoubleClicked, setIsImgDoubleClicked ] = useState(false);
+
+  function onDoubleClicked() {
+    setIsImgDoubleClicked(true)   
+  }
+
+
   useEffect(() => {
     loadFeedItem()
   }, [pId])
@@ -55,7 +62,7 @@ export function FeedItemFullScreen() {
       <CloseModal className='close-modal-icon' onClick={onNavigateBack} />
 
       <section className="feed-item-container-full-screen">
-        { feedItem && <Carousel feedItem={feedItem} fullScreen={true} /> }
+        { feedItem && <Carousel feedItem={feedItem} fullScreen={true} onDoubleClicked={onDoubleClicked} isImgDoubleClicked={isImgDoubleClicked}  /> }
         <section className="full-screen-comments">
 
           <section className="full-screen-comment-user-details">
@@ -66,7 +73,7 @@ export function FeedItemFullScreen() {
           { feedItem && <CommentsIndex feedItem={feedItem} /> }
 
           <section className="full-screen-button-and-likes">
-            <ButtonsView />
+            <ButtonsView isImgDoubleClicked={isImgDoubleClicked}/>
             { feedItem && <LikesCount feedItem={feedItem}/> }
           </section>     
 

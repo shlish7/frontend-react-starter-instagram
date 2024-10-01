@@ -11,7 +11,7 @@ export function FeedItemDescription({feedItem,user}) {
   return (
     <section className="home-img-description-container">
       {/* <span className="home-img-user-name">User Name</span> */}
-      <span className="home-img-user-name">{user.fullname}</span>
+      {user &&<span className="home-img-user-name">{user.fullname}</span>}
       {/* <span className={`home-img-detailes ${isExpanded ? 'expanded' : ''}`}>
         Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ut ipsa
         nam incidunt, illo, harum in quae perferendis quas minima error,
