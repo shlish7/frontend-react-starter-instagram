@@ -11,6 +11,7 @@ import UnLikeCommentIcon from '../../assets/svg/red-like-comment-icon.svg?react'
 export function NewComment({handleCommentSubmit}) {
     const [comment, setComment] = useState('')
     const [newComment, setNewComment] = useState()
+    const [newCommentTxt, setNewCommentTxt] = useState()
 
     const [postCommentBtn, setPostCommentBtn] = useState(false)
     const [isEmojiPicker, setIsEmojiPicker] = useState(false)
@@ -64,22 +65,18 @@ export function NewComment({handleCommentSubmit}) {
       const onHandleCommentSubmit = () => {
 
         if (comment.trim() !== '') {
+          setNewCommentTxt(comment.trim())
           setNewComment(prev => !prev)
           setPostCommentBtn(false)
+          setComment(''); // Optionally clear the textarea after submission
 
           console.log('Comment submitted:', comment);
-          handleCommentSubmit(comment.trim())
+          handleCommentSubmit && handleCommentSubmit(comment.trim())
 
-          setComment(''); // Optionally clear the textarea after submission
 
         }
       };
-      // function onDisplayNewComment(ev){
-      //   ev.stopPropagation()
-      //   setNewComment(prev => !prev)
-      //   setComment('')
-      //   setPostCommentBtn(false)
-      // }
+  
 
       function onEmojiClick(emojiData) {
         console.log('Selected Emoji:', emojiData.emoji); // This should now print the selected emoji.
@@ -98,7 +95,7 @@ export function NewComment({handleCommentSubmit}) {
       <section className="new-comment-container">
         <section className='new-comment-details'>
           <span className="new-comment-user-name">{'User Name'}</span>
-          <span className="new-comment">{'New Comment'}</span>
+          <span className="new-comment">{newCommentTxt}</span>
         </section>
         {!isLikedComment ? <LikeCommentIcon className='like-comment-icon' onClick={onLikeComment} /> : <UnLikeCommentIcon onClick={onLikeComment} />}
       </section>
