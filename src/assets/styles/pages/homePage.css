@@ -24,6 +24,7 @@ html {
         "left-aside main-feed right-aside";
     height: 100vh;
     width: 100vw;
+    padding-top: 0;
 }
 
 .home-header {

@@ -17,22 +17,25 @@ import { CreatePost } from './CreatePost.jsx'
 import { LoginSignup } from './LoginSignup.jsx'
 import { showErrorMsg, showSuccessMsg } from '../services/event-bus.service.js'
 import { login, logout, signup } from '../store/user.actions.js'
+import { SearchBar } from './SearchBar.jsx'
 
 export function LeftSideBar() {
   const user = useSelector(storeState => storeState.userModule.user)
 
-  const [openModal,setOpenModal]= useState(false)
+  const [openModal, setOpenModal] = useState(false)
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
   const [changeToNarrow, setChangeToNarrow] = useState(false);
   const [openSerachBar, setOpenSearchBar] = useState(false)
+  // const [isSmallScreen, setIsSmallScreen] = useState(false)
+
 
   useEffect(() => {
     const handleResize = () => {
       // Check if the window width is less than 1264px
       const isSmallScreen = window.innerWidth < 1264;
+      // setIsSmallScreen(window.innerWidth < 1264)
       setChangeToNarrow(isSmallScreen);  // Update the state based on the screen size
       setIsSidebarOpen(window.innerWidth >= 768); // Adjust the sidebar visibility as needed
-      console.log(window.innerWidth)
 
     };
 
@@ -93,45 +96,59 @@ export function LeftSideBar() {
 
   async function onLogin(credentials) {
     try {
-        const user = await login(credentials)
-        showSuccessMsg(`Welcome: ${user.fullname}`)
+      const user = await login(credentials)
+      showSuccessMsg(`Welcome: ${user.fullname}`)
     } catch (err) {
-        showErrorMsg('Cannot login')
+      showErrorMsg('Cannot login')
     }
-}
+  }
 
   async function onSignup(credentials) {
-      try {
-          const user = await signup(credentials)
-          showSuccessMsg(`Welcome new user:${user.fullname}`)
-      } catch (err) {
-          showErrorMsg('Cannot signup')
-      }
+    try {
+      const user = await signup(credentials)
+      showSuccessMsg(`Welcome new user:${user.fullname}`)
+    } catch (err) {
+      showErrorMsg('Cannot signup')
+    }
   }
 
   async function onLogout() {
-      try {
-          await logout()
-          showSuccessMsg(`Bye now`)
-      } catch (err) {
-          showErrorMsg('Cannot logout')
-      }
+    try {
+      await logout()
+      showSuccessMsg(`Bye now`)
+    } catch (err) {
+      showErrorMsg('Cannot logout')
+    }
   }
 
   function onOpenCreateModal(ev) {
-    console.log('test')
-   
     ev.stopPropagation()
+    ev.preventDefault()
     const { value, name, textContext } = ev.currentTarget.dataset
-    console.log('target.dataset: ', ev.currentTarget.dataset)
-    console.log('name: ', name)
-    
-    if (name.toLowerCase()==='create'){
+    console.log('ev.currentTarget.dataset: ', ev.currentTarget.dataset);
+
+    if (name.toLowerCase() === 'create') {
       console.log('textContext: ', textContext)
       setOpenModal(prev => !prev)
     }
     else if (name.toLowerCase() === 'search') {
-      setOpenSearchBar(prev => !prev)
+      
+      if (!openSerachBar && window.innerWidth >= 1264) {
+        setOpenSearchBar(true)
+        setChangeToNarrow(true)
+      } 
+      else if (openSerachBar && window.innerWidth >= 1264){
+        setOpenSearchBar(false)
+        setChangeToNarrow(false)
+      }
+      else if (!openSerachBar && window.innerWidth < 1264) {
+        setOpenSearchBar(true)
+      } 
+      else if (openSerachBar && window.innerWidth < 1264) {
+        setOpenSearchBar(false)
+      } 
+
+  
     }
   }
 
@@ -143,9 +160,9 @@ export function LeftSideBar() {
     <>
       <section className={!changeToNarrow ? "wide-side-bar-container" : "narrow-side-bar-container"} >
         <ul className="side-bar-ul">
-        {/* {!changeToNarrow ?  <InstagramIconLogo className='instagram-logo' /> :<InstagramNarrowLogo className='instagram-narrow-logo'/>} */}
+          {/* {!changeToNarrow ?  <InstagramIconLogo className='instagram-logo' /> :<InstagramNarrowLogo className='instagram-narrow-logo'/>} */}
 
-        {!changeToNarrow ?
+          {!changeToNarrow ?
             (
               <section className='instagram-logo' >
                 <InstagramIconLogo />
@@ -157,7 +174,7 @@ export function LeftSideBar() {
 
           }
 
-          
+
           {instagramIcons.map((icon, idx) => (
             <li key={idx}
               data-value={icon.name}
@@ -168,15 +185,16 @@ export function LeftSideBar() {
               onClick={onOpenCreateModal}
             >
               {openModal ? <CreatePost onCloseModal={onCloseModal} /> : null}
-              {icon.svg && <icon.svg />} 
-              {icon.name === 'Profile' && <ImageAvatars img={user?.imgUrl || null} avatarHeight='30px !important' avatarWidth='30px !important' />} 
+              {openSerachBar ? <SearchBar /> : null}
+              {icon.svg && <icon.svg />}
+              {icon.name === 'Profile' && <ImageAvatars img={user?.imgUrl || null} avatarHeight='30px !important' avatarWidth='30px !important' />}
               {!changeToNarrow && icon.name}
               {/* { icon.name === 'profile' ? <ImageAvatars/>            */}
             </li>
           ))}
         </ul>
-  
-      {/* <section className="signup-signin">
+
+        {/* <section className="signup-signin">
         {user &&
             <span className="user-info">
                 { user.imgUrl && <img src={user.imgUrl} /> }
@@ -192,14 +210,14 @@ export function LeftSideBar() {
         }
       </section> */}
 
-      <section className='left-side-bar-footer'>
+        <section className='left-side-bar-footer'>
           <section className='side-bar-botton-icons'>
-         <ThreadsIcon />
-         {!changeToNarrow ? <span>Threads</span> : null}
-        </section>
-        <section className='side-bar-botton-icons'>
+            <ThreadsIcon />
+            {!changeToNarrow ? <span>Threads</span> : null}
+          </section>
+          <section className='side-bar-botton-icons'>
             <MoreIcon />
-            {!changeToNarrow ? <span>More</span> :null}
+            {!changeToNarrow ? <span>More</span> : null}
           </section>
 
         </section>
