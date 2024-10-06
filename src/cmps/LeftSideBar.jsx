@@ -125,8 +125,7 @@ export function LeftSideBar() {
     ev.stopPropagation()
     ev.preventDefault()
     const { value, name, textContext } = ev.currentTarget.dataset
-    console.log('ev.currentTarget.dataset: ', ev.currentTarget.dataset);
-    console.log('ev ', ev);
+   
     if (name.toLowerCase() === 'create') {
       console.log('textContext: ', textContext)
       setOpenModal(prev => !prev)
