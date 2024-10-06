@@ -121,34 +121,34 @@ export function LeftSideBar() {
     }
   }
 
-  function onOpenCreateModal(ev) {
+  function onOpenModal(ev) {
     ev.stopPropagation()
     ev.preventDefault()
     const { value, name, textContext } = ev.currentTarget.dataset
     console.log('ev.currentTarget.dataset: ', ev.currentTarget.dataset);
-
+    console.log('ev ', ev);
     if (name.toLowerCase() === 'create') {
       console.log('textContext: ', textContext)
       setOpenModal(prev => !prev)
     }
     else if (name.toLowerCase() === 'search') {
-      
+
       if (!openSerachBar && window.innerWidth >= 1264) {
         setOpenSearchBar(true)
         setChangeToNarrow(true)
-      } 
-      else if (openSerachBar && window.innerWidth >= 1264){
+      }
+      else if (openSerachBar && window.innerWidth >= 1264) {
         setOpenSearchBar(false)
         setChangeToNarrow(false)
       }
       else if (!openSerachBar && window.innerWidth < 1264) {
         setOpenSearchBar(true)
-      } 
+      }
       else if (openSerachBar && window.innerWidth < 1264) {
         setOpenSearchBar(false)
-      } 
+      }
 
-  
+
     }
   }
 
@@ -182,7 +182,7 @@ export function LeftSideBar() {
 
               className={!changeToNarrow ? "wide-side-bar-li" : "narrow-side-bar-li"}
               // className='side-bar-li'
-              onClick={onOpenCreateModal}
+              onClick={onOpenModal}
             >
               {openModal ? <CreatePost onCloseModal={onCloseModal} /> : null}
               {openSerachBar ? <SearchBar /> : null}
