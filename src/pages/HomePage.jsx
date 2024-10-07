@@ -11,7 +11,6 @@ import { loadfeedItems } from '../store/feedItem.actions.js';
 export function HomePage() {
   const user = useSelector(storeState => storeState.userModule.user)
   const feedItems = useSelector(storeState => storeState.feedItemModule.feedItems)
-  
 
   const navigate = useNavigate()
 
@@ -20,7 +19,6 @@ export function HomePage() {
     loadfeedItems()
   }, [])
   
-  console.log('loadfeedItems',feedItems);
 
   function onOpenFeedItem(ev, id) {
     ev.stopPropagation()

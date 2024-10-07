@@ -16,38 +16,39 @@ const initialState = {
 export function feedItemReducer(state = initialState, action) {
     var newState = state
     switch (action.type) {
+        
         case SET_FEED_ITEM:
             newState = { ...state, feedItem: action.feedItem }
             break
+        
         case REMOVE_FEED_ITEM:
             newState = {
                 ...state,
                 feedItems: state.feedItems.filter(feedItem => feedItem._id !== action.feedItemId)
             }
             break
+       
         case SET_FEED_ITEMS:
             newState = { ...state, feedItems: action.feedItems }
-            console.log('new State ',newState);
             break
+        
         case ADD_FEED_ITEM:
             newState = {
                 ...state,
                 feedItems: [...state.feedItems, action.feedItem]
             }
-            console.log('action.feedItem',action.feedItem);
-            console.log(newState)
+            break
 
-                break
-
-                // case ADD_FEED_ITEM_MSG:
-                //     newState = {
-                //         ...state,
-                //         feedItems: [...state.feedItems, action.feedItem]
-                //     }
-                //         break        
+        // case ADD_FEED_ITEM_MSG:
+        //     newState = {
+        //         ...state,
+        //         feedItems: [...state.feedItems, action.feedItem]
+        //     }
+        //         break        
 
         default:
     }
+    
     // For debug:
     // window.feedItemState = newState
     // console.log('State:', newState)

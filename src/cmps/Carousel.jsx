@@ -1,5 +1,5 @@
 
-import React, { useState } from 'react';
+import { useState } from 'react';
 import '../assets/styles/cmps/carousel.css'
 import Arrow from '../assets/svg/carousel-arrow.svg?react'
 import chocolateCake from '../assets/images/chocolate_cake.jpg'
@@ -10,7 +10,6 @@ export function Carousel({ feedItem, onDoubleClicked, isImgDoubleClicked, fullSc
 
     const [currentIndex, setCurrentIndex] = useState(0);
     const [doubleClick, setDoubleClick] = useState(isImgDoubleClicked || false)
-    // const [isFullScreen, setIsFullScreen] = useState( fullScreen || false)
 
     const carouselImages = [
         {
@@ -50,46 +49,44 @@ export function Carousel({ feedItem, onDoubleClicked, isImgDoubleClicked, fullSc
             return newDoubleClickState
         });
     }
-    console.log('feed Item Carousel: ', feedItem.imageUrl.length);
+
     return (
         <>
-            {/* <div className="carousel-container"> */}
-            <div className={fullScreen ? 'carousel-full-item-screen-container' : "carousel-container"}>
-                <div className="carousel-left-arrow">
-                    <button className='carousel-left-btn' value='left' onClick={onChangeImg}>
-                        <Arrow className='left-arrow-icon' />
-                    </button>
-                </div>
-                <div className="carousel-main-frame">
-                    <div className="img-container">
-                      
-                        <img className='carousel-img'
-                       getImagesForFeed
+        <div className={fullScreen ? 'carousel-full-item-screen-container' : "carousel-container"}>
+            <div className="carousel-left-arrow">
+                <button className='carousel-left-btn' value='left' onClick={onChangeImg}>
+                    <Arrow className='left-arrow-icon' />
+                </button>
+            </div>
+            
+            <div className="carousel-main-frame">
+                <div className="img-container">
+                    <img className='carousel-img'
                         src={feedItem.imageUrl[currentIndex]}
-                        // alt={carouselImages[currentIndex].name} 
                         onDoubleClick={onImgDoubledClicked}
-                        />
-                        {/* <div className="dot"></div> */}
+                    />
 
-                        {feedItem.imageUrl.length > 1 &&
-                            <div className="dot-container">
-                                {feedItem.imageUrl.map((_, idx) => (
-                                    <span
-                                        key={idx}
-                                        className="dot"
-                                        style={{ backgroundColor: currentIndex === idx ? 'white' : 'lightgray' }}
-                                    ></span>
-                                ))}
-                            </div>}
-                    </div>
-                </div>
-                <div className="carousel-right-arrow">
-                    <button className='carousel-right-btn' value='right' onClick={onChangeImg}>
-                        <Arrow className='right-arrow-icon' />
-                    </button>
+                    {feedItem.imageUrl.length > 1 &&
+                        <div className="dot-container">
+                            {feedItem.imageUrl.map((_, idx) => (
+                                <span
+                                    key={idx}
+                                    className="dot"
+                                    style={{ backgroundColor: currentIndex === idx ? 'white' : 'lightgray' }}>
+                                </span>
+                            ))}
+                        </div>
+                    }
                 </div>
             </div>
-        </>
+            
+            <div className="carousel-right-arrow">
+                <button className='carousel-right-btn' value='right' onClick={onChangeImg}>
+                    <Arrow className='right-arrow-icon' />
+                </button>
+            </div>
+        </div>
+    </>
     )
 }
 
