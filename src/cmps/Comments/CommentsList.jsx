@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react'
 import { userService } from '../../services/user.service'
 import ImageAvatars from '../ImageAvatars';
 import LikeIconComment from '../../assets/svg/like-comment-icon.svg?react'
-import { CommentsPreview } from './CommentsPreview';
 
 export function CommentsList({feedItem}) {
     const [commentsWithUsers, setCommentsWithUsers] = useState([]);
@@ -15,7 +14,7 @@ export function CommentsList({feedItem}) {
             return { ...item, user }; 
           })
         );
-        console.log("commentsWithUsers", commentsWithUserData)
+
         setCommentsWithUsers(commentsWithUserData);
       };
   
@@ -23,17 +22,16 @@ export function CommentsList({feedItem}) {
     }, [feedItem]);
 
   return (
-    // <div>CommentsList</div>
     <section className="comments-list-section">
       <ul className="comments-list-ul-full-screen">
-      { commentsWithUsers.map((item, index) => (
-          <li className='comments-list-li-full-screen' key={index}>
-            <ImageAvatars img={item.user.imgUrl}/>
-            <p className ='comments-user-name-full-screen'>{item.user.fullname}</p>
-            <p className ='comment-full-screen'>{item.comment}</p>
-            <LikeIconComment/>
-          </li>
-        ))}
+        {commentsWithUsers.map((item, index) => (
+            <li className='comments-list-li-full-screen' key={index}>
+              <ImageAvatars img={item.user.imgUrl}/>
+              <p className ='comments-user-name-full-screen'>{item.user.fullname}</p>
+              <p className ='comment-full-screen'>{item.comment}</p>
+              <LikeIconComment/>
+            </li>
+          ))}
       </ul>
     </section>
   )
