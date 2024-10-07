@@ -32,13 +32,11 @@ const AvatarsStoryView = () => {
     return (
         <div className="story-view-container">
             <div className="story-scroll-wrapper">
-                {/* <button className="scroll-button left" onClick={scrollLeft}>&lt;</button> */}
                 <div className="story-left-arrow">
                     <button className="scroll-button-left" onClick={scrollLeft}>
                         <Arrow className='story-left-arrow-icon'/>
                     </button>
                 </div>
-
 
                 <div className="story-scroll" ref={scrollRef}>
                     {visibleStories.map((story, index) => (
@@ -50,8 +48,8 @@ const AvatarsStoryView = () => {
                         />
                     ))}
                 </div>
+                
                 <div className="story-right-arrow">
-                    {/* <button className="scroll-button-right" onClick={scrollRight}>&gt; </button> */}
                     <button className="scroll-button-right" onClick={scrollRight}>
                         <Arrow className='story-right-arrow-icon'  />
                     </button>

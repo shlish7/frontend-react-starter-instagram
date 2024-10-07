@@ -5,7 +5,6 @@ import MoreOptions from '../../assets/svg/more-options-icon.svg?react'
 
 export function FeedItemCreatorDetails({ feedItem, user }) {
 
-  console.log(user)
   return (
     <section className="img-title-container">
       <section className="avatar-and-user-details">
