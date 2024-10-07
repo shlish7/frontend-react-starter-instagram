@@ -8,7 +8,6 @@ import { feeditemService } from "../services/feeditem.service.js";
 import ImageAvatars from '../cmps/ImageAvatars.jsx';
 import { ButtonsView } from '../cmps/FeedItem/ButtonsView.jsx';
 import { LikesCount } from '../cmps/FeedItem/LikesCount.jsx';
-import { useSelector } from 'react-redux';
 import { NewComment } from '../cmps/Comments/NewComment.jsx';
 import { userService } from '../services/user.service.js';
 
@@ -23,7 +22,6 @@ export function FeedItemFullScreen() {
   function onDoubleClicked() {
     setIsImgDoubleClicked(true)   
   }
-
 
   useEffect(() => {
     loadFeedItem()

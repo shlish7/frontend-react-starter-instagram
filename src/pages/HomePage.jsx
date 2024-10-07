@@ -42,16 +42,15 @@ export function HomePage() {
       </aside>
 
       <main className="home-feed">
-
-      {feedItems.map(feedItem => (
-        <FeedItem
-          key={feedItem._id}  
-          feedItem={feedItem}
-          onOpenFeedItem={onOpenFeedItem}
-          handleCommentSubmit={handleCommentSubmit}
-          user={user}
-        />
-      ))}
+        {feedItems.map(feedItem => (
+          <FeedItem
+            key={feedItem._id}  
+            feedItem={feedItem}
+            onOpenFeedItem={onOpenFeedItem}
+            handleCommentSubmit={handleCommentSubmit}
+            user={user}
+          />
+        ))}
       </main>
 
       <Outlet context={{ onOpenFeedItem }} />
