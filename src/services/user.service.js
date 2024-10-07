@@ -229,7 +229,7 @@ const mockUsers = [
     },
     {
       fullname: "testUser17",
-      imgUrl: "https://res.cloudinary.com/dz9gxtvp9/video/upload/v1726938636/samples/sea-turtle.mp4",
+      imgUrl: "https://res.cloudinary.com/dz9gxtvp9/video/upload/v1726938636/samples/cld-sample.jpg",
       password: "pass17",
       username: "testuser17",
       _id: "uid019",
@@ -249,7 +249,6 @@ async function _createMockUsers() {
         try {
             const newUser = await userService.signup(user);
             results.push(newUser)
-            // console.log("new user: " , newUser);
             continue;
         } catch (error) {
             console.error('Error creating user:', error);

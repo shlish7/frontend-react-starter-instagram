@@ -1,13 +1,12 @@
 import { useState } from 'react'
 import { Carousel } from "../Carousel.jsx";
-
 import { ButtonsView } from './ButtonsView.jsx';
 import { LikesCount } from './LikesCount.jsx';
 import { FeedItemDescription } from './FeedItemDescription.jsx';
 import { CommnetsView } from './CommnetsView.jsx';
 import { FeedItemCreatorDetails } from './FeedItemCreatorDetails.jsx';
 
-export function FeedItem({ feedItem, onOpenFeedItem, handleCommentSubmit,user }) {
+export function FeedItem({ feedItem, onOpenFeedItem, handleCommentSubmit, user }) {
 
   const [ isImgDoubleClicked, setIsImgDoubleClicked ] = useState(false);
 
@@ -15,18 +14,15 @@ export function FeedItem({ feedItem, onOpenFeedItem, handleCommentSubmit,user })
     setIsImgDoubleClicked(true)   
   }
 
-
   return (
-    // <main className="home-feed">
       <section className="home-feed-container">
-        <FeedItemCreatorDetails feedItem={feedItem} />
+        <FeedItemCreatorDetails feedItem={feedItem} user={user}/>
         <Carousel feedItem={feedItem} onDoubleClicked={onDoubleClicked} isImgDoubleClicked={isImgDoubleClicked} fullScreen={false}/>
         <ButtonsView feedItem={feedItem} isImgDoubleClicked={isImgDoubleClicked} onOpenFeedItem={onOpenFeedItem}/>
         <LikesCount feedItem={feedItem}/>
         <FeedItemDescription feedItem={feedItem} user={user}/>
         <CommnetsView feedItem={feedItem} handleCommentSubmit={handleCommentSubmit} user={user} />
       </section>
-    // </main>
   )
 }
 

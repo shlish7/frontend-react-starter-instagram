@@ -156,83 +156,6 @@ async function _createMockFeeditems() {
           username: "user7",
           _id: "uid009",
         },
-        // {
-        //   fullname: "user8",
-        //   imgUrl: "https://res.cloudinary.com/dz9gxtvp9/image/upload/v1727288022/jawucsl5tovifnvr6599.png",
-        //   password: "pass8",
-        //   username: "user8",
-        //   _id: "uid010",
-        // },
-        // {
-        //   fullname: "testUser9",
-        //   imgUrl: "https://res.cloudinary.com/dz9gxtvp9/image/upload/v1727288022/jawucsl5tovifnvr6599.png",
-        //   password: "pass9",
-        //   username: "testuser9",
-        //   _id: "uid011",
-        // },
-        // {
-        //   fullname: "user10",
-        //   imgUrl: "https://res.cloudinary.com/dz9gxtvp9/image/upload/v1727288022/jawucsl5tovifnvr6599.png",
-        //   password: "pass10",
-        //   username: "user10",
-        //   _id: "uid012",
-        // },
-        // {
-        //   fullname: "randomUser11",
-        //   imgUrl: "https://res.cloudinary.com/dz9gxtvp9/image/upload/v1727288022/jawucsl5tovifnvr6599.png",
-        //   password: "random11",
-        //   username: "randomuser11",
-        //   _id: "uid013",
-        // },
-        // {
-        //   fullname: "randomUser12",
-        //   imgUrl: "https://res.cloudinary.com/dz9gxtvp9/image/upload/v1727288022/jawucsl5tovifnvr6599.png",
-        //   password: "random12",
-        //   username: "randomuser12",
-        //   _id: "uid014",
-        // },
-        // {
-        //   fullname: "mockUser13",
-        //   imgUrl: "https://res.cloudinary.com/dz9gxtvp9/image/upload/v1727288022/jawucsl5tovifnvr6599.png",
-        //   password: "mockpass13",
-        //   username: "mockuser13",
-        //   _id: "uid015",
-        // },
-        // {
-        //   fullname: "testUser14",
-        //   imgUrl: "https://res.cloudinary.com/dz9gxtvp9/image/upload/v1727288022/jawucsl5tovifnvr6599.png",
-        //   password: "pass14",
-        //   username: "testuser14",
-        //   _id: "uid016",
-        // },
-        // {
-        //   fullname: "user15",
-        //   imgUrl: "https://res.cloudinary.com/dz9gxtvp9/image/upload/v1727288022/jawucsl5tovifnvr6599.png",
-        //   password: "pass15",
-        //   username: "user15",
-        //   _id: "uid017",
-        // },
-        // {
-        //   fullname: "mockUser16",
-        //   imgUrl: "https://res.cloudinary.com/dz9gxtvp9/image/upload/v1727288022/jawucsl5tovifnvr6599.png",
-        //   password: "pass16",
-        //   username: "mockuser16",
-        //   _id: "uid018",
-        // },
-        // {
-        //   fullname: "testUser17",
-        //   imgUrl: "https://res.cloudinary.com/dz9gxtvp9/image/upload/v1727288022/jawucsl5tovifnvr6599.png",
-        //   password: "pass17",
-        //   username: "testuser17",
-        //   _id: "uid019",
-        // },
-        // {
-        //   fullname: "mockUser18",
-        //   imgUrl: "https://res.cloudinary.com/dz9gxtvp9/image/upload/v1727288022/jawucsl5tovifnvr6599.png",
-        //   password: "pass18",
-        //   username: "mockuser18",
-        //   _id: "uid020",
-        // },
       ];
 
     const getRandomInt = (min, max) => Math.floor(Math.random() * (max - min)) + min;
@@ -345,7 +268,6 @@ async function _createMockFeeditems() {
         try {
             const newFeedItem = await feeditemService.create(item);
             feedItemsResults.push(newFeedItem)
-            console.log("newFeedItem: " , newFeedItem);
             continue;
         } catch (error) {
             console.error('Error creating feeditem:', error);
