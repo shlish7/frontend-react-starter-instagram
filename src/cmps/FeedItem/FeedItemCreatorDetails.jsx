@@ -11,7 +11,7 @@ export function FeedItemCreatorDetails({ feedItem, user }) {
         
         <section className="avatar">
           <ImageAvatars
-            img={user.imgUrl}
+            img={user?.imgUrl}
             avatarHeight="30px !important"
             avatarWidth="30px !important"
           />
@@ -20,7 +20,7 @@ export function FeedItemCreatorDetails({ feedItem, user }) {
         <section className="home-img-title-user-details">
           <section className="home-user-title-container">
             <Link to="/" className="home-title-user-name">
-              {user.fullname}
+              {user?.fullname}
             </Link>
             <Verified className="home-title-verified" />
             <span className="home-title-dot">.</span>
