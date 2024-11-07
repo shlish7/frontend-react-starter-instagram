@@ -5,6 +5,7 @@ import { ImageUploader } from './Imageuploader'
 import { useSelector } from 'react-redux'
 import { addFeedItem } from '../store/feedItem.actions'
 
+
 export function CreatePost({ onCloseModal }) {
     const [imageUrl, setImageUrl] = useState()
     const feedItems = useSelector(storeState => storeState.feedItemModule.feedItems)

@@ -1,67 +1,69 @@
-import { feeditemService } from '../services/feeditem.service'
+import { feedItemService } from '../services/feeditem.service'
 import { store } from './store'
-import { ADD_FEED_ITEM, REMOVE_FEED_ITEM, SET_FEED_ITEMS, SET_FEED_ITEM } from './feedItem.reducer'
+import { ADD_FEED_ITEM, REMOVE_FEED_ITEM, SET_FEED_ITEMS, SET_FEED_ITEM, ADD_FEED_ITEM_MSG, UPDATE_FEED_ITEM } from './feedItem.reducer'
 
-export async function loadfeedItems() {
+export async function loadFeedItems() {
     try {       
-        const feedItems = await feeditemService.getFeedItems()
-        store.dispatch(getCmdSetfeedItems(feedItems))
+        const feedItems = await feedItemService.getFeedItems()
+        store.dispatch(getCmdSetFeedItems(feedItems))
     } catch (err) {
         console.log('Cannot load feedItems', err)
         throw err
     }
 }
 
-export async function loadfeedItem(feedItemId) {
+export async function loadFeedItem(feedItemId) {
     try {
         const feedItem = await feedItemService.getById(feedItemId)
         console.log('feedItem from DB:', feedItem)
-        store.dispatch(getCmdSetfeedItem(feedItem))
+        store.dispatch(getCmdSetFeedItem(feedItem))
     } catch (err) {
         console.log('Cannot load feedItem', err)
         throw err
     }
 }
 
-export async function removefeedItem(feedItemId) {
+export async function removeFeedItem(feedItemId) {
     try {
         await feedItemService.remove(feedItemId)
-        store.dispatch(getCmdRemovefeedItem(feedItemId))
+        store.dispatch(getCmdRemoveFeedItem(feedItemId))
     } catch (err) {
         console.log('Cannot remove feedItem', err)
         throw err
     }
 }
 
-export async function addfeedItem(feedItem) {
+export async function addFeedItem(feedItem) {
     try {
-        const savedfeedItem = await feeditemService.save(feedItem)
-        console.log('Added feedItem', savedfeedItem)
-        store.dispatch(getCmdAddfeedItem(savedfeedItem))
-        return savedfeedItem
+        const savedFeedItem = await feedItemService.save(feedItem)
+        console.log('Added feedItem', savedFeedItem)
+        store.dispatch(getCmdAddFeedItem(savedFeedItem))
+        
+        return savedFeedItem
     } catch (err) {
         console.log('Cannot add feedItem', err)
         throw err
     }
 }
 
-export async function updatefeedItem(feedItem) {
+export async function updateFeedItem(feedItem) {
     try {
-        const savedfeedItem = await feedItemService.save(feedItem)
-        console.log('Updated feedItem:', savedfeedItem)
-        store.dispatch(getCmdUpdatefeedItem(savedfeedItem))
-        return savedfeedItem
+        const savedFeedItem = await feedItemService.save(feedItem)
+        console.log('Updated feedItem:', savedFeedItem)
+        store.dispatch(getCmdUpdateFeedItem(savedFeedItem))
+        
+        return savedFeedItem
     } catch (err) {
         console.log('Cannot save feedItem', err)
         throw err
     }
 }
 
-export async function addfeedItemMsg(feedItemId, txt) {
+export async function addFeedItemMsg(feedItemId, txt) {
     try {
-        const msg = await feedItemService.addfeedItemMsg(feedItemId, txt)
+        const msg = await feedItemService.addFeedItemMsg(feedItemId, txt)
         console.log('Added feedItem message', msg)
-        store.dispatch(getCmdAddfeedItemMsg(msg))
+        store.dispatch(getCmdAddFeedItemMsg(msg))
         return msg
     } catch (err) {
         console.log('Cannot add feedItem msg', err)
@@ -82,42 +84,42 @@ export async function addfeedItemMsg(feedItemId, txt) {
 // }
 
 // Command Creators:
-function getCmdRemovefeedItem(feedItemId) {
+function getCmdRemoveFeedItem(feedItemId) {
     return {
         type: REMOVE_FEED_ITEM,
         feedItemId
     }
 }
 
-function getCmdAddfeedItem(feedItem) {
+function getCmdAddFeedItem(feedItem) {
     return {
         type: ADD_FEED_ITEM,
         feedItem
     }
 }
 
-function getCmdUpdatefeedItem(feedItem) {
+function getCmdUpdateFeedItem(feedItem) {
     return {
         type: UPDATE_FEED_ITEM,
         feedItem
     }
 }
 
-function getCmdSetfeedItems(feedItems) {
+function getCmdSetFeedItems(feedItems) {
     return {
         type: SET_FEED_ITEMS,
         feedItems
     }
 }
 
-function getCmdSetfeedItem(feedItem) {
+function getCmdSetFeedItem(feedItem) {
     return {
         type: SET_FEED_ITEM,
         feedItem
     }
 }
 
-function getCmdAddfeedItemMsg(msg) {
+function getCmdAddFeedItemMsg(msg) {
     return {
         type: ADD_FEED_ITEM_MSG,
         msg
@@ -133,17 +135,15 @@ function getCmdAddfeedItemMsg(msg) {
 //     }
 // }
 
-
-
 // unitTestActions()
 async function unitTestActions() {
-    await loadfeedItems()
-    await addfeedItem(feedItemService.getEmptyfeedItem())
-    await updatefeedItem({
+    await loadFeedItems()
+    await addFeedItem(feedItemService.getEmptyfeedItem())
+    await updateFeedItem({
         _id: 'm1oC7',
         title: 'feedItem-Good',
     })
-    await removefeedItem('m1oC7')
+    await removeFeedItem('m1oC7')
     // TODO unit test loadfeedItem
     // TODO unit test addfeedItemMsg
     // TODO unit test updateTask

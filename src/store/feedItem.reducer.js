@@ -1,13 +1,13 @@
 
-import { feeditemService } from '../services/feedItem.service.js'
+import { feedItemService } from '../services/feedItem.service.js'
 export const SET_FEED_ITEM = 'SET_FEED_ITEM'
 export const REMOVE_FEED_ITEM = 'REMOVE_FEED_ITEM'
 export const SET_FEED_ITEMS = 'SET_FEED_ITEMS'
 export const ADD_FEED_ITEM = 'ADD_FEED_ITEM'
 export const ADD_FEED_ITEM_MSG = 'ADD_FEED_ITEM_MSG'
+export const UPDATE_FEED_ITEM = 'UPDATE_FEED_ITEM'
 
 const initialState = {
-    count: 10,
     // feedItem: feedItemService.getLoggedinfeedItem(),
     feedItems: [],
     watchedfeedItem : null
@@ -39,12 +39,13 @@ export function feedItemReducer(state = initialState, action) {
             }
             break
 
-        // case ADD_FEED_ITEM_MSG:
-        //     newState = {
-        //         ...state,
-        //         feedItems: [...state.feedItems, action.feedItem]
-        //     }
-        //         break        
+        case UPDATE_FEED_ITEM:
+            newState = { }
+                break;
+
+        case ADD_FEED_ITEM_MSG:
+            newState = { }
+                break        
 
         default:
     }

@@ -16,7 +16,7 @@ export function HomePage() {
 
   useEffect(() => {
     loadUsers()
-    loadFeedItems()
+    loadfeedItems()
   }, [])
   
 

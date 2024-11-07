@@ -3,7 +3,8 @@ import DragPhoto from '../assets/svg/drag-photos-icon.svg?react'
 import CloseModal from '../assets/svg/close-modal-icon.svg?react'
 import { ImageUploader } from './Imageuploader'
 import { useSelector } from 'react-redux'
-import { addFeedItem } from '../store/feedItem.actions'
+import { addfeedItem } from '../store/feedItem.actions'
+
 
 export function CreatePost({ onCloseModal }) {
     const [imageUrl, setImageUrl] = useState()

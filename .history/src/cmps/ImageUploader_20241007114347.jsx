@@ -1,5 +1,5 @@
 
-import { useRef, useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { uploadService } from '../services/upload.service';
 
 export function ImageUploader({ onUploaded = null }) {
@@ -15,7 +15,6 @@ export function ImageUploader({ onUploaded = null }) {
 
     // Trigger the hidden file input when the button is clicked
     const handleButtonClick = () => {
-        console.log("bla")
         fileInputRef.current.click();
     };
     

@@ -4,7 +4,7 @@ import { useParams } from "react-router";
 import { Carousel } from "../cmps/Carousel.jsx";
 import { CommentsIndex } from "../cmps/Comments/CommentsIndex.jsx";
 import CloseModal from '../assets/svg/close-modal-icon.svg?react'
-import { feedItemService } from "../services/feeditem.service.js";
+import { feeditemService } from "../services/feeditem.service.js";
 import ImageAvatars from '../cmps/ImageAvatars.jsx';
 import { ButtonsView } from '../cmps/FeedItem/ButtonsView.jsx';
 import { LikesCount } from '../cmps/FeedItem/LikesCount.jsx';
@@ -33,7 +33,7 @@ export function FeedItemFullScreen() {
 
   async function loadFeedItem() {
     try {
-      const feedItem = await feedItemService.getById(pId)
+      const feedItem = await feeditemService.getById(pId)
       setFeedItem(feedItem)
       console.log('feedItem' ,feedItem);
     } catch {

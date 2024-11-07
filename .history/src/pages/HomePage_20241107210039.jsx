@@ -6,7 +6,7 @@ import AvatarsStoryView from "../cmps/Story/AvatarsStoryView";
 import { FeedItem } from "../cmps/FeedItem/FeedItem";
 import { RightSideBar } from '../cmps/RightSideBar.jsx';
 import { loadUsers } from '../store/user.actions.js';
-import { loadFeedItems } from '../store/feedItem.actions.js';
+import { loa } from '../store/feedItem.actions.js';
 
 export function HomePage() {
   const user = useSelector(storeState => storeState.userModule.user)
@@ -16,7 +16,7 @@ export function HomePage() {
 
   useEffect(() => {
     loadUsers()
-    loadFeedItems()
+    loadfeedItems()
   }, [])
   
 

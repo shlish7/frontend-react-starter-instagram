@@ -33,7 +33,7 @@ export function FeedItemFullScreen() {
 
   async function loadFeedItem() {
     try {
-      const feedItem = await feedItemService.getById(pId)
+      const feedItem = await feeditemService.getById(pId)
       setFeedItem(feedItem)
       console.log('feedItem' ,feedItem);
     } catch {

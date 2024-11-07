@@ -2,7 +2,7 @@ import { storageService } from './async-storage.service'
 
 const STORAGE_KEY = 'feeditem'
 
-export const feeditemService = {
+export const feedItemService = {
     getFeedItems,
     query,
     getById,
@@ -11,19 +11,19 @@ export const feeditemService = {
     create,
 }
 
-window.cs = feeditemService
+window.cs = feedItemService
 
 async function getFeedItems() {
     try {
         const results = await storageService.query(STORAGE_KEY)
         if (!results || !results.length) {
-          const mockFeedItems = await _createMockFeeditems();
+          const mockFeedItems = await _createMockFeedItems();
           return mockFeedItems.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)); // Sort by createdAt
         }
         
         return results.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
     } catch {
-        console.log("faild mock users")
+        console.log("failed mock users")
     }
     
     // return httpService.get(`user`)
@@ -32,10 +32,10 @@ async function getFeedItems() {
 async function query(filterBy = { txt: '' }) {
     try {
         const results = await storageService.query(STORAGE_KEY)
-        //todo: do the filter here - before saveing to store filter post.userId is in connectedUser.followingIds
+        //todo: do the filter here - before saving to store filter post.userId is in connectedUser.followingIds
         return results
     } catch {
-        console.log("faild query feed items")
+        console.log("failed query feed items")
     }
     
     // return httpService.get(STORAGE_KEY, filterBy)
@@ -43,55 +43,56 @@ async function query(filterBy = { txt: '' }) {
 
 async function getById(feeditemId) {
     try {
-        const feeditem = await storageService.get(STORAGE_KEY, feeditemId)
-        return feeditem
-        // return httpService.get(`feeditem/${feeditemId}`)
+        const feedItem = await storageService.get(STORAGE_KEY, feeditemId)
+        
+        return feedItem
+        // return httpService.get(`feedItem/${feedItem}`)
     } catch {
-        console.log("faild getById feed item")
+        console.log("failed getById feed item")
     }
 }
 
-async function remove(feeditemId) {
+async function remove(feedItemId) {
     try {
-        return storageService.remove(STORAGE_KEY, feeditemId)
-        // return httpService.delete(`feeditem/${feeditemId}`)
+        return storageService.remove(STORAGE_KEY, feedItemId)
+        // return httpService.delete(`feeditem/${feedItemId}`)
     } catch {
-        console.log("faild remove feed item")
+        console.log("failed remove feed item")
     }
 }
 
-async function create(feeditem) {
-    var savedFeeditem
+async function create(feedItem) {
+    var savedFeedItem
    
     try {
-        savedFeeditem = await storageService.post(STORAGE_KEY, feeditem)
-        // savedFeeditem = await httpService.post(STORAGE_KEY, feeditem)
-        return savedFeeditem
+        savedFeedItem = await storageService.post(STORAGE_KEY, feedItem)
+        // savedFeeditem = await httpService.post(STORAGE_KEY, feedItem)
+        return savedFeedItem
     } catch {
-        console.log("faild save feed item")
+        console.log("failed save feed item")
     }
 }
 
-async function save(feeditem) {
-    var savedFeeditem
+async function save(feedItem) {
+    var savedFeedItem
    
     try {
-        // if (feeditem._id) {
-        //     savedFeeditem = await storageService.put(STORAGE_KEY, feeditem)
-        //     // savedFeeditem = await httpService.put(`feeditem/${feeditem._id}`, feeditem)
+        // if (feedItem._id) {
+        //     savedFeedItem = await storageService.put(STORAGE_KEY, feedItem)
+        //     // savedFeedItem = await httpService.put(`feeditem/${feeditem._id}`, feedItem)
         // } 
         // else {
-        //     savedFeeditem = await storageService.post(STORAGE_KEY, feeditem)
-        //     // savedFeeditem = await httpService.post(STORAGE_KEY, feeditem)
+        //     savedFeedItem = await storageService.post(STORAGE_KEY, feedItem)
+        //     // savedFeedItem = await httpService.post(STORAGE_KEY, feedItem)
         // }
-        savedFeeditem = await storageService.post(STORAGE_KEY, feeditem)
-        return savedFeeditem
+        savedFeedItem = await storageService.post(STORAGE_KEY, feedItem)
+        return savedFeedItem
     } catch {
-        console.log("faild save feed item")
+        console.log("failed save feed item")
     }
 }
 
-async function _createMockFeeditems() {
+async function _createMockFeedItems() {
     const mockUsers = [
         {
           fullname: "newTest",
@@ -266,7 +267,7 @@ async function _createMockFeeditems() {
 
     for (const item of mockFeedItems) {
         try {
-            const newFeedItem = await feeditemService.create(item);
+            const newFeedItem = await feedItemService.create(item);
             feedItemsResults.push(newFeedItem)
             continue;
         } catch (error) {
