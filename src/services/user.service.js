@@ -107,6 +107,7 @@ const mockUsers = [
       password: "fhgj",
       username: "newTest",
       _id: "mwut3",
+      //todo: savedFeedItems: [feedItemsIds]
     },
     {
       fullname: "DemoUser",
