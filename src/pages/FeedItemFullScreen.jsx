@@ -76,7 +76,7 @@ export function FeedItemFullScreen() {
           </section>     
 
           <section className="full-screen-new-comment">
-            <NewComment/>
+            <NewComment feedItem={feedItem}/>
           </section>
         </section>
       </section>

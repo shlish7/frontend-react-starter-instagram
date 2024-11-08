@@ -5,8 +5,10 @@ import EmojiIconFullScreen from '../../assets/svg/emoji-icon-full-screen.svg?rea
 
 import LikeCommentIcon from '../../assets/svg/like-comment-icon.svg?react';
 import UnLikeCommentIcon from '../../assets/svg/red-like-comment-icon.svg?react';
+import { updateFeedItem } from '../../store/feedItem.actions';
 
-export function NewComment({ handleCommentSubmit }) {
+
+export function NewComment({ handleCommentSubmit, feedItem }) {
     const [comment, setComment] = useState('')
     const [newComment, setNewComment] = useState()
     const [newCommentTxt, setNewCommentTxt] = useState()
@@ -36,8 +38,15 @@ export function NewComment({ handleCommentSubmit }) {
       };
     }, [isEmojiPicker]);
 
-    function onUpdateComment({target}){
+    async function onUpdateComment({target}){
         const { value } = target
+        
+        const userId = "uid002"; // TODO: Replace with logged-in userId
+          const updatedComments = [...feedItem.comments, { userId, comment: value.trim() }];
+        
+          const savedFeedItem = await updateFeedItem({ ...feedItem, comments: updatedComments });
+          console.log('savedFeedItem ', savedFeedItem);
+
         setComment(value)
         if (value.trim() !== '') {
           setPostCommentBtn(true)
@@ -45,6 +54,16 @@ export function NewComment({ handleCommentSubmit }) {
           setPostCommentBtn(false)
         }
     }
+
+    // async function onAddComment(){
+    //   const userId = "uid002"; // TODO: Replace with logged-in userId
+    //   const updatedLikes = feedItem.likes.some(like => like.userId === userId)
+    //     ? feedItem.likes.filter(like => like.userId !== userId)
+    //     : [...feedItem.likes, { userId }];
+    
+    //   const savedFeedItem = await updateFeedItem({ ...feedItem, likes: updatedLikes });
+    //   setIsLiked(prev => !prev);
+    // }
 
     function onOpenEmojiPicker() {
       setIsEmojiPicker(prev => !prev)
