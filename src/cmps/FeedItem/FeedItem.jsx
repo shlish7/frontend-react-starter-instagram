@@ -19,7 +19,7 @@ export function FeedItem({ feedItem, onOpenFeedItem, handleCommentSubmit, user }
         <FeedItemCreatorDetails feedItem={feedItem} user={user}/>
         <Carousel feedItem={feedItem} onDoubleClicked={onDoubleClicked} isImgDoubleClicked={isImgDoubleClicked} fullScreen={false}/>
         <ButtonsView feedItem={feedItem} isImgDoubleClicked={isImgDoubleClicked} onOpenFeedItem={onOpenFeedItem}/>
-        <LikesCount feedItem={feedItem}/>
+        {feedItem?.likes?.length > 0 && <LikesCount feedItem={feedItem}/>}
         <FeedItemDescription feedItem={feedItem} user={user}/>
         <CommnetsView feedItem={feedItem} handleCommentSubmit={handleCommentSubmit} user={user} />
       </section>

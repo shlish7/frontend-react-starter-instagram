@@ -30,7 +30,7 @@ export function CreatePost({ onCloseModal }) {
                 caption: `Test caption`,
                 tags: null,
                 comments: null,
-                likesCount: null,
+                likes: null,
                 createdAt: new Date().toISOString()
             }
 

@@ -72,7 +72,7 @@ export function FeedItemFullScreen() {
 
           <section className="full-screen-button-and-likes">
             <ButtonsView isImgDoubleClicked={isImgDoubleClicked}/>
-            { feedItem && <LikesCount feedItem={feedItem}/> }
+            { feedItem?.likes?.length > 0 && <LikesCount feedItem={feedItem}/> }
           </section>     
 
           <section className="full-screen-new-comment">

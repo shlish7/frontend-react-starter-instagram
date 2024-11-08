@@ -167,7 +167,7 @@ async function _createMockFeedItems() {
         return Array.from({ length: randomTagCount }, () => tags[getRandomInt(0, tags.length)]);
       };
       
-      const getRandomComments = () => {
+    const getRandomComments = () => {
         const commentsCount = getRandomInt(1, 10); 
         const commentTemplates = [
             "I love this! Such an amazing shot. I’ve never seen something like this before!",
@@ -191,6 +191,17 @@ async function _createMockFeedItems() {
             };
         });
     };
+
+    const getRandomLikes = () => {
+      const likesCount = getRandomInt(1, 100); 
+        
+        return Array.from({ length: likesCount }, () => {
+            const randomUser = mockUsers[getRandomInt(0, mockUsers.length)];
+            return {
+                userId: randomUser._id
+            };
+        });
+    }
 
     const getImagesForFeed = (index) => {
       if (index < 5) {
@@ -259,9 +270,9 @@ async function _createMockFeedItems() {
           imageUrl: getImagesForFeed(index), 
           caption: getRandomCaption(user, index), 
           tags: getRandomTags(),
-          comments: getRandomComments(),
-          likesCount: getRandomInt(10, 100),
-          createdAt: new Date().toISOString(),
+          comments: getRandomComments(), // add comment + remove comment. (next edit)
+          likes: getRandomLikes(),
+          createdAt: new Date().toISOString(), 
       }));
   });
 
