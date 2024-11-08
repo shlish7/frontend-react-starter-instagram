@@ -85,7 +85,7 @@ async function save(feedItem) {
         //     savedFeedItem = await storageService.post(STORAGE_KEY, feedItem)
         //     // savedFeedItem = await httpService.post(STORAGE_KEY, feedItem)
         // }
-        savedFeedItem = await storageService.post(STORAGE_KEY, feedItem)
+        savedFeedItem = await storageService.put(STORAGE_KEY, feedItem)
         return savedFeedItem
     } catch {
         console.log("failed save feed item")
@@ -193,14 +193,15 @@ async function _createMockFeedItems() {
     };
 
     const getRandomLikes = () => {
-      const likesCount = getRandomInt(1, 100); 
-        
-        return Array.from({ length: likesCount }, () => {
-            const randomUser = mockUsers[getRandomInt(0, mockUsers.length)];
-            return {
-                userId: randomUser._id
-            };
-        });
+      const likesCount = getRandomInt(1, 100);
+      const uniqueLikes = new Set();
+    
+      while (uniqueLikes.size < likesCount && uniqueLikes.size < mockUsers.length) {
+        const randomUser = mockUsers[getRandomInt(0, mockUsers.length)];
+        uniqueLikes.add(randomUser._id);
+      }
+    
+      return Array.from(uniqueLikes).map(userId => ({ userId }));
     }
 
     const getImagesForFeed = (index) => {
@@ -263,6 +264,7 @@ async function _createMockFeedItems() {
     };
 
     const feedItemsResults = []
+    
     const mockFeedItems = mockUsers.flatMap((user, userIndex) => {
       return Array.from({ length: 5 }, (_, index) => ({
           _id: `feed_${user._id}_${index}`,
@@ -274,7 +276,7 @@ async function _createMockFeedItems() {
           likes: getRandomLikes(),
           createdAt: new Date().toISOString(), 
       }));
-  });
+    });
 
     for (const item of mockFeedItems) {
         try {

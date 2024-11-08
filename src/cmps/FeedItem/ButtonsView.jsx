@@ -5,14 +5,23 @@ import Share from "../../assets/svg/share.svg?react";
 import SaveIcon from "../../assets/svg/SaveIcon.svg?react";
 import RedLike from "../../assets/svg/red-like.svg?react";
 import PressedSaveIcon from "../../assets/svg/pressed-save-icon.svg?react";
+import { updateFeedItem } from '../../store/feedItem.actions';
 
 export function ButtonsView({ feedItem, isImgDoubleClicked, onOpenFeedItem }) {
 
-  const [isLiked,setIsLiked] = useState()
-  const [isSaved,setIsSaved] = useState()
+  console.log("before feed item: ", feedItem);
 
-  function onChangeLike(){
-    setIsLiked(prev => !prev)
+  const [isLiked, setIsLiked] = useState(feedItem?.likes?.some(like => like.userId === "uid002")) // TODO: Replace with logged-in userId if he is in the likes array
+  const [isSaved, setIsSaved] = useState()
+
+  async function onChangeLike(){
+    const userId = "uid002"; // TODO: Replace with logged-in userId
+    const updatedLikes = feedItem.likes.some(like => like.userId === userId)
+      ? feedItem.likes.filter(like => like.userId !== userId)
+      : [...feedItem.likes, { userId }];
+  
+    const savedFeedItem = await updateFeedItem({ ...feedItem, likes: updatedLikes });
+    setIsLiked(prev => !prev);
   }
 
   function onSaveItem(){

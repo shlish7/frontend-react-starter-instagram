@@ -35,7 +35,7 @@ export async function removeFeedItem(feedItemId) {
 
 export async function addFeedItem(feedItem) {
     try {
-        const savedFeedItem = await feedItemService.save(feedItem)
+        const savedFeedItem = await feedItemService.create(feedItem)
         console.log('Added feedItem', savedFeedItem)
         store.dispatch(getCmdAddFeedItem(savedFeedItem))
         
@@ -136,16 +136,16 @@ function getCmdAddFeedItemMsg(msg) {
 // }
 
 // unitTestActions()
-async function unitTestActions() {
-    await loadFeedItems()
-    await addFeedItem(feedItemService.getEmptyfeedItem())
-    await updateFeedItem({
-        _id: 'm1oC7',
-        title: 'feedItem-Good',
-    })
-    await removeFeedItem('m1oC7')
-    // TODO unit test loadfeedItem
-    // TODO unit test addfeedItemMsg
-    // TODO unit test updateTask
-}
+// async function unitTestActions() {
+//     await loadFeedItems()
+//     await addFeedItem(feedItemService.getEmptyfeedItem())
+//     await updateFeedItem({
+//         _id: 'm1oC7',
+//         title: 'feedItem-Good',
+//     })
+//     await removeFeedItem('m1oC7')
+//     // TODO unit test loadfeedItem
+//     // TODO unit test addfeedItemMsg
+//     // TODO unit test updateTask
+// }
 

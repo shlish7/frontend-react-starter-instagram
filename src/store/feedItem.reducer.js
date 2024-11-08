@@ -15,6 +15,8 @@ const initialState = {
 
 export function feedItemReducer(state = initialState, action) {
     var newState = state
+    let feedItems
+    
     switch (action.type) {
         
         case SET_FEED_ITEM:
@@ -40,8 +42,9 @@ export function feedItemReducer(state = initialState, action) {
             break
 
         case UPDATE_FEED_ITEM:
-            newState = { }
-                break;
+            feedItems = state.feedItems.map(feedItem => (feedItem._id === action.feedItem._id) ? action.feedItem : feedItem)
+            newState = { ...state, feedItems }
+            break;
 
         case ADD_FEED_ITEM_MSG:
             newState = { }
