@@ -16,6 +16,8 @@
     max-width: 920px; */
     height: 100%;
     width:100%;
+    justify-content: center;
+    align-items: center;
 }
 
 
@@ -91,6 +93,7 @@
     width: 468px; */
     height: 100%;
     width: 468px;
+    width: 100%;
     background-color: white;
 }
 
@@ -99,6 +102,7 @@
     /* Ensure this container is the reference for the dot positioning */
     height: 100%;
     width: 100%;
+
 }
 
 .carousel-main-frame img {

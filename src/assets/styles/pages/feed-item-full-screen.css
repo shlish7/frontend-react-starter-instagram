@@ -6,9 +6,12 @@
     flex-direction: row;
     align-items: center;
     text-align: center;
-    max-height: 920;
+    max-height: calc(100vh - 40px);
+    /* max-height: 920; */
     /* max-width: 762px;     */
-    max-width: 900px;    
+    /* max-width: 900px; */
+    max-width: (100% - 64px - 64px);
+    width:80%;    
     aspect-ratio: 1;
     position: fixed;
     inset: 0;
