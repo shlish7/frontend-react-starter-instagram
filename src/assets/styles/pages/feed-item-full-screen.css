@@ -56,3 +56,13 @@
   .full-screen-new-comment{
 
   }
+
+  .comment-li-avatar-and-comment{
+    display: flex;
+    align-items: center;
+    gap:8px;
+    width: calc(100% - 28px);
+  }
+
+  
+
