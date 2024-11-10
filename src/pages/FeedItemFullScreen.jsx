@@ -10,6 +10,8 @@ import { ButtonsView } from '../cmps/FeedItem/ButtonsView.jsx';
 import { LikesCount } from '../cmps/FeedItem/LikesCount.jsx';
 import { NewComment } from '../cmps/Comments/NewComment.jsx';
 import { userService } from '../services/user.service.js';
+import Verified from "../assets/svg/verified.svg?react";
+
 
 export function FeedItemFullScreen() {
   const { pId } = useParams()
@@ -66,6 +68,7 @@ export function FeedItemFullScreen() {
           <section className="full-screen-comment-user-details">
             { user?.imgUrl && <ImageAvatars img={user.imgUrl} avatarWidth='44px' avatarHeight='44px'/> }
             { user?.username && <span className="full-screen-comments-user-name">{user.username}</span> }
+            <Verified/>
           </section>
 
           { feedItem && <CommentsIndex feedItem={feedItem} /> }
