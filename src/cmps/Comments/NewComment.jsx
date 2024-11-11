@@ -1,13 +1,15 @@
-import EmojiPicker from 'emoji-picker-react'
 import { useEffect, useState } from 'react'
-import EmojiPickerIcon from '../../assets/svg/emoji-icon.svg?react';
-
-import LikeCommentIcon from '../../assets/svg/like-comment-icon.svg?react';
-import UnLikeCommentIcon from '../../assets/svg/red-like-comment-icon.svg?react';
+import { useSelector } from 'react-redux'
+import EmojiPicker from 'emoji-picker-react'
 import { updateFeedItem } from '../../store/feedItem.actions';
 
+import EmojiPickerIcon from '../../assets/svg/emoji-icon.svg?react';
+import LikeCommentIcon from '../../assets/svg/like-comment-icon.svg?react';
+import UnLikeCommentIcon from '../../assets/svg/red-like-comment-icon.svg?react';
 
 export function NewComment({ handleCommentSubmit, feedItem }) {
+  const user = useSelector(storeState => storeState.userModule.user)
+
   const [comment, setComment] = useState('')
   const [newComment, setNewComment] = useState()
   const [newCommentTxt, setNewCommentTxt] = useState()
@@ -18,7 +20,6 @@ export function NewComment({ handleCommentSubmit, feedItem }) {
 
   function onLikeComment() {
     setIsLikedComment(prev => !prev)
-
   }
 
   useEffect(() => {
@@ -28,10 +29,8 @@ export function NewComment({ handleCommentSubmit, feedItem }) {
       }
     }
 
-    // Attach the event listener to the document
     document.addEventListener('keydown', handleKeyDown);
 
-    // Cleanup the event listener when component unmounts or updates
     return () => {
       document.removeEventListener('keydown', handleKeyDown);
     };
@@ -40,7 +39,7 @@ export function NewComment({ handleCommentSubmit, feedItem }) {
   async function onUpdateComment({ target }) {
     const { value } = target
 
-    const userId = "uid002"; // TODO: Replace with logged-in userId
+    const userId = user._id//"uid002"; // TODO: Replace with logged-in userId
     const updatedComments = [...feedItem.comments, { userId, comment: value.trim() }];
 
     const savedFeedItem = await updateFeedItem({ ...feedItem, comments: updatedComments });
@@ -73,15 +72,14 @@ export function NewComment({ handleCommentSubmit, feedItem }) {
       setNewCommentTxt(comment.trim())
       setNewComment(prev => !prev)
       setPostCommentBtn(false)
-      setComment(''); // Optionally clear the textarea after submission
+      setComment(''); 
 
       handleCommentSubmit && handleCommentSubmit(comment.trim())
     }
   };
 
   function onEmojiClick(emojiData) {
-    console.log('Selected Emoji:', emojiData.emoji); // This should now print the selected emoji.
-    setComment(prevComment => prevComment + emojiData.emoji)// Append emoji to comment
+    setComment(prevComment => prevComment + emojiData.emoji)
     setIsEmojiPicker(prev => !prev)
 
     if (comment.trim() !== '' || emojiData.emoji) {
@@ -94,10 +92,14 @@ export function NewComment({ handleCommentSubmit, feedItem }) {
       {newComment &&
         <section className="new-comment-container">
           <section className='new-comment-details'>
-            <span className="new-comment-user-name">{'User Name'}</span>
+            <span className="new-comment-user-name">{user.fullname}</span>
             <span className="new-comment">{newCommentTxt}</span>
           </section>
-          {!isLikedComment ? <LikeCommentIcon className='like-comment-icon' onClick={onLikeComment} /> : <UnLikeCommentIcon onClick={onLikeComment} />}
+          {
+            !isLikedComment 
+            ? <LikeCommentIcon className='like-comment-icon' onClick={onLikeComment} /> 
+            : <UnLikeCommentIcon onClick={onLikeComment} />
+          }
         </section>
       }
 
@@ -110,12 +112,13 @@ export function NewComment({ handleCommentSubmit, feedItem }) {
             </div>
           )}
         </div>
+
         <textarea
           type="text"
           className="home-add-comment"
           placeholder="Add a comment…"
           aria-label="Add a comment…"
-          value={comment} // Bind the state to the textarea's value
+          value={comment}
           onChange={onUpdateComment}
           onKeyDown={(e) => {
             if (e.key === 'Enter' && !e.shiftKey) {
@@ -129,12 +132,9 @@ export function NewComment({ handleCommentSubmit, feedItem }) {
         {/* {<button className={postCommentBtn===true ? "post-comment-btn" : "post-comment-btn-opacity"}  onClick={onHandleCommentSubmit}>Post</button>} */}
         <button
           className={`post-comment-btn ${!postCommentBtn && "post-comment-btn-opacity"}`}
-          onClick={onHandleCommentSubmit}
-        >
+          onClick={onHandleCommentSubmit}>
           Post
         </button>
-
-
       </section>
     </>
   )
