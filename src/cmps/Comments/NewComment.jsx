@@ -39,11 +39,10 @@ export function NewComment({ handleCommentSubmit, feedItem }) {
   async function onUpdateComment({ target }) {
     const { value } = target
 
-    const userId = user._id//"uid002"; // TODO: Replace with logged-in userId
+    const userId = user._id
     const updatedComments = [...feedItem.comments, { userId, comment: value.trim() }];
 
     const savedFeedItem = await updateFeedItem({ ...feedItem, comments: updatedComments });
-    console.log('savedFeedItem ', savedFeedItem);
 
     setComment(value)
     if (value.trim() !== '') {
