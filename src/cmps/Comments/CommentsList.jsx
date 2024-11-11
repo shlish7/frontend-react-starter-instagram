@@ -6,8 +6,6 @@ import LikeIconComment from '../../assets/svg/like-comment-icon.svg?react'
 export function CommentsList({ feedItem }) {
   const [commentsWithUsers, setCommentsWithUsers] = useState([]);
 
-
-
   useEffect(() => {
     const fetchUsersForComments = async () => {
       const commentsWithUserData = await Promise.all(
