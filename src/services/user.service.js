@@ -229,13 +229,6 @@ const mockUsers = [
       _id: "uid018",
     },
     {
-      fullname: "testUser17",
-      imgUrl: "https://res.cloudinary.com/dz9gxtvp9/video/upload/v1726938636/samples/cld-sample.jpg",
-      password: "pass17",
-      username: "testuser17",
-      _id: "uid019",
-    },
-    {
       fullname: "mockUser18",
       imgUrl: "https://res.cloudinary.com/dz9gxtvp9/image/upload/v1726938636/samples/landscapes/nature-mountains.jpg",
       password: "pass18",
