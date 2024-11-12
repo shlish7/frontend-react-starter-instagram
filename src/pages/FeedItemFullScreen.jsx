@@ -11,13 +11,17 @@ import { LikesCount } from '../cmps/FeedItem/LikesCount.jsx';
 import { NewComment } from '../cmps/Comments/NewComment.jsx';
 import { userService } from '../services/user.service.js';
 import Verified from "../assets/svg/verified.svg?react";
+import { useSelector } from 'react-redux';
+import { loadFeedItem } from '../store/feedItem.actions.js';
 
 
 export function FeedItemFullScreen() {
   const { pId } = useParams()
-  const [feedItem, setFeedItem] = useState(null)
+  // const [feedItem, setFeedItem] = useState(null)
   const [user, setUser] = useState(null)
   const navigate = useNavigate()
+
+  const feedItem = useSelector(storeState => storeState.feedItemModule.feedItem)
 
   const [ isImgDoubleClicked, setIsImgDoubleClicked ] = useState(false);
 
@@ -26,17 +30,16 @@ export function FeedItemFullScreen() {
   }
 
   useEffect(() => {
-    loadFeedItem()
+    getFeedItem()
   }, [pId])
 
   useEffect(() => {
     feedItem && loadUser()
   }, [feedItem])
 
-  async function loadFeedItem() {
+  async function getFeedItem() {
     try {
-      const feedItem = await feedItemService.getById(pId)
-      setFeedItem(feedItem)
+      loadFeedItem(pId)
       console.log('feedItem' ,feedItem);
     } catch {
       console.log("error loading feed item")
@@ -60,29 +63,23 @@ export function FeedItemFullScreen() {
   return (
     <>
       <CloseModal className='close-modal-icon' onClick={onNavigateBack} />
-
       <section className="feed-item-container-full-screen">
         { feedItem && <Carousel feedItem={feedItem} fullScreen={true} onDoubleClicked={onDoubleClicked} isImgDoubleClicked={isImgDoubleClicked}  /> }
         <section className="full-screen-comments">
-
           <section className="full-screen-comment-user-details">
             { user?.imgUrl && <ImageAvatars img={user.imgUrl} avatarWidth='44px' avatarHeight='44px'/> }
             { user?.username && <span className="full-screen-comments-user-name">{user.username}</span> }
             <Verified/>
           </section>
           <section className="scrollable-comments">
-
-          { feedItem && <CommentsIndex feedItem={feedItem} /> }
+          { feedItem && <CommentsIndex  feedItem= {feedItem}/> }
           </section>
-
-
           <section className="full-screen-button-and-likes">
             <ButtonsView isImgDoubleClicked={isImgDoubleClicked}/>
             { feedItem?.likes?.length > 0 && <LikesCount feedItem={feedItem}/> }
           </section>     
-
           <section className="full-screen-new-comment">
-            <NewComment feedItem={feedItem} fullScreen={true}/>
+            <NewComment  fullScreen={true}/>
           </section>
         </section>
       </section>

@@ -8,10 +8,10 @@ import EmojiPickerIcon from '../../assets/svg/emoji-picker.svg?react';
 import LikeCommentIcon from '../../assets/svg/like-comment-icon.svg?react';
 import UnLikeCommentIcon from '../../assets/svg/red-like-comment-icon.svg?react';
 
-export function NewComment({ handleCommentSubmit, feedItem, fullScreen }) {
-  console.log('full screen ',fullScreen);
+export function NewComment({ handleCommentSubmit, fullScreen }) {
   
   const user = useSelector(storeState => storeState.userModule.user)
+  const feedItem = useSelector(storeState => storeState.feedItemModule.feedItem)
 
   const [comment, setComment] = useState('')
   const [newComment, setNewComment] = useState()
@@ -54,9 +54,9 @@ export function NewComment({ handleCommentSubmit, feedItem, fullScreen }) {
     const { value } = target
 
     const userId = user._id
-    const updatedComments = [...feedItem.comments, { userId, comment: value.trim() }];
+    // const updatedComments = [...feedItem.comments, { userId, comment: value.trim() }];
 
-    const savedFeedItem = await updateFeedItem({ ...feedItem, comments: updatedComments });
+    // const savedFeedItem = await updateFeedItem({ ...feedItem, comments: updatedComments });
     
     setComment(value)
     if (value.trim() !== '') {
@@ -69,24 +69,17 @@ export function NewComment({ handleCommentSubmit, feedItem, fullScreen }) {
     }
   }
 
-  // async function onAddComment(){
-  //   const userId = "uid002"; // TODO: Replace with logged-in userId
-  //   const updatedLikes = feedItem.likes.some(like => like.userId === userId)
-  //     ? feedItem.likes.filter(like => like.userId !== userId)
-  //     : [...feedItem.likes, { userId }];
-
-  //   const savedFeedItem = await updateFeedItem({ ...feedItem, likes: updatedLikes });
-  //   setIsLiked(prev => !prev);
-  // }
-
   function onOpenEmojiPicker() {
     setIsEmojiPicker(prev => !prev)
   }
 
-  const onHandleCommentSubmit = () => {
+    async function onHandleCommentSubmit(){
     if (comment.trim() !== '') {
       setNewCommentTxt(comment.trim())
       fullScreen ? null : setNewComment(prev => !prev)
+      const userId = user._id
+      const updatedComments = [...feedItem.comments, { userId, comment: comment.trim() }];
+      const savedFeedItem = await updateFeedItem({ ...feedItem, comments: updatedComments });
       
       setPostCommentBtn(false)
       setComment(''); 

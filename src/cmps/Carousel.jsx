@@ -50,7 +50,6 @@ export function Carousel({ feedItem, onDoubleClicked, isImgDoubleClicked, fullSc
         });
     }
 
-    console.log('feedItem: ',feedItem);
 
     return (
         <>

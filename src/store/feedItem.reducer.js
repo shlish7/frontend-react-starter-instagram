@@ -10,6 +10,7 @@ export const UPDATE_FEED_ITEM = 'UPDATE_FEED_ITEM'
 const initialState = {
     // feedItem: feedItemService.getLoggedinfeedItem(),
     feedItems: [],
+    feedItem:null,
     watchedfeedItem : null
 }
 
@@ -42,8 +43,9 @@ export function feedItemReducer(state = initialState, action) {
             break
 
         case UPDATE_FEED_ITEM:
+
             feedItems = state.feedItems.map(feedItem => (feedItem._id === action.feedItem._id) ? action.feedItem : feedItem)
-            newState = { ...state, feedItems }
+            newState = { ...state, feedItems, feedItem:action.feedItem }
             break;
 
         case ADD_FEED_ITEM_MSG:

@@ -15,7 +15,6 @@ export async function loadFeedItems() {
 export async function loadFeedItem(feedItemId) {
     try {
         const feedItem = await feedItemService.getById(feedItemId)
-        console.log('feedItem from DB:', feedItem)
         store.dispatch(getCmdSetFeedItem(feedItem))
     } catch (err) {
         console.log('Cannot load feedItem', err)
@@ -49,7 +48,7 @@ export async function addFeedItem(feedItem) {
 export async function updateFeedItem(feedItem) {
     try {
         const savedFeedItem = await feedItemService.save(feedItem)
-        // console.log('Updated feedItem:', savedFeedItem)
+        console.log('Updated feedItem:', savedFeedItem)
         store.dispatch(getCmdUpdateFeedItem(savedFeedItem))
         
         return savedFeedItem
@@ -70,6 +69,8 @@ export async function addFeedItemMsg(feedItemId, txt) {
         throw err
     }
 }
+
+
 
 // export async function updateTask(feedItemId, groupId, task, activityTitle) {
 //     try {
