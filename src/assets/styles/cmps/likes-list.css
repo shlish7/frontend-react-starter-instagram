@@ -26,6 +26,14 @@
     min-width: 260px;
 }
 
+.likes-modal-section{
+    display: flex;
+    align-items: center;
+    padding-right: 10px;
+    border-bottom: 1px solid rgb(215, 215, 215);
+
+}
+
 .likes-list{
     display: flex;
     justify-content: space-between;
@@ -71,7 +79,7 @@
     justify-content: center;
     align-items: center;
     width:100%;
-    border-bottom: 1px solid rgb(215, 215, 215);
     padding: 10px 0 10px 0;
 
 }
+

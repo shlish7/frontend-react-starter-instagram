@@ -18,7 +18,7 @@ export function LikesCount({ feedItem }) {
         <span>{feedItem.likes?.length}</span>
         <span onClick={onDisplayLikes}>likes</span>
       </section>
-      {showLikesList &&<LikesList feedItem={feedItem} />}
+      {showLikesList &&<LikesList feedItem={feedItem} onCloseModal={onDisplayLikes} />}
 
     </div>
 
