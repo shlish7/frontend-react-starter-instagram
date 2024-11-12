@@ -260,7 +260,7 @@ async function _createMockFeedItems() {
 
     const getRandomImageUrl = () => {
       const randomIndex = Math.floor(Math.random() * imgsPublicIds.length);
-      return `https://res.cloudinary.com/dz9gxtvp9/image/upload/${imgsPublicIds[randomIndex]}`;
+      return `https://res.cloudinary.com/dz9gxtvp9/image/upload/iw_1000,ar_1:1,c_fill,g_auto,e_art:hokusa/${imgsPublicIds[randomIndex]}`;
     };
 
     const feedItemsResults = []
