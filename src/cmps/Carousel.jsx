@@ -50,6 +50,8 @@ export function Carousel({ feedItem, onDoubleClicked, isImgDoubleClicked, fullSc
         });
     }
 
+    console.log('feedItem: ',feedItem);
+
     return (
         <>
         <div className={fullScreen ? 'carousel-full-item-screen-container' : "carousel-container"}>

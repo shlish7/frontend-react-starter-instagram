@@ -9,7 +9,9 @@ import { addFeedItem } from '../store/feedItem.actions'
 export function CreatePost({ onCloseModal }) {
     const [imageUrl, setImageUrl] = useState()
     const feedItems = useSelector(storeState => storeState.feedItemModule.feedItems)
-    const [description,setDescription] = useState()
+    const [description, setDescription] = useState(false)
+    const [btnName,setBtnName] = useState('Next')
+    const [showNextBtn, setShowNextBtn] = useState(false)
 
     function onClickX(ev) {
         ev.stopPropagation()
@@ -19,7 +21,8 @@ export function CreatePost({ onCloseModal }) {
 
     function onUploaded(imgUrl) {
         console.log("imgUrl: ", imgUrl)
-        setImageUrl(imgUrl)
+        setImageUrl([imgUrl])
+        setShowNextBtn(true)
     }
 
     async function onSavePost(ev) {
@@ -29,7 +32,7 @@ export function CreatePost({ onCloseModal }) {
                 _id: `test now`,
                 userId: 'mwut3',
                 imageUrl,
-                caption: `Test caption`,
+                caption: description,
                 tags: null,
                 comments: null,
                 likes: null,
@@ -47,8 +50,32 @@ export function CreatePost({ onCloseModal }) {
         }
     }
 
-    function onMoveToWriteDescription(){
+    function onMoveToWriteDescription(ev) {
+        ev.stopPropagation()
+        ev.preventDefault()
+        setDescription(prev => !prev)
+        if (btnName==='Next') setBtnName('Share')
         
+        else if(btnName==='Share'){
+            onSavePost(ev)
+        }
+    }
+
+    function onMoveBack(ev){
+        ev.stopPropagation()
+        ev.preventDefault()
+        setDescription(prev => !prev)
+        if (btnName==='Share') setBtnName('Next')
+        else if(btnName==='Next') {
+            setShowNextBtn(false)
+            setImageUrl(null)
+        }
+
+    }
+
+    function onAddDescription({target}){
+        const { value } = target
+        setDescription(value)
     }
 
     return (
@@ -59,22 +86,28 @@ export function CreatePost({ onCloseModal }) {
 
                 <section className="create-post-container">
                     <section className="create-post-title-container">
-                        <BackIcon className='back-icon' />
+                       {showNextBtn && <BackIcon className='back-icon' onClick={onMoveBack}/>}
                         <span className='create-post-title'>Create new post</span>
-                        <button className='next-pic-create-post' onClick={onMoveToWriteDescription}>Next</button>
+                        {showNextBtn &&  <button className='next-pic-create-post' onClick={onMoveToWriteDescription}>{btnName}</button>}
                     </section>
                     {
                         !imageUrl ? (
                             <section className="modal-internal-container">
                                 <DragPhoto />
                                 <span className='drag-photos-span'>Drag photos and videos here</span>
-                                <ImageUploader onUploaded={onUploaded} />
+                                <ImageUploader onUploaded={onUploaded}  />
                             </section>
                         ) : (
                             <>
-                                <img src={imageUrl} alt="" className='create-post-img' />
-                                <button className="save-img-to-db-btn" onClick={onSavePost}>Save Post</button>
+                                <section className="img-description">
+                                    {/* <img src={imageUrl} alt="" className='create-post-img' /> */}
+                                    { showNextBtn && <img src={imageUrl} alt="" className={description ?'create-post-img-description' : 'create-post-img'} />}
+                                    {description && <textarea className='description-text-area' onChange={onAddDescription}/>}
+                                </section>
+                                {/* <button className="save-img-to-db-btn" onClick={onSavePost}>Save Post</button> */}
                             </>
+
+
 
                         )
                     }
