@@ -49,14 +49,15 @@
     font-size: 16px;
     font-size-adjust: none;
     font-stretch: 100%;
-    border-bottom: 1px solid rgb(215, 215, 215);
+    /* border-bottom: 1px solid rgb(215, 215, 215); */
 
 
     height: 42px;
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 100%;
+    /* width: 100%; */
+    width:calc(100% - 126.844px);
 }
 
 .modal-internal-container {
@@ -99,10 +100,6 @@
 
 }
 
-.create-post-img {
-
-}
-
 .save-img-to-db-btn {
     background-color: rgb(0, 149, 246);
     color: white;
@@ -113,4 +110,35 @@
     font-optical-sizing: auto;
     font-size: 14px;
     font-weight: 600;
+}
+
+.next-pic-create-post{
+    font-family: -apple-system, "system-ui", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    color: rgb(0, 149, 246);
+    background-color: white;
+    width: fit-content;
+    display: flex;
+    justify-content: flex-end;
+    /* padding:16px; */
+
+}
+
+.next-pic-create-post:hover{
+    color:#00376B;
+
+}
+
+.create-post-title-container{
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid rgb(215, 215, 215);
+
+}
+
+.back-icon{
+    padding-left: 8px;
 }

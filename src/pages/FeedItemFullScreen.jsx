@@ -70,8 +70,11 @@ export function FeedItemFullScreen() {
             { user?.username && <span className="full-screen-comments-user-name">{user.username}</span> }
             <Verified/>
           </section>
+          <section className="scrollable-comments">
 
           { feedItem && <CommentsIndex feedItem={feedItem} /> }
+          </section>
+
 
           <section className="full-screen-button-and-likes">
             <ButtonsView isImgDoubleClicked={isImgDoubleClicked}/>
@@ -79,7 +82,7 @@ export function FeedItemFullScreen() {
           </section>     
 
           <section className="full-screen-new-comment">
-            <NewComment feedItem={feedItem}/>
+            <NewComment feedItem={feedItem} fullScreen={true}/>
           </section>
         </section>
       </section>

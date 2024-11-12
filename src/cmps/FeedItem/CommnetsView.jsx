@@ -17,7 +17,7 @@ export function CommnetsView({ feedItem, handleCommentSubmit }) {
         </Link>
       </section>
 
-      <NewComment handleCommentSubmit={handleCommentSubmit} feedItem={feedItem}/>
+      <NewComment handleCommentSubmit={handleCommentSubmit} feedItem={feedItem} fullScreen={false}/>
     </section>
   )
 }

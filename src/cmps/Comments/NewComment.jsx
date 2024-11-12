@@ -3,21 +3,34 @@ import { useSelector } from 'react-redux'
 import EmojiPicker from 'emoji-picker-react'
 import { updateFeedItem } from '../../store/feedItem.actions';
 
-import EmojiPickerIcon from '../../assets/svg/emoji-icon.svg?react';
+import EmojiPickerIconFullScreen from '../../assets/svg/emoji-icon-full-screen.svg?react';
+import EmojiPickerIcon from '../../assets/svg/emoji-picker.svg?react';
 import LikeCommentIcon from '../../assets/svg/like-comment-icon.svg?react';
 import UnLikeCommentIcon from '../../assets/svg/red-like-comment-icon.svg?react';
 
-export function NewComment({ handleCommentSubmit, feedItem }) {
+export function NewComment({ handleCommentSubmit, feedItem, fullScreen }) {
+  console.log('full screen ',fullScreen);
+  
   const user = useSelector(storeState => storeState.userModule.user)
 
   const [comment, setComment] = useState('')
   const [newComment, setNewComment] = useState()
   const [newCommentTxt, setNewCommentTxt] = useState()
+  const [hidePostBtn, setHidePostBtn] = useState(fullScreen)
 
   const [postCommentBtn, setPostCommentBtn] = useState(false)
   const [isEmojiPicker, setIsEmojiPicker] = useState(false)
   const [isLikedComment, setIsLikedComment] = useState(false)
 
+  function getBtnStyle(){
+    if(fullScreen){
+      return comment.trim()!=='' ? 'post-comment-btn' :'post-comment-btn post-comment-btn-opacity'
+    }
+    else{
+      return comment.trim()!=='' ? 'post-comment-btn' :'post-comment-btn-hidden'
+    }
+  }
+  
   function onLikeComment() {
     setIsLikedComment(prev => !prev)
   }
@@ -37,18 +50,22 @@ export function NewComment({ handleCommentSubmit, feedItem }) {
   }, [isEmojiPicker]);
 
   async function onUpdateComment({ target }) {
+    console.log('test',);
     const { value } = target
 
     const userId = user._id
     const updatedComments = [...feedItem.comments, { userId, comment: value.trim() }];
 
     const savedFeedItem = await updateFeedItem({ ...feedItem, comments: updatedComments });
-
+    
     setComment(value)
     if (value.trim() !== '') {
+      setHidePostBtn(false)
       setPostCommentBtn(true)
     } else {
+      setHidePostBtn(true)
       setPostCommentBtn(false)
+
     }
   }
 
@@ -104,7 +121,7 @@ export function NewComment({ handleCommentSubmit, feedItem }) {
 
       <section className="add-comment-and-emoji">
         <div className="emoji-picker-container">
-          <EmojiPickerIcon className='emoji-picker' onClick={onOpenEmojiPicker} />
+          {fullScreen && <EmojiPickerIconFullScreen className='emoji-picker' onClick={onOpenEmojiPicker} />}
           {isEmojiPicker && (
             <div className="emoji-picker-wrapper">
               <EmojiPicker onEmojiClick={onEmojiClick} />
@@ -130,10 +147,13 @@ export function NewComment({ handleCommentSubmit, feedItem }) {
         {/* {postCommentBtn && <button className="post-comment-btn" onClick={onHandleCommentSubmit}>Post</button>} */}
         {/* {<button className={postCommentBtn===true ? "post-comment-btn" : "post-comment-btn-opacity"}  onClick={onHandleCommentSubmit}>Post</button>} */}
         <button
-          className={`post-comment-btn ${!postCommentBtn && "post-comment-btn-opacity"}`}
+          // className={hidePostBtn ? 'post-comment-btn-hidden' : `post-comment-btn ${!postCommentBtn && "post-comment-btn-opacity"}`}
+          className={getBtnStyle()}
           onClick={onHandleCommentSubmit}>
           Post
         </button>
+
+        {!fullScreen && <EmojiPickerIcon/>}
       </section>
     </>
   )

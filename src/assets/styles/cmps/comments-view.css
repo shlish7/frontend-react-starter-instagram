@@ -66,6 +66,10 @@
 
     opacity: .5;
 }
+.post-comment-btn-hidden{
+        visibility: hidden;
+
+}
 
 .new-comment-container {
     display: flex;

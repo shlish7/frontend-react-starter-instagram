@@ -183,7 +183,7 @@ export function LeftSideBar() {
               // className='side-bar-li'
               onClick={onOpenModal}
             >
-              {openModal ? <CreatePost onCloseModal={onCloseModal} /> : null}
+              {/* {openModal ? <CreatePost onCloseModal={onCloseModal} /> : null} */}
               {openSerachBar ? <SearchBar /> : null}
               {icon.svg && <icon.svg />}
               {icon.name === 'Profile' && <ImageAvatars img={user?.imgUrl || null} avatarHeight='30px !important' avatarWidth='30px !important' />}
@@ -192,6 +192,8 @@ export function LeftSideBar() {
             </li>
           ))}
         </ul>
+        {openModal ? <CreatePost onCloseModal={onCloseModal} /> : null}
+
 
         {/* <section className="signup-signin">
         {user &&

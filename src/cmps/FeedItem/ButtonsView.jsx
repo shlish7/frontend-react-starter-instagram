@@ -9,7 +9,7 @@ import { updateFeedItem } from '../../store/feedItem.actions';
 
 export function ButtonsView({ feedItem, isImgDoubleClicked, onOpenFeedItem }) {
 
-  console.log("before feed item: ", feedItem);
+  // console.log("before feed item: ", feedItem);
 
   const [isLiked, setIsLiked] = useState(feedItem?.likes?.some(like => like.userId === "uid002")) // TODO: Replace with logged-in userId if he is in the likes array
   const [isSaved, setIsSaved] = useState()

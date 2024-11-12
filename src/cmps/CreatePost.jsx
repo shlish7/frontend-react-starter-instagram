@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import DragPhoto from '../assets/svg/drag-photos-icon.svg?react'
 import CloseModal from '../assets/svg/close-modal-icon.svg?react'
+import BackIcon from '../assets/svg/back-icon.svg?react'
 import { ImageUploader } from './Imageuploader'
 import { useSelector } from 'react-redux'
 import { addFeedItem } from '../store/feedItem.actions'
@@ -8,6 +9,7 @@ import { addFeedItem } from '../store/feedItem.actions'
 export function CreatePost({ onCloseModal }) {
     const [imageUrl, setImageUrl] = useState()
     const feedItems = useSelector(storeState => storeState.feedItemModule.feedItems)
+    const [description,setDescription] = useState()
 
     function onClickX(ev) {
         ev.stopPropagation()
@@ -45,6 +47,10 @@ export function CreatePost({ onCloseModal }) {
         }
     }
 
+    function onMoveToWriteDescription(){
+        
+    }
+
     return (
         <>
             <section className="create-modal-container">
@@ -52,9 +58,11 @@ export function CreatePost({ onCloseModal }) {
                 <CloseModal className='close-modal-icon' onClick={onClickX} />
 
                 <section className="create-post-container">
-
-                    <span className='create-post-title'>Create new post</span>
-
+                    <section className="create-post-title-container">
+                        <BackIcon className='back-icon' />
+                        <span className='create-post-title'>Create new post</span>
+                        <button className='next-pic-create-post' onClick={onMoveToWriteDescription}>Next</button>
+                    </section>
                     {
                         !imageUrl ? (
                             <section className="modal-internal-container">

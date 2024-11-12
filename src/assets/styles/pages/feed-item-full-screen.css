@@ -65,4 +65,8 @@
   }
 
   
-
+  .scrollable-comments {
+    flex-grow: 1; /* Allows this section to take available height */
+    overflow-y: auto; /* Enables vertical scrolling */
+    padding: 10px; /* Optional padding */
+}
