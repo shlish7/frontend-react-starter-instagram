@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 import EmojiPicker from 'emoji-picker-react'
-import { updateFeedItem } from '../../store/feedItem.actions';
+import { loadFeedItem, updateFeedItem } from '../../store/feedItem.actions';
 
 import EmojiPickerIconFullScreen from '../../assets/svg/emoji-icon-full-screen.svg?react';
 import EmojiPickerIcon from '../../assets/svg/emoji-picker.svg?react';
@@ -86,7 +86,8 @@ export function NewComment({ handleCommentSubmit, feedItem, fullScreen }) {
   const onHandleCommentSubmit = () => {
     if (comment.trim() !== '') {
       setNewCommentTxt(comment.trim())
-      setNewComment(prev => !prev)
+      fullScreen ? null : setNewComment(prev => !prev)
+      
       setPostCommentBtn(false)
       setComment(''); 
 
@@ -144,16 +145,13 @@ export function NewComment({ handleCommentSubmit, feedItem, fullScreen }) {
           }}
         />
 
-        {/* {postCommentBtn && <button className="post-comment-btn" onClick={onHandleCommentSubmit}>Post</button>} */}
-        {/* {<button className={postCommentBtn===true ? "post-comment-btn" : "post-comment-btn-opacity"}  onClick={onHandleCommentSubmit}>Post</button>} */}
         <button
-          // className={hidePostBtn ? 'post-comment-btn-hidden' : `post-comment-btn ${!postCommentBtn && "post-comment-btn-opacity"}`}
           className={getBtnStyle()}
           onClick={onHandleCommentSubmit}>
           Post
         </button>
 
-        {!fullScreen && <EmojiPickerIcon/>}
+        {!fullScreen && <EmojiPickerIcon className='emoji-picker' />}
       </section>
     </>
   )
