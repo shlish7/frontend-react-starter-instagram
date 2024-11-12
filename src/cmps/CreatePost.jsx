@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import DragPhoto from '../assets/svg/drag-photos-icon.svg?react'
-import CloseModal from '../assets/svg/close-modal-icon.svg?react'
+// import CloseModal from '../assets/svg/close-modal-icon.svg?react'
+import CloseModal from '../assets/svg/close-btn-white.svg?react'
 import BackIcon from '../assets/svg/back-icon.svg?react'
 import { ImageUploader } from './Imageuploader'
 import { useSelector } from 'react-redux'
