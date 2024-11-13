@@ -7,6 +7,7 @@
 /* Components */
 @import "./cmps/left-side-bar.css";
 @import "./cmps/right-side-bar.css";
+@import "./cmps/profile-body.css";
 
 /* @import "./cmps/home-feed.css"; */
 @import "./cmps/AvatarsStoryView.css";
