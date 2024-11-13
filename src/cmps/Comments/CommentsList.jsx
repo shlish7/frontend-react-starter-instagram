@@ -22,10 +22,6 @@ export function CommentsList({ feedItem }) {
     fetchUsersForComments();
   }, [feedItem]);
 
-
-
-
-
   return (
     <section className="comments-list-section">
       <ul className="comments-list-ul-full-screen">

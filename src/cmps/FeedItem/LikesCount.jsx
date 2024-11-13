@@ -2,8 +2,6 @@
 import LikesList from '../LikesList.jsx';
 import { useState } from 'react'
 
-
-
 export function LikesCount({ feedItem }) {
 
   const [showLikesList, setShowLikeList] = useState(false)
