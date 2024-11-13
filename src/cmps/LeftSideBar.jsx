@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react'
 import { useSelector } from 'react-redux'
-// import { instagramIcons } from '../assets/icons/icons'
 import HomeIcon from '../assets/svg/home-icon.svg?react'
 import InstagramIconLogo from '../assets/svg/instagram-side-bar-logo.svg?react'
 import InstagramNarrowLogo from '../assets/svg/instagram-icon-logo.svg?react'
@@ -27,7 +26,6 @@ export function LeftSideBar() {
   const [changeToNarrow, setChangeToNarrow] = useState(false);
   const [openSerachBar, setOpenSearchBar] = useState(false)
   // const [isSmallScreen, setIsSmallScreen] = useState(false)
-
 
   useEffect(() => {
     const handleResize = () => {

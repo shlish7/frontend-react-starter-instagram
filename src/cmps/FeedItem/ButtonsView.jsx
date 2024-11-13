@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { useSelector } from 'react-redux'
 import Like from "../../assets/svg/like.svg?react";
 import Comment from "../../assets/svg/comment.svg?react";
 import Share from "../../assets/svg/share.svg?react";
@@ -9,16 +10,15 @@ import { updateFeedItem } from '../../store/feedItem.actions';
 
 export function ButtonsView({ feedItem, isImgDoubleClicked, onOpenFeedItem }) {
 
-  // console.log("before feed item: ", feedItem);
+  const user = useSelector(storeState => storeState.userModule.user)
 
-  const [isLiked, setIsLiked] = useState(feedItem?.likes?.some(like => like.userId === "uid002")) // TODO: Replace with logged-in userId if he is in the likes array
+  const [isLiked, setIsLiked] = useState(feedItem?.likes?.some(like => like.userId === user._id))
   const [isSaved, setIsSaved] = useState()
 
   async function onChangeLike(){
-    const userId = "uid002"; // TODO: Replace with logged-in userId
-    const updatedLikes = feedItem.likes.some(like => like.userId === userId)
-      ? feedItem.likes.filter(like => like.userId !== userId)
-      : [...feedItem.likes, { userId }];
+    const updatedLikes = feedItem.likes.some(like => like.userId === user._id)
+      ? feedItem.likes.filter(like => like.userId !== user._id)
+      : [...feedItem.likes, { userId: user._id }];
   
     const savedFeedItem = await updateFeedItem({ ...feedItem, likes: updatedLikes });
     setIsLiked(prev => !prev);
