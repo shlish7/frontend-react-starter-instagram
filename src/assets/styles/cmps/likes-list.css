@@ -58,6 +58,7 @@
     padding: 10px 0 10px 0;
     margin-left: 10px;
 
+
 }
 
 .like-list-modal-button{
@@ -81,5 +82,9 @@
     width:100%;
     padding: 10px 0 10px 0;
 
+}
+
+.likes-modal-body{
+    overflow-y: auto;
 }
 

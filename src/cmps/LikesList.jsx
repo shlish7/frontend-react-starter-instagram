@@ -38,10 +38,10 @@ export default function LikesList({ feedItem, onCloseModal }) {
       </section>
       <section className="likes-modal-body">
         <ul className='likes-ul-modal'>
-          {likesWithUserData?.map((item, idx) =>
+          {likesWithUsers?.map((item, idx) =>
             <li key={idx} className='likes-list'>
               <section className="likes-list-avatar-user">
-              <ImageAvatars img={likesWithUsers.item.user.imgUrl}/>
+              <ImageAvatars img={item.user.imgUrl}/>
               {item.user.username}
               </section>
              
