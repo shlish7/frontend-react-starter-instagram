@@ -50,7 +50,6 @@ export function NewComment({ handleCommentSubmit, fullScreen }) {
   }, [isEmojiPicker]);
 
   async function onUpdateComment({ target }) {
-    console.log('test',);
     const { value } = target
 
     const userId = user._id

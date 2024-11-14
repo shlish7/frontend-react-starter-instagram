@@ -125,7 +125,6 @@ export function LeftSideBar() {
     const { value, name, textContext } = ev.currentTarget.dataset
    
     if (name.toLowerCase() === 'create') {
-      console.log('textContext: ', textContext)
       setOpenModal(prev => !prev)
     }
     else if (name.toLowerCase() === 'search') {

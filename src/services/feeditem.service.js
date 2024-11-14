@@ -23,7 +23,6 @@ async function getFeedItems() {
         
         return results.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
     } catch {
-        console.log("failed mock users")
     }
     
     // return httpService.get(`user`)
@@ -35,7 +34,6 @@ async function query(filterBy = { txt: '' }) {
         //todo: do the filter here - before saving to store filter post.userId is in connectedUser.followingIds
         return results
     } catch {
-        console.log("failed query feed items")
     }
     
     // return httpService.get(STORAGE_KEY, filterBy)
@@ -48,7 +46,6 @@ async function getById(feeditemId) {
         return feedItem
         // return httpService.get(`feedItem/${feedItem}`)
     } catch {
-        console.log("failed getById feed item")
     }
 }
 

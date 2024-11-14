@@ -40,9 +40,7 @@ export function FeedItemFullScreen() {
   async function getFeedItem() {
     try {
       loadFeedItem(pId)
-      console.log('feedItem' ,feedItem);
     } catch {
-      console.log("error loading feed item")
     }
   }
 
@@ -50,9 +48,7 @@ export function FeedItemFullScreen() {
     try {
       const user = await userService.getById(feedItem.userId)
       setUser(user)
-      console.log('user', user);
     } catch {
-      console.log("error loading user")
     }
   }
   

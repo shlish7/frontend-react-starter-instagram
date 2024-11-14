@@ -46,7 +46,6 @@ function remove(userId) {
 
 async function update({ _id, score }) {
     const user = await storageService.get(STORAGE_KEY, _id)
-    user.score = score
     await storageService.put(STORAGE_KEY, user)
 
     // const user = await httpService.put(`user/${_id}`, {_id, score})
@@ -57,8 +56,14 @@ async function update({ _id, score }) {
 }
 
 async function login(userCred) {
+  console.log("uesr cred login", userCred)
+
     const users = await storageService.query('user')
     const user = users.find(user => user.username === userCred.username)
+    console.log("user service after", user)
+    console.log("users  login", users)
+
+
     // const user = await httpService.post('auth/login', userCred)
     if (user) return saveLocalUser(user)
 }
@@ -76,7 +81,6 @@ async function logout() {
 }
 
 function saveLocalUser(user) {
-    user = { _id: user._id, fullname: user.fullname, imgUrl: user.imgUrl }
     sessionStorage.setItem(STORAGE_KEY_LOGGEDIN_USER, JSON.stringify(user))
     return user
 }
@@ -107,6 +111,8 @@ const mockUsers = [
       password: "fhgj",
       username: "newTest",
       _id: "mwut3",
+      following: ["OWyfg", "uid001", "uid002"],
+      followers:["OWyfg", "uid001", "uid002"]
       //todo: savedFeedItems: [feedItemsIds]
     },
     {
@@ -115,6 +121,8 @@ const mockUsers = [
       password: "hv",
       username: "DemoUser",
       _id: "OWyfg",
+      following: ["OWyfg", "uid001", "uid002"],
+      followers:["OWyfg", "uid001", "uid002"]
     },
     {
       fullname: "testUser1",
@@ -122,6 +130,8 @@ const mockUsers = [
       password: "password1",
       username: "testuser1",
       _id: "uid001",
+      following: ["OWyfg", "uid001", "uid002"],
+      followers:["OWyfg", "uid001", "uid002"]
     },
     {
       fullname: "testUser2",
@@ -129,6 +139,8 @@ const mockUsers = [
       password: "password2",
       username: "testuser2",
       _id: "uid002",
+      following: ["OWyfg", "uid001", "uid002"],
+      followers:["OWyfg", "uid001", "uid002"]
     },
     {
       fullname: "mockUser3",
@@ -136,6 +148,8 @@ const mockUsers = [
       password: "mock123",
       username: "mockuser3",
       _id: "uid005",
+      following: ["OWyfg", "uid001", "uid002"],
+      followers:["OWyfg", "uid001", "uid002"]
     },
     {
       fullname: "mockUser4",
@@ -143,6 +157,8 @@ const mockUsers = [
       password: "mock456",
       username: "mockuser4",
       _id: "uid006",
+      following: ["OWyfg", "uid001", "uid002"],
+      followers:["OWyfg", "uid001", "uid002"]
     },
     {
       fullname: "randomUser5",
@@ -150,6 +166,8 @@ const mockUsers = [
       password: "randompass5",
       username: "randomuser5",
       _id: "uid007",
+      following: ["OWyfg", "uid001", "uid002"],
+      followers:["OWyfg", "uid001", "uid002"]
     },
     {
       fullname: "randomUser6",
@@ -157,6 +175,8 @@ const mockUsers = [
       password: "randompass6",
       username: "randomuser6",
       _id: "uid008",
+      following: ["OWyfg", "uid001", "uid002"],
+      followers:["OWyfg", "uid001", "uid002"]
     },
     {
       fullname: "user7",
@@ -164,13 +184,18 @@ const mockUsers = [
       password: "pass7",
       username: "user7",
       _id: "uid009",
+      following: ["OWyfg", "uid001", "uid002"],
+      followers:["OWyfg", "uid001", "uid002"]
     },
+    
     {
       fullname: "user8",
       imgUrl: "https://res.cloudinary.com/dz9gxtvp9/image/upload/v1726938642/samples/look-up.jpg",
       password: "pass8",
       username: "user8",
       _id: "uid010",
+      following: ["OWyfg", "uid001", "uid002"],
+      followers:["OWyfg", "uid001", "uid002"]
     },
     {
       fullname: "testUser9",
@@ -178,6 +203,8 @@ const mockUsers = [
       password: "pass9",
       username: "testuser9",
       _id: "uid011",
+      following: ["OWyfg", "uid001", "uid002"],
+      followers:["OWyfg", "uid001", "uid002"]
     },
     {
       fullname: "user10",
@@ -185,6 +212,8 @@ const mockUsers = [
       password: "pass10",
       username: "user10",
       _id: "uid012",
+      following: ["OWyfg", "uid001", "uid002"],
+      followers:["OWyfg", "uid001", "uid002"]
     },
     {
       fullname: "randomUser11",
@@ -192,6 +221,8 @@ const mockUsers = [
       password: "random11",
       username: "randomuser11",
       _id: "uid013",
+      following: ["OWyfg", "uid001", "uid002"],
+      followers:["OWyfg", "uid001", "uid002"]
     },
     {
       fullname: "randomUser12",
@@ -199,6 +230,8 @@ const mockUsers = [
       password: "random12",
       username: "randomuser12",
       _id: "uid014",
+      following: ["OWyfg", "uid001", "uid002"],
+      followers:["OWyfg", "uid001", "uid002"]
     },
     {
       fullname: "mockUser13",
@@ -206,6 +239,8 @@ const mockUsers = [
       password: "mockpass13",
       username: "mockuser13",
       _id: "uid015",
+      following: ["OWyfg", "uid001", "uid002"],
+      followers:["OWyfg", "uid001", "uid002"]
     },
     {
       fullname: "testUser14",
@@ -213,6 +248,8 @@ const mockUsers = [
       password: "pass14",
       username: "testuser14",
       _id: "uid016",
+      following: ["OWyfg", "uid001", "uid002"],
+      followers:["OWyfg", "uid001", "uid002"]
     },
     {
       fullname: "user15",
@@ -220,6 +257,8 @@ const mockUsers = [
       password: "pass15",
       username: "user15",
       _id: "uid017",
+      following: ["OWyfg", "uid001", "uid002"],
+      followers:["OWyfg", "uid001", "uid002"]
     },
     {
       fullname: "mockUser16",
@@ -227,6 +266,8 @@ const mockUsers = [
       password: "pass16",
       username: "mockuser16",
       _id: "uid018",
+      following: ["OWyfg", "uid001", "uid002"],
+      followers:["OWyfg", "uid001", "uid002"]
     },
     {
       fullname: "mockUser18",
@@ -234,6 +275,8 @@ const mockUsers = [
       password: "pass18",
       username: "mockuser18",
       _id: "uid020",
+      following: ["OWyfg", "uid001", "uid002"],
+      followers:["OWyfg", "uid001", "uid002"]
     },
   ];
 

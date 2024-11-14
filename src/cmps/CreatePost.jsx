@@ -21,7 +21,6 @@ export function CreatePost({ onCloseModal }) {
     }
 
     function onUploaded(imgUrl) {
-        console.log("imgUrl: ", imgUrl)
         setImageUrl([imgUrl])
         setShowNextBtn(true)
     }

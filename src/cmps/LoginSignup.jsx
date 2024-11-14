@@ -17,12 +17,16 @@ export function LoginSignup(props) {
     function handleChange(ev) {
         const field = ev.target.name
         const value = ev.target.value
-        setCredentials({ ...credentials, [field]: value })
+
+        const user = users?.find(user=>user.username === value)
+        setCredentials({ ...credentials, ...user})
+
     }
 
     function onLogin(ev = null) {
         if (ev) ev.preventDefault()
         if (!credentials.username) return
+        
         props.onLogin(credentials)
         clearState()
     }
@@ -41,7 +45,7 @@ export function LoginSignup(props) {
     function onUploaded(imgUrl) {
         setCredentials(prevCredentials => ({ ...prevCredentials, imgUrl }))
     }
-    
+
     return (
         <div className="login-page">
             <p>

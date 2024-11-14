@@ -16,7 +16,6 @@ export default function LikesList({ feedItem, onCloseModal }) {
         })
       );
 
-      console.log("likesWithUserData: ", likesWithUserData);
       
       setLikesWithUsers(likesWithUserData);
     };

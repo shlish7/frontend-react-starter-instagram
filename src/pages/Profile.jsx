@@ -9,13 +9,12 @@ import { useEffect } from 'react';
 export function Profile() {
     const feedItems = useSelector(storeState => storeState.feedItemModule.feedItems)
     const user = useSelector(storeState => storeState.userModule.user)
+
   
-    // console.log('feed Items', feedItems);
-    // console.log('User', user);
   
     useEffect(() => {
       loadFeedItems()
-    
+    //   loadUser('mwut3')
     }, [])
 
     return (<>
@@ -24,7 +23,7 @@ export function Profile() {
                 <LeftSideBar />
             </aside>
             <main className='profile-main-side'>
-                <ProfileHeader/>
+                <ProfileHeader feedItems={feedItems} user={user}/>
                 <ProfileBody feedItems={feedItems} user={user}/>
             </main>
         </section>

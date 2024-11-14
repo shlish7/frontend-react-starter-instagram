@@ -30,7 +30,6 @@ export function RightSideBar() {
       }, []);
 
     async function onLogout() {
-        console.log('switch');
         try {
           await logout()
           showSuccessMsg(`Bye now`)
@@ -42,6 +41,8 @@ export function RightSideBar() {
     async function onLogin(credentials) {
       try {
         const user = await login(credentials)
+
+
         showSuccessMsg(`Welcome: ${user.fullname}`)
       } catch (err) {
         showErrorMsg('Cannot login')
@@ -63,8 +64,8 @@ export function RightSideBar() {
             <span className="user-info">
               {user.imgUrl && <ImageAvatars img={user.imgUrl} avatarWidth='44px' avatarHeight='44px' />}
               <section className='user-info-full-and-first-name'>
-                <span className='user-info-full-name'>{user.fullname}</span>
-                <span className='user-info-first-name'>{'first name'}</span>
+                <span className='user-info-full-name'>{user.username}</span>
+                <span className='user-info-first-name'>{user.fullname}</span>
               </section>
 
               <span className='switch-user-btn' onClick={onLogout}>Switch</span>

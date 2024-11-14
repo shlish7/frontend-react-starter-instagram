@@ -9,7 +9,6 @@ export function LikesCount({ feedItem }) {
   function onDisplayLikes(){
     setShowLikeList(prev=> !prev)
   }
-console.log('feedItem.likes?.length',feedItem.likes?.length);
   return (
     <div>
       <section className="like-count-container">
