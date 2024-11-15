@@ -1,9 +1,36 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 import ImageAvatars from "../ImageAvatars";
+import FollowsList from "./FollowsList";
 
 export default function ProfileHeader({ feedItems, user }) {
+
+  const [profileFeedItems, setProfileFeedItems] = useState()
+  const [displayFollowersModal, setDisplayFollowersModal] = useState(false)
+  const [displayFollowingModal, setDisplayFollowingModal] = useState(false)
+
+  useEffect(() => {
+    const userFeedItemsCount = feedItems.filter(feedItem => feedItem.userId === user._id).length;
+    setProfileFeedItems(userFeedItemsCount)
+
+  }, []);
+
+  function onCloseModal() {
+    setDisplayFollowersModal(false)
+    setDisplayFollowingModal(false)
+  }
+
+  function onOpenFollowingModal(){
+    setDisplayFollowingModal(true)
+
+  }
+  function onOpenFollowersModal(){
+    setDisplayFollowersModal(true)
+
+  }
+
+
   return (
     <>
       <header className="profile-main-header">
@@ -16,29 +43,32 @@ export default function ProfileHeader({ feedItems, user }) {
         </section>
         <section className="header-btns">
           <section className="profile-link-buttons">
+            <span>{user?.username}</span>
             <Link className="profile-link-button">Edit Profile</Link>
             <Link className="profile-link-button">View Archive</Link>
           </section>
           <section className="profile-follows-lists">
             <section className="profile-follows">
-              <span className="profile-counts">200</span>
+              <span className="profile-counts">{profileFeedItems}</span>
               <span>Posts</span>
             </section>
-            <section className="profile-follows">
-              <span className="profile-counts">500</span>
+            <section className="profile-follows" onClick={onOpenFollowersModal}>
+              <span className="profile-counts">
+                {user?.followers?.length}
+              </span>
               <span>Followers</span>
             </section>
-            <section className="profile-follows">
+            {displayFollowersModal && <FollowsList user={user} onCloseModal={onCloseModal} followType={'Followers'} />}
+
+            <section className="profile-follows" onClick={onOpenFollowingModal}>
               <span className="profile-counts">
-                {user?.following?.map((item, idx) => {
-                  item.userId === user._id;
-                })}
+                {user?.following?.length}
               </span>
               <span>Following</span>
             </section>
+            {displayFollowingModal && <FollowsList user={user} onCloseModal={onCloseModal} followType={'Following'} />}
           </section>
         </section>
-        <h1>Test2</h1>
       </header>
     </>
   );

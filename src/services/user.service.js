@@ -34,6 +34,7 @@ async function getUsers() {
 }
 
 async function getById(userId) {
+  const users = await getUsers()
     const user = await storageService.get(STORAGE_KEY, userId)
     // const user = await httpService.get(`user/${userId}`)
     return user
@@ -60,9 +61,7 @@ async function login(userCred) {
 
     const users = await storageService.query('user')
     const user = users.find(user => user.username === userCred.username)
-    console.log("user service after", user)
-    console.log("users  login", users)
-
+  
 
     // const user = await httpService.post('auth/login', userCred)
     if (user) return saveLocalUser(user)

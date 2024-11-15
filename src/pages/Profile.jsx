@@ -10,7 +10,7 @@ export function Profile() {
     const feedItems = useSelector(storeState => storeState.feedItemModule.feedItems)
     const user = useSelector(storeState => storeState.userModule.user)
 
-  
+  console.log('user: ',user);
   
     useEffect(() => {
       loadFeedItems()

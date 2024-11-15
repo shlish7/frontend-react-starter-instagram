@@ -14,3 +14,41 @@
   height: auto;
   display: block;
 }
+
+.tabs-section{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-top: 1px solid rgb(215, 215, 215);
+
+}
+
+.custom-tab {
+  color: rgb(115, 115, 115) !important; 
+  font-family: -apple-system, "system-ui", "Segoe UI", Roboto, Helvetica, Arial, sans-serif !important;
+  font-size: 12px !important;
+  font-weight: 600 !important;
+  padding: 12px 16px !important; /* Adjust padding for a balanced look */
+  border-top: 3px solid transparent !important; /* Make initial top border transparent */
+  letter-spacing:1px !important;
+
+
+}
+
+.custom-tab:not(.Mui-selected){ 
+  color: rgb(115, 115, 115) !important; 
+}
+
+.custom-tab.Mui-selected {
+  border-top: 1px solid black !important; /* Add a top border to selected tab */
+  color:black !important;
+}
+.custom-tabs .MuiTabs-indicator {
+  display: none !important; /* Hide the default bottom indicator */
+
+}
+.custom-tab {
+  color: black !important;
+  opacity: 1; /* Make sure the tab text color is solid */
+
+}

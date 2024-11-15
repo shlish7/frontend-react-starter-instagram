@@ -19,6 +19,7 @@ export function LoginSignup(props) {
         const value = ev.target.value
 
         const user = users?.find(user=>user.username === value)
+        
         setCredentials({ ...credentials, ...user})
 
     }
