@@ -85,12 +85,14 @@ export default function FollowsList({ onCloseModal, user, followType }) {
         <ul className='follows-ul-modal'>
           {followers.map((item, idx) => {
             return <li key={idx} className='follows-list'>
-              <ImageAvatars img={item.imgUrl} />
-              <section className="followers">
-                <p>{item.username}</p>
-                <p>{item.fullname}</p>
+              <section className="avatar-and-user-name">
+                <ImageAvatars img={item.imgUrl} />
+                <section className="followers">
+                  <p className='follow-list-user-name'>{item.username}</p>
+                  <p className='follow-list-full-name'>{item.fullname}</p>
+                </section>
               </section>
-              <button>Remove</button>
+              <button className='remove-follow-btn'>Remove</button>
             </li>
           })}
         </ul>

@@ -27,14 +27,13 @@
 
 .profile-main-side {
     grid-area: main;
+    /* width: 935px; */
     width: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     padding: 30px 20px 0 20px;
-
-
 }
 
 .profile-main-container {
