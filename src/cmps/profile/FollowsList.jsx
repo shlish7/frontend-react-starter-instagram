@@ -10,28 +10,21 @@ import ImageAvatars from '../ImageAvatars';
 
 
 export default function FollowsList({ onCloseModal, user, followType }) {
-  const [followsWithUsers, setfollowsWithUsers] = useState([]);
   const [displayIcon, setDisplayIcon] = useState(true)
   const [searchTxt, setSearchTxt] = useState('')
   const [isFollowing, setIsFollowing] = useState()
   const [followers, setFollowers] = useState([])
-  const [following, setFollowing] = useState([])
-  const users = useSelector(storeState => storeState.userModule.users)
 
-console.log('followType',followType);
   useEffect(() => {
     loadUsers()
-
     user && isFollowing ? getFollowing() : getFollowers()
-    
-
   }, [user]);
 
 
   async function getFollowers() {
     const followers = await Promise.all(
       user.followers.map(async (item) => {
-        const follower = await  userService.getById(item)
+        const follower = await userService.getById(item)
         return follower
       })
     );
@@ -41,7 +34,7 @@ console.log('followType',followType);
   async function getFollowing() {
     const following = await Promise.all(
       user.following.map(async (item) => {
-        const follow = await  userService.getById(item)
+        const follow = await userService.getById(item)
         return follow
       })
     );
@@ -79,8 +72,6 @@ console.log('followType',followType);
       </section>
       <section className="search-follows-section">
         {displayIcon && searchTxt === '' && <MagnifyingGlassIcon className='magnifying-glass-icon' />}
-        {/* {displayIcon && <span className='follows-search'>Search</span>} */}
-
         <input type="text" className="input-search-follows"
           placeholder={displayIcon ? '    Search' : 'Search'}
           onFocus={onFocus}
@@ -94,19 +85,16 @@ console.log('followType',followType);
         <ul className='follows-ul-modal'>
           {followers.map((item, idx) => {
             return <li key={idx} className='follows-list'>
-             <ImageAvatars img={item.imgUrl}/>
-             <section className="followers">
-             <p>{item.username}</p>
-             <p>{item.fullname}</p>
-             </section>
-
+              <ImageAvatars img={item.imgUrl} />
+              <section className="followers">
+                <p>{item.username}</p>
+                <p>{item.fullname}</p>
+              </section>
               <button>Remove</button>
-               </li>
+            </li>
           })}
         </ul>
-
       </section>
-
     </section>
   )
 }

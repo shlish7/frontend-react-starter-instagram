@@ -30,7 +30,6 @@ export default function ProfileHeader({ feedItems, user }) {
 
   }
 
-
   return (
     <>
       <header className="profile-main-header">

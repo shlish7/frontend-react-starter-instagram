@@ -5,10 +5,12 @@ import Tab from '@mui/material/Tab'
 import PostsIcon from '../../assets/svg/posts-icon.svg?react'
 import SavedIcon from '../../assets/svg/saved-posts-icon.svg?react'
 import TaggedIcon from '../../assets/svg/tagged-icon.svg?react'
+import WhiteLikeIcon from '../../assets/svg/white-like.svg?react'
+import BlackCommentIcon from '../../assets/svg/black-comment.svg?react'
 
 
 
-export default function ProfileBody({ feedItems, user }) {
+export default function ProfileBody({ feedItems, user, onOpenFeedItem }) {
 
   const [postImages, setPostImages] = useState(feedItems)
   const [activeTab, setActiveTab] = useState(0)
@@ -38,31 +40,31 @@ export default function ProfileBody({ feedItems, user }) {
           <Tab className='custom-tab' icon={<TaggedIcon />} iconPosition="start" label="Tagged" />
         </Tabs>
       </section>
-
-      {/* {activeTab === 0 && (
-        <div className="grid-container">
-          {postImages.map((post, idx) => (
-            post.imageUrl.map((url, imgIdx) => (
-              <div key={`${idx}-${imgIdx}`} className="grid-item">
+      <div className="grid-container">
+        {postImages.map((post, idx) => (
+          post.imageUrl.length > 0 && (
+            <div key={idx} className="grid-item">
+              <div className="image-overlay-container">
                 <img
-                  src={url}
-                  alt={`Post ${idx} Image ${imgIdx}`}
+                  src={post.imageUrl[0]}
+                  onClick={(ev) => {
+                    const id = post._id;
+                    onOpenFeedItem(ev, id);
+                  }}
+                  alt={`Post ${idx} Image`}
                   onError={(e) => { e.target.onerror = null; e.target.src = 'fallback-image-url.jpg'; }}
                 />
+                <div className="icons-overlay">
+                  <WhiteLikeIcon className="overlay-icon" />
+                  <span className='likes-and-comments-count'>{post?.likes?.length}</span>
+                  <BlackCommentIcon className="overlay-icon" />
+                  <span className='likes-and-comments-count'>{post?.comments?.length}</span>
+                </div>
               </div>
-            ))
-          ))}
-        </div>
-      )} */}
-
-      {activeTab === 0 && 
-      (<div className="grid-container"> 
-      {postImages.map((post, idx) => (post.imageUrl.length > 0 && (<div key={idx} className="grid-item"> 
-        <img src={post.imageUrl[0]} 
-        alt={`Post ${idx} Image`} onError={(e) => { e.target.onerror = null; e.target.src = 'fallback-image-url.jpg'; }} /> </div>)))} </div>)}
-
-
+            </div>
+          )
+        ))}
+      </div>
     </div>
-
   )
 }
