@@ -36,7 +36,7 @@ export default function ProfileHeader({ feedItems, user }) {
       <header className="profile-main-header">
         <section className="profile-pic">
           <ImageAvatars
-            img={user.imgUrl}
+            img={user?.imgUrl}
             avatarHeight="150px !important"
             avatarWidth="150px !important"
           />
