@@ -47,7 +47,7 @@ export default function ProfileHeader({ feedItems, user }) {
             <Link className="profile-link-button">View Archive</Link>
           </section>
           <section className="profile-follows-lists">
-            <section className="profile-follows">
+            <section className="profile-follows-post">
               <span className="profile-counts">{profileFeedItems}</span>
               <span>Posts</span>
             </section>

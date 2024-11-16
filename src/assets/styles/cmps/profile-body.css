@@ -9,10 +9,14 @@
   overflow: hidden;
 }
 
+
 .grid-item img {
   width: 100%;
   height: auto;
   display: block;
+}
+.grid-item img:hover{
+  cursor: pointer;
 }
 
 .tabs-section{
@@ -79,6 +83,8 @@
   background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background on hover */
   opacity: 0; /* Hidden by default */
   transition: opacity 0.3s ease;
+  pointer-events: none; /* Prevent overlay from blocking clicks */
+
 }
 
 .image-overlay-container:hover .icons-overlay {

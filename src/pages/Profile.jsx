@@ -20,6 +20,7 @@ export function Profile() {
   function onOpenFeedItem(ev, id) {
     ev.stopPropagation()
     ev.preventDefault()
+    console.log('bla',);
     navigate(`/p/${id}`)
   }
 

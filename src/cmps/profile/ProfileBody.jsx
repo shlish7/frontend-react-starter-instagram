@@ -48,8 +48,8 @@ export default function ProfileBody({ feedItems, user, onOpenFeedItem }) {
                 <img
                   src={post.imageUrl[0]}
                   onClick={(ev) => {
-                    const id = post._id;
-                    onOpenFeedItem(ev, id);
+                    const id = post._id
+                    onOpenFeedItem(ev, id)
                   }}
                   alt={`Post ${idx} Image`}
                   onError={(e) => { e.target.onerror = null; e.target.src = 'fallback-image-url.jpg'; }}
