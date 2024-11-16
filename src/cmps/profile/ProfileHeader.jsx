@@ -16,6 +16,7 @@ export default function ProfileHeader({ feedItems, user }) {
 
   }, []);
 
+
   function onCloseModal() {
     setDisplayFollowersModal(false)
     setDisplayFollowingModal(false)

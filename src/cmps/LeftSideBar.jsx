@@ -17,14 +17,19 @@ import { LoginSignup } from './LoginSignup.jsx'
 import { showErrorMsg, showSuccessMsg } from '../services/event-bus.service.js'
 import { login, logout, signup } from '../store/user.actions.js'
 import { SearchBar } from './SearchBar.jsx'
+import { useNavigate } from 'react-router'
 
 export function LeftSideBar() {
   const user = useSelector(storeState => storeState.userModule.user)
 
   const [openModal, setOpenModal] = useState(false)
-  const [isSidebarOpen, setIsSidebarOpen] = useState(true);
-  const [changeToNarrow, setChangeToNarrow] = useState(false);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(true)
+  const [changeToNarrow, setChangeToNarrow] = useState(false)
   const [openSerachBar, setOpenSearchBar] = useState(false)
+  const [activeOption, setActiveOption] = useState('Home')
+
+  const navigate = useNavigate()
+
   // const [isSmallScreen, setIsSmallScreen] = useState(false)
 
   useEffect(() => {
@@ -127,6 +132,9 @@ export function LeftSideBar() {
     if (name.toLowerCase() === 'create') {
       setOpenModal(prev => !prev)
     }
+    else if(name.toLowerCase() === 'home'){
+      navigate('/')
+    }
     else if (name.toLowerCase() === 'search') {
 
       if (!openSerachBar && window.innerWidth >= 1264) {
@@ -145,6 +153,11 @@ export function LeftSideBar() {
       }
 
 
+
+    }
+    else if(name.toLowerCase() === 'profile'){
+      console.log('profile',);
+      navigate('/'+user._id)
     }
   }
 
@@ -176,7 +189,10 @@ export function LeftSideBar() {
               data-value={icon.name}
               data-name={icon.name}
 
-              className={!changeToNarrow ? "wide-side-bar-li" : "narrow-side-bar-li"}
+              // className={!changeToNarrow ? "wide-side-bar-li" : "narrow-side-bar-li"}
+              className={`side-bar-li ${activeOption === icon.name ? 'active-option' : ''} ${
+                !changeToNarrow ? "wide-side-bar-li" : "narrow-side-bar-li"
+              }`}
               // className='side-bar-li'
               onClick={onOpenModal}
             >

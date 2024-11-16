@@ -56,19 +56,23 @@ export function FeedItemFullScreen() {
     navigate('/')
   }
 
+  function onNavigateToProfile(){
+    navigate("/"+user?._id)
+  }
+
   return (
     <>
       <CloseModal className='close-modal-icon' onClick={onNavigateBack} />
       <section className="feed-item-container-full-screen">
         { feedItem && <Carousel feedItem={feedItem} fullScreen={true} onDoubleClicked={onDoubleClicked} isImgDoubleClicked={isImgDoubleClicked}  /> }
         <section className="full-screen-comments">
-          <section className="full-screen-comment-user-details">
+          <section className="full-screen-comment-user-details" onClick={onNavigateToProfile}>
             { user?.imgUrl && <ImageAvatars img={user.imgUrl} avatarWidth='44px' avatarHeight='44px'/> }
             { user?.username && <span className="full-screen-comments-user-name">{user.username}</span> }
             <Verified/>
           </section>
           <section className="scrollable-comments">
-          { feedItem && <CommentsIndex  feedItem= {feedItem}/> }
+          { feedItem && <CommentsIndex feedItem= {feedItem}/> }
           </section>
           <section className="full-screen-button-and-likes">
             <ButtonsView feedItem={feedItem} isImgDoubleClicked={isImgDoubleClicked}/>

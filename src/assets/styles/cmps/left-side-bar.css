@@ -51,7 +51,14 @@
     align-items: center;
     gap: 20px;
     padding: 10px 10px 10px 10px;
+    transition: all 0.3s ease;
+
 }
+.side-bar-li.active-option {
+    font-weight: bold;
+    color: black;
+    border-radius: 8px;
+  }
 .narrow-side-bar-li{
     display: flex;
     justify-content: flex-start;

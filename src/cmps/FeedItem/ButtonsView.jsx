@@ -19,7 +19,6 @@ export function ButtonsView({ feedItem, isImgDoubleClicked, onOpenFeedItem }) {
     const updatedLikes = feedItem.likes.some(like => like.userId === user?._id)
       ? feedItem.likes.filter(like => like.userId !== user?._id)
       : [...feedItem.likes, { userId: user?._id }];
-  
     const savedFeedItem = await updateFeedItem({ ...feedItem, likes: updatedLikes });
     setIsLiked(prev => !prev);
   }
@@ -34,6 +33,7 @@ export function ButtonsView({ feedItem, isImgDoubleClicked, onOpenFeedItem }) {
         { isLiked || isImgDoubleClicked ? <RedLike onClick={onChangeLike}/> : <Like onClick={onChangeLike} />}
         <CommentIcon onClick={(ev) => { 
             const id = feedItem._id
+            console.log('feedItem',feedItem);
             onOpenFeedItem(ev, id) 
           }}/>
         <ShareIcon />

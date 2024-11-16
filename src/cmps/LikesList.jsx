@@ -2,10 +2,13 @@ import { useEffect, useState } from 'react'
 import { userService } from '../services/user.service';
 import ImageAvatars from './ImageAvatars.jsx'
 import CloseModal from '../assets/svg/close-btn-white.svg?react';
+import { useNavigate } from 'react-router';
 
 export default function LikesList({ feedItem, onCloseModal }) {
 
   const [likesWithUsers, setLikesWithUsers] = useState([]);
+  const navigate = useNavigate()
+
 
   useEffect(() => {
     const fetchUsersForLikes = async () => {
@@ -28,6 +31,10 @@ export default function LikesList({ feedItem, onCloseModal }) {
     ev.preventDefault()
     onCloseModal()
   }
+  function onNavigateToProfile(userId){
+    navigate("/"+userId)
+  }
+
   return (
 
     <section className='likes-modal'>
@@ -39,7 +46,7 @@ export default function LikesList({ feedItem, onCloseModal }) {
         <ul className='likes-ul-modal'>
           {likesWithUsers?.map((item, idx) =>
             <li key={idx} className='likes-list'>
-              <section className="likes-list-avatar-user">
+              <section className="likes-list-avatar-user" onClick={()=>{onNavigateToProfile(item.user._id)}}>
               <ImageAvatars img={item.user.imgUrl}/>
               {item.user.username}
               </section>

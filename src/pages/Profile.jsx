@@ -4,23 +4,35 @@ import ProfileBody from '../cmps/profile/ProfileBody.jsx';
 import { loadUser } from '../store/user.actions.js';
 import { loadFeedItems } from '../store/feedItem.actions.js';
 import { useSelector } from 'react-redux';
-import { useEffect } from 'react';
-import { useNavigate } from 'react-router';
+import { useEffect, useState } from 'react';
+import { useNavigate, useParams } from 'react-router';
+import { userService } from '../services/user.service.js';
 
 export function Profile() {
     const feedItems = useSelector(storeState => storeState.feedItemModule.feedItems)
-    const user = useSelector(storeState => storeState.userModule.user)
+    // const user = useSelector(storeState => storeState.userModule.user)
     const navigate = useNavigate()
+    const {userId} = useParams()
+    const [user,setUser] = useState() 
 
     useEffect(() => {
       loadFeedItems()
+      
     }, [])
+
+    useEffect(() => {
+      getUser()
+    }, [userId])
+
+    async function getUser(){
+      const currentUser = await userService.getById(userId)
+      setUser(currentUser)
+    }
 
 
   function onOpenFeedItem(ev, id) {
     ev.stopPropagation()
     ev.preventDefault()
-    console.log('bla',);
     navigate(`/p/${id}`)
   }
 
@@ -30,8 +42,8 @@ export function Profile() {
                 <LeftSideBar />
             </aside>
             <main className='profile-main-side'>
-                <ProfileHeader feedItems={feedItems} user={user}/>
-                <ProfileBody feedItems={feedItems} user={user} onOpenFeedItem={onOpenFeedItem}/>
+                {user && <ProfileHeader feedItems={feedItems} user={user}/>}
+                {user && <ProfileBody feedItems={feedItems} user={user} onOpenFeedItem={onOpenFeedItem}/>}
             </main>
         </section>
 

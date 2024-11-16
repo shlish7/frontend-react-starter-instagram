@@ -3,7 +3,7 @@ import ImageAvatars from "../ImageAvatars.jsx";
 import Verified from "../../assets/svg/verified.svg?react";
 import MoreOptions from '../../assets/svg/more-options-icon.svg?react'
 
-export function FeedItemCreatorDetails({ feedItem, user }) {
+export function FeedItemCreatorDetails({ user }) {
 
   return (
     <section className="img-title-container">
@@ -19,7 +19,7 @@ export function FeedItemCreatorDetails({ feedItem, user }) {
 
         <section className="home-img-title-user-details">
           <section className="home-user-title-container">
-            <Link to="/" className="home-title-user-name">
+            <Link to={"/"+user?._id} className="home-title-user-name">
               {user?.fullname}
             </Link>
             <Verified className="home-title-verified" />

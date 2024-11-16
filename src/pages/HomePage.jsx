@@ -23,6 +23,7 @@ export function HomePage() {
   function onOpenFeedItem(ev, id) {
     ev.stopPropagation()
     ev.preventDefault()
+    console.log('id',id);
     navigate(`/p/${id}`)
   }
 

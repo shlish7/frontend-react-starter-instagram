@@ -15,7 +15,7 @@ export function RootCmp() {
             <Route path="/p/:pId?" element={<FeedItemFullScreen />} />
             {/* <Route path="/stories/:userName?" element={<Stories />} /> */}
           </Route>
-          <Route path="/profile" element={<Profile />}></Route>
+          <Route path="/:userId" element={<Profile />}></Route>
           <Route path="/login" element={<LoginPage />}/>
 
         </Routes>
