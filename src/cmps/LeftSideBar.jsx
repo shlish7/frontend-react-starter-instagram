@@ -159,6 +159,10 @@ export function LeftSideBar() {
       console.log('profile',);
       navigate('/'+user._id)
     }
+    else if(name.toLowerCase() === 'explore'){
+      console.log('explore',);
+      navigate('/explore')
+    }
   }
 
   function onCloseModal() {
