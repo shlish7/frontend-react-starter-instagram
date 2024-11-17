@@ -40,8 +40,10 @@ export function Profile() {
                 <LeftSideBar />
             </aside>
             <main className='profile-main-side'>
+              <section className="profile-main-container">      
                 {user && <ProfileHeader feedItems={feedItems} user={user}/>}
                 {user && <ProfileBody feedItems={feedItems} user={user} onOpenFeedItem={onOpenFeedItem}/>}
+              </section>
             </main>
         </section>
 

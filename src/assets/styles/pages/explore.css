@@ -4,8 +4,25 @@
     margin: 0;
 }
 
+.explore-page {
+    display: grid;
+    grid-template-columns: 1fr 9fr;
+    grid-template-areas:
+        "side-bar main"
+        "side-bar main";
+    min-height: 100vh;
+    width: 100vw;
+}
+
+.explore-page-main{
+    display: flex;
+    justify-content: center;
+}
+
+
 .explore-container {
     padding: 20px;
+    width: 80%;
 }
 
 .explore-ul {
