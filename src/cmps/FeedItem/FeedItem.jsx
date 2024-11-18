@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { Carousel } from "../Carousel.jsx";
-import { userService } from '../../services/user.service.js';
+import { userService } from '../../services/user.service.remote.js';
 import { ButtonsView } from './ButtonsView.jsx';
 import { LikesCount } from './LikesCount.jsx';
 import { FeedItemDescription } from './FeedItemDescription.jsx';

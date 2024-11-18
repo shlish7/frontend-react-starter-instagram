@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { userService } from '../services/user.service';
+import { userService } from '../services/user.service.remote.js';
 import ImageAvatars from './ImageAvatars.jsx'
 import CloseModal from '../assets/svg/close-btn-white.svg?react';
 import { useNavigate } from 'react-router';

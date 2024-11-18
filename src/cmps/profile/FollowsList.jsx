@@ -3,7 +3,7 @@ import MagnifyingGlassIcon from '../../assets/svg/magnifying-glass.svg?react';
 
 import CloseModalIcon from '../../assets/svg/close-btn-white.svg?react';
 import RemoveSearchIcon from '../../assets/svg/remove-search-icon.svg?react';
-import { userService } from '../../services/user.service';
+import { userService } from '../../services/user.service.remote';
 import { useSelector } from 'react-redux';
 import { loadUsers } from '../../store/user.actions';
 import ImageAvatars from '../ImageAvatars';

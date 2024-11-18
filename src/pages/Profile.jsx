@@ -5,7 +5,7 @@ import { loadFeedItems } from '../store/feedItem.actions.js';
 import { useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router';
-import { userService } from '../services/user.service.js';
+import { userService } from '../services/user.service.remote.js';
 
 export function Profile() {
     const feedItems = useSelector(storeState => storeState.feedItemModule.feedItems)

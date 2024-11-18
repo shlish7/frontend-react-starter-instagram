@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { userService } from '../../services/user.service'
+import { userService } from '../../services/user.service.remote'
 import ImageAvatars from '../ImageAvatars';
 import LikeIconComment from '../../assets/svg/like-comment-icon.svg?react'
 import { useNavigate } from 'react-router';

@@ -1,4 +1,4 @@
-import { userService } from '../services/user.service'
+import { userService } from '../services/user.service.remote'
 import { socketService } from '../services/socket.service'
 import { store } from '../store/store'
 import { showErrorMsg } from '../services/event-bus.service'

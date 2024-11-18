@@ -1,4 +1,4 @@
-import { storyService } from '../services/story.service.local'
+import { storyService } from '../services/story.service.remote'
 import { store } from '../store/store'
 import { ADD_story, REMOVE_story, SET_STORIES, SET_STORY, UPDATE_STORY, ADD_STORY_MSG } from './story.reducer'
 
