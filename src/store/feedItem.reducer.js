@@ -1,5 +1,5 @@
 
-import { feedItemService } from '../services/feedItem.service.js'
+import { feedItemService } from "../services/feeditem.service.remote"
 export const SET_FEED_ITEM = 'SET_FEED_ITEM'
 export const REMOVE_FEED_ITEM = 'REMOVE_FEED_ITEM'
 export const SET_FEED_ITEMS = 'SET_FEED_ITEMS'

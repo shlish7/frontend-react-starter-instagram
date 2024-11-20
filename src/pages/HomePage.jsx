@@ -55,7 +55,7 @@ export function HomePage() {
 
       <Outlet context={{ onOpenFeedItem }} />
       <aside className="home-right-bar">
-        <RightSideBar />
+        <RightSideBar/>
       </aside>
     </section>
   );

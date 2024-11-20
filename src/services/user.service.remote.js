@@ -33,11 +33,18 @@ async function getUsers() {
     // return httpService.get(`user`)
 }
 
+// async function getById(userId) {
+//   const users = await getUsers()
+//     const user = await httpService.get(STORAGE_KEY, userId)
+//     // const user = await httpService.get(`user/${userId}`)
+//     return user
+// }
+
 async function getById(userId) {
-  const users = await getUsers()
-    const user = await httpService.get(STORAGE_KEY, userId)
-    // const user = await httpService.get(`user/${userId}`)
-    return user
+  console.log('userId',userId);
+	const user = await httpService.get(`user/${userId}`)
+	// const user = await httpService.get(`user/673b49605e4aea9bf62a57d6`)
+	return user
 }
 
 function remove(userId) {
@@ -59,7 +66,7 @@ async function update({ _id, score }) {
 async function login(userCred) {
   console.log("uesr cred login", userCred)
 
-    const users = await httpService.query('user')
+    const users = await httpService.get('user')
     const user = users.find(user => user.username === userCred.username)
   
 

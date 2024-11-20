@@ -1,10 +1,11 @@
-import { feedItemService } from '../services/feeditem.service'
+
+import { feedItemService } from '../services/feeditem.service.remote'
 import { store } from './store'
 import { ADD_FEED_ITEM, REMOVE_FEED_ITEM, SET_FEED_ITEMS, SET_FEED_ITEM, ADD_FEED_ITEM_MSG, UPDATE_FEED_ITEM } from './feedItem.reducer'
 
 export async function loadFeedItems() {
     try {       
-        const feedItems = await feedItemService.getFeedItems()
+        const feedItems = await feedItemService.query()
         store.dispatch(getCmdSetFeedItems(feedItems))
     } catch (err) {
         console.log('Cannot load feedItems', err)

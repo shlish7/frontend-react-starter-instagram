@@ -1,0 +1,31 @@
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+.suggestion-span{
+    color: rgb(115, 115, 115);
+    font-family: -apple-system, "system-ui", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.suggestion-ul{
+    list-style-type: none;
+}
+.suggestion-li{
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap:8px;
+}
+
+.suggest-follow-btn{
+    color:rgb(0, 149, 246);
+    font-family: -apple-system, "system-ui", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    font-size: 12px;
+    font-weight: 600 ;
+    background-color: transparent;
+
+}

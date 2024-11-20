@@ -4,6 +4,7 @@ import { showErrorMsg, showSuccessMsg } from '../services/event-bus.service'
 import ImageAvatars from './ImageAvatars'
 import { LoginSignup } from './LoginSignup'
 import { login, logout, signup } from '../store/user.actions.js'
+import Suggestion from './Suggestion.jsx'
 
 
 export function RightSideBar() {
@@ -77,6 +78,8 @@ export function RightSideBar() {
               <LoginSignup onLogin={onLogin} onSignup={onSignup} />
             </div>
           }
+
+          <Suggestion user={user}/>
         </section>  
     )
 }
