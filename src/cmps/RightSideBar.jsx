@@ -1,16 +1,16 @@
 import { useState, useEffect } from 'react'
 import { useSelector } from 'react-redux'
+import { useNavigate } from 'react-router'
 import { showErrorMsg, showSuccessMsg } from '../services/event-bus.service'
 import ImageAvatars from './ImageAvatars'
 import { LoginSignup } from './LoginSignup'
 import { login, logout, signup } from '../store/user.actions.js'
 import Suggestion from './Suggestion.jsx'
 
-
 export function RightSideBar() {
-
+    const navigate = useNavigate()
     const user = useSelector(storeState => storeState.userModule.user)
-    const [isRightBar,setIsRightBar] = useState()
+    const [isRightBar, setIsRightBar] = useState()
 
     useEffect(() => {
         const handleResize = () => {
@@ -42,7 +42,7 @@ export function RightSideBar() {
     async function onLogin(credentials) {
       try {
         const user = await login(credentials)
-
+        navigate('/')
 
         showSuccessMsg(`Welcome: ${user.fullname}`)
       } catch (err) {

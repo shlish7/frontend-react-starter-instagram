@@ -14,7 +14,7 @@ export function CommentsList({ feedItem }) {
     const fetchUsersForComments = async () => {
       const commentsWithUserData = await Promise.all(
         feedItem.comments.map(async (item) => {
-          const user = await userService.getById(item.userId);
+          const user = await userService.getById(item.owner._id);
           return { ...item, user };
         })
       );

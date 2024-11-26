@@ -10,12 +10,12 @@ import { userService } from '../services/user.service.remote.js';
 export function Profile() {
     const feedItems = useSelector(storeState => storeState.feedItemModule.feedItems)
     const navigate = useNavigate()
-    const {userId} = useParams()
+    const { userId } = useParams()
     const [user,setUser] = useState() 
 
     useEffect(() => {
       loadFeedItems()
-      
+    
     }, [])
 
     useEffect(() => {

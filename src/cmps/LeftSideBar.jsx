@@ -13,7 +13,6 @@ import ThreadsIcon from '../assets/svg/threads-icon.svg?react'
 import MoreIcon from '../assets/svg/more-icon.svg?react'
 import ImageAvatars from './ImageAvatars.jsx'
 import { CreatePost } from './CreatePost.jsx'
-import { LoginSignup } from './LoginSignup.jsx'
 import { showErrorMsg, showSuccessMsg } from '../services/event-bus.service.js'
 import { login, logout, signup } from '../store/user.actions.js'
 import { SearchBar } from './SearchBar.jsx'
@@ -29,8 +28,6 @@ export function LeftSideBar() {
   const [activeOption, setActiveOption] = useState('Home')
 
   const navigate = useNavigate()
-
-  // const [isSmallScreen, setIsSmallScreen] = useState(false)
 
   useEffect(() => {
     const handleResize = () => {

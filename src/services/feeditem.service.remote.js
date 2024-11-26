@@ -1,7 +1,7 @@
 // import { httpService } from './async-storage.service'
 import { httpService } from './http.service'
 
-const STORAGE_KEY = 'feeditem'
+const STORAGE_KEY = 'feedItem'
 
 export const feedItemService = {
     // getFeedItems,

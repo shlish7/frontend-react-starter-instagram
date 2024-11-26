@@ -9,12 +9,11 @@ export default function LikesList({ feedItem, onCloseModal }) {
   const [likesWithUsers, setLikesWithUsers] = useState([]);
   const navigate = useNavigate()
 
-
   useEffect(() => {
     const fetchUsersForLikes = async () => {
       const likesWithUserData = await Promise.all(
         feedItem?.likes?.map(async (item) => {
-          const user = await userService.getById(item.userId);
+          const user = await userService.getById(item.owner,_id);
           return { ...item, user };
         })
       );

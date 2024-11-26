@@ -64,14 +64,8 @@ async function update({ _id, score }) {
 }
 
 async function login(userCred) {
-  console.log("uesr cred login", userCred)
-
-    const users = await httpService.get('user')
-    const user = users.find(user => user.username === userCred.username)
-  
-
-    // const user = await httpService.post('auth/login', userCred)
-    if (user) return saveLocalUser(user)
+	const user = await httpService.post('auth/login', userCred)
+	if (user) return saveLocalUser(user)
 }
 
 async function signup(userCred) {

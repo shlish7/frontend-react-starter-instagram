@@ -17,7 +17,7 @@ export function FeedItem({ feedItem, onOpenFeedItem, handleCommentSubmit }) {
   }, [feedItem]);
 
   async function getCreator() {
-    const user = await userService.getById(feedItem?.userId);
+    const user = await userService.getById(feedItem?.owner._id);
     setCreator(user)
   }
 

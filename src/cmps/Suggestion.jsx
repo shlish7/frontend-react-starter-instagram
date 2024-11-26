@@ -2,15 +2,16 @@ import React, { useEffect } from 'react'
 import ImageAvatars from './ImageAvatars'
 import profilePic from '../assets/images/chocolate_cake.jpg'
 import { useSelector } from 'react-redux';
-import { loadUsers } from '../store/user.actions';
 import { userService } from '../services/user.service.remote';
 
 export default function Suggestion({ user }) {
 
-    // const users = useSelector(storeState => storeState.userModule.users)
-    useEffect(() => {
-        getUsers()
+    const users = useSelector(storeState => storeState.userModule.users)
+    const currUser = useSelector(storeState => storeState.userModule.user)
 
+    useEffect(() => {
+        // getUsers()
+        // const filtered = users.filter(u => u._id === user.follwing)
     }, []);
 
     async function getUsers() {
@@ -19,7 +20,7 @@ export default function Suggestion({ user }) {
 
     }
     const username = 'test1'
-
+    console.log(users)
 
     return (
         <div>

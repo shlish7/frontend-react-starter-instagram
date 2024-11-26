@@ -46,7 +46,7 @@ export function FeedItemFullScreen() {
 
   async function loadUser() {
     try {
-      const user = await userService.getById(feedItem.userId)
+      const user = await userService.getById(feedItem.owner._id)
       setUser(user)
     } catch {
     }
