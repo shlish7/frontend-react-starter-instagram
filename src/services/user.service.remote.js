@@ -26,7 +26,7 @@ async function getUsers() {
         console.log('users',users);
         return users
     } catch {
-        console.log("faild mock users")
+        console.log("failed getting users")
     }
     
     // return httpService.query('user')

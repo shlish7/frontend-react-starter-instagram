@@ -18,7 +18,7 @@ export default function ProfileBody({ feedItems, user, onOpenFeedItem }) {
   useEffect(() => {
     const userPosts = feedItems.filter(item => {
 
-      return item?.userId === user?._id;
+      return item?.owner._id === user?._id;
     });
 
     setPostImages(userPosts);

@@ -53,7 +53,7 @@ export function FeedItemFullScreen() {
   }
   
   function onNavigateBack() {
-    navigate('/')
+    navigate(-1);
   }
 
   function onNavigateToProfile(){
