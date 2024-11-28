@@ -31,9 +31,9 @@ export function CreatePost({ onCloseModal }) {
             const newPost = {
                 imageUrl,
                 caption: description,
-                tags: null,
-                comments: null,
-                likes: null,
+                tags: [],
+                comments: [],
+                likes: [],
                 createdAt: new Date().toISOString()
             }
 

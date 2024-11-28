@@ -11,7 +11,7 @@ export default function ProfileHeader({ feedItems, user }) {
   const [displayFollowingModal, setDisplayFollowingModal] = useState(false)
 
   useEffect(() => {
-    const userFeedItemsCount = feedItems.filter(feedItem => feedItem.userId === user._id).length;
+    const userFeedItemsCount = feedItems.filter(feedItem => feedItem.owner._id === user._id).length;
     setProfileFeedItems(userFeedItemsCount)
 
   }, []);

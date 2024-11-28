@@ -87,6 +87,8 @@ async function save(feedItem) {
         //     // savedFeedItem = await httpService.post(STORAGE_KEY, feedItem)
         // }
         savedFeedItem = await httpService.put(STORAGE_KEY, feedItem)
+                console.log("returned savedFeedItem: ", savedFeedItem)
+
         return savedFeedItem
     } catch {
         console.log("failed save feed item")

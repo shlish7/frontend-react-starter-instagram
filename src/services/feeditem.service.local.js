@@ -1,6 +1,6 @@
 import { storageService } from './async-storage.service'
 
-const STORAGE_KEY = 'feeditem'
+const STORAGE_KEY = 'feedItem'
 
 export const feedItemService = {
     getFeedItems,

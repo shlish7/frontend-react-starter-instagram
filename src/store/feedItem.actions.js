@@ -48,6 +48,7 @@ export async function addFeedItem(feedItem) {
 
 export async function updateFeedItem(feedItem) {
     try {
+        console.log("feedItem to save: ", feedItem)
         const savedFeedItem = await feedItemService.save(feedItem)
         console.log('Updated feedItem:', savedFeedItem)
         store.dispatch(getCmdUpdateFeedItem(savedFeedItem))
