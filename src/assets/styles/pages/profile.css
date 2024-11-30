@@ -48,7 +48,8 @@
     width: 935px;
     height: 100%;
     grid-template-columns: 4fr 6fr;
-    grid-template-rows: 76px 52px 34px 16px 44px 174px;
+    /* grid-template-rows: 76px 52px 34px 16px 44px 174px; */
+    grid-template-rows: 76px 52px 34px 16px 44px;
     grid-template-areas:
         "left-side right-side"
         "left-side right-side"
@@ -121,4 +122,13 @@
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+}
+.user-name-profile-header{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: -apple-system, "system-ui", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    font-size: 20px;
+    font-weight: 400;
+
 }

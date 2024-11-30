@@ -124,7 +124,9 @@ export function NewComment({ handleCommentSubmit, fullScreen }) {
 
         <textarea
           type="text"
-          className="home-add-comment"
+          // className={fullScreen ? "home-add-comment": "home-add-comment"}
+          className={`home-add-comment ${fullScreen ? 'home-add-comment-full-screen' : ''}`}
+
           placeholder="Add a comment…"
           aria-label="Add a comment…"
           value={comment}

@@ -23,7 +23,6 @@ async function getUsers() {
     try {
 
         const users = await httpService.get(STORAGE_KEY)
-        console.log('users',users);
         return users
     } catch {
         console.log("failed getting users")
@@ -41,7 +40,6 @@ async function getUsers() {
 // }
 
 async function getById(userId) {
-  console.log('userId',userId);
 	const user = await httpService.get(`user/${userId}`)
 	// const user = await httpService.get(`user/673b49605e4aea9bf62a57d6`)
 	return user

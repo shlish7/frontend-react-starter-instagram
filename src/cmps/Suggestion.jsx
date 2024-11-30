@@ -16,11 +16,9 @@ export default function Suggestion({ user }) {
 
     async function getUsers() {
         const users = await userService.getUsers()
-        console.log('user', users);
 
     }
     const username = 'test1'
-    console.log(users)
 
     return (
         <div>

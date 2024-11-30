@@ -153,11 +153,9 @@ export function LeftSideBar() {
 
     }
     else if(name.toLowerCase() === 'profile'){
-      console.log('profile',);
       navigate('/'+user._id)
     }
     else if(name.toLowerCase() === 'explore'){
-      console.log('explore',);
       navigate('/explore')
     }
   }
@@ -191,8 +189,11 @@ export function LeftSideBar() {
               data-name={icon.name}
 
               // className={!changeToNarrow ? "wide-side-bar-li" : "narrow-side-bar-li"}
+              // className={`side-bar-li ${activeOption === icon.name ? 'active-option' : ''} ${
+              //   !changeToNarrow ? "wide-side-bar-li" : "narrow-side-bar-li"
+              // }`}
               className={`side-bar-li ${activeOption === icon.name ? 'active-option' : ''} ${
-                !changeToNarrow ? "wide-side-bar-li" : "narrow-side-bar-li"
+                changeToNarrow ? "narrow-side-bar-li" : "wide-side-bar-li"
               }`}
               // className='side-bar-li'
               onClick={onOpenModal}
@@ -200,7 +201,7 @@ export function LeftSideBar() {
               {/* {openModal ? <CreatePost onCloseModal={onCloseModal} /> : null} */}
               {openSerachBar ? <SearchBar /> : null}
               {icon.svg && <icon.svg />}
-              {icon.name === 'Profile' && <ImageAvatars img={user?.imgUrl || null} avatarHeight='30px !important' avatarWidth='30px !important' />}
+              {icon.name === 'Profile' && <ImageAvatars img={user?.imgUrl || null} avatarHeight='24px !important' avatarWidth='24px !important' />}
               {!changeToNarrow && icon.name}
               {/* { icon.name === 'profile' ? <ImageAvatars/>            */}
             </li>

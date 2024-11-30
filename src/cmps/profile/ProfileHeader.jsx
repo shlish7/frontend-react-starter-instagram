@@ -43,7 +43,7 @@ export default function ProfileHeader({ feedItems, user }) {
         </section>
         <section className="header-btns">
           <section className="profile-link-buttons">
-            <span>{user?.username}</span>
+            <span className="user-name-profile-header">{user?.username}</span>
             <Link className="profile-link-button">Edit Profile</Link>
             <Link className="profile-link-button">View Archive</Link>
           </section>

@@ -10,10 +10,12 @@
     outline: none;
     margin-top: 10px;
     resize: none;
-    padding-left: 10px;
     font-family:-apple-system, "system-ui", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
     font-size: 14px;
+}
 
+.home-add-comment-full-screen {
+    padding-left: 10px;
 
 }
 

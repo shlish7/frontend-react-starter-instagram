@@ -1,4 +1,3 @@
-// import { httpService } from './async-storage.service'
 import { httpService } from './http.service'
 
 const STORAGE_KEY = 'feedItem'
@@ -32,7 +31,7 @@ window.cs = feedItemService
 
 async function query(filterBy = { txt: '' }) {
     try {
-        const results = await httpService.get(STORAGE_KEY)
+        const results = await httpService.get('feedItem')
         //todo: do the filter here - before saving to store filter post.userId is in connectedUser.followingIds
         return results
     } catch {
@@ -44,7 +43,8 @@ async function query(filterBy = { txt: '' }) {
 
 async function getById(feeditemId) {
     try {
-        const feedItem = await httpService.get(STORAGE_KEY, feeditemId)
+        // const feedItem = await httpService.get(STORAGE_KEY, feeditemId)
+        const feedItem = await httpService.get(`feedItem/${feeditemId}`)
         
         return feedItem
         // return httpService.get(`feedItem/${feedItem}`)
@@ -86,8 +86,16 @@ async function save(feedItem) {
         //     savedFeedItem = await httpService.post(STORAGE_KEY, feedItem)
         //     // savedFeedItem = await httpService.post(STORAGE_KEY, feedItem)
         // }
-        savedFeedItem = await httpService.put(STORAGE_KEY, feedItem)
-                console.log("returned savedFeedItem: ", savedFeedItem)
+        console.log('feedItem._id',feedItem._id);
+        if (feedItem._id) {
+          // savedFeedItem = await httpService.put(STORAGE_KEY, feedItem)
+          savedFeedItem = await httpService.put(`feedItem/${feedItem._id}`, feedItem)
+        }
+        else {
+            savedFeedItem = await httpService.post('feedItem', feedItem)
+            // savedFeedItem = await httpService.post(STORAGE_KEY, feedItem)
+        }
+     
 
         return savedFeedItem
     } catch {

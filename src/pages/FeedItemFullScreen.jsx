@@ -4,7 +4,6 @@ import { useParams } from "react-router";
 import { Carousel } from "../cmps/Carousel.jsx";
 import { CommentsIndex } from "../cmps/Comments/CommentsIndex.jsx";
 import CloseModal from '../assets/svg/close-modal-icon.svg?react'
-import { feedItemService } from "../services/feedItem.service.remote.js";
 import ImageAvatars from '../cmps/ImageAvatars.jsx';
 import { ButtonsView } from '../cmps/FeedItem/ButtonsView.jsx';
 import { LikesCount } from '../cmps/FeedItem/LikesCount.jsx';
@@ -46,7 +45,7 @@ export function FeedItemFullScreen() {
 
   async function loadUser() {
     try {
-      const user = await userService.getById(feedItem.owner._id)
+      const user = await userService.getById(feedItem?.owner?._id)
       setUser(user)
     } catch {
     }
@@ -60,9 +59,12 @@ export function FeedItemFullScreen() {
     navigate("/"+user?._id)
   }
 
+  console.log('feedItem?.likes?.length',feedItem?.likes?.length);
+  console.log('feedItem?.likes?.userId',feedItem?.likes);
+
   return (
     <>
-      <CloseModal className='close-modal-icon' onClick={onNavigateBack} />
+      <CloseModal className='close-modal-icon-feed-item-full-screen' onClick={onNavigateBack} />
       <section className="feed-item-container-full-screen">
         { feedItem && <Carousel feedItem={feedItem} fullScreen={true} onDoubleClicked={onDoubleClicked} isImgDoubleClicked={isImgDoubleClicked}  /> }
         <section className="full-screen-comments">

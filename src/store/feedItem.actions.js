@@ -36,7 +36,6 @@ export async function removeFeedItem(feedItemId) {
 export async function addFeedItem(feedItem) {
     try {
         const savedFeedItem = await feedItemService.create(feedItem)
-        console.log('Added feedItem', savedFeedItem)
         store.dispatch(getCmdAddFeedItem(savedFeedItem))
         
         return savedFeedItem
@@ -48,9 +47,7 @@ export async function addFeedItem(feedItem) {
 
 export async function updateFeedItem(feedItem) {
     try {
-        console.log("feedItem to save: ", feedItem)
         const savedFeedItem = await feedItemService.save(feedItem)
-        console.log('Updated feedItem:', savedFeedItem)
         store.dispatch(getCmdUpdateFeedItem(savedFeedItem))
         
         return savedFeedItem
@@ -63,7 +60,6 @@ export async function updateFeedItem(feedItem) {
 export async function addFeedItemMsg(feedItemId, txt) {
     try {
         const msg = await feedItemService.addFeedItemMsg(feedItemId, txt)
-        console.log('Added feedItem message', msg)
         store.dispatch(getCmdAddFeedItemMsg(msg))
         return msg
     } catch (err) {

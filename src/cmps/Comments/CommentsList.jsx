@@ -12,9 +12,10 @@ export function CommentsList({ feedItem }) {
 
   useEffect(() => {
     const fetchUsersForComments = async () => {
+
       const commentsWithUserData = await Promise.all(
-        feedItem.comments.map(async (item) => {
-          const user = await userService.getById(item.owner._id);
+        feedItem?.comments?.map(async (item) => {
+          const user = await userService.getById(item?.userId);
           return { ...item, user };
         })
       );

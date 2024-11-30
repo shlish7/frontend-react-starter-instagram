@@ -23,12 +23,10 @@ export function HomePage() {
   function onOpenFeedItem(ev, id) {
     ev.stopPropagation()
     ev.preventDefault()
-    console.log('id',id);
     navigate(`/p/${id}`)
   }
 
   function handleCommentSubmit(comment) {
-    console.log(comment)
     //feeditemService.save()
   }
 
