@@ -1,37 +1,45 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import ImageAvatars from './ImageAvatars'
-import profilePic from '../assets/images/chocolate_cake.jpg'
 import { useSelector } from 'react-redux';
-import { userService } from '../services/user.service.remote';
+import { loadUser, loadUsers } from '../store/user.actions';
 
-export default function Suggestion({ user }) {
+export default function Suggestion() {
+    const [suggestedUsers, setSuggestedUsers] = useState([])
 
     const users = useSelector(storeState => storeState.userModule.users)
-    const currUser = useSelector(storeState => storeState.userModule.user)
+    const loggedinUser = useSelector(storeState => storeState.userModule.user)
+
+    console.log('users', users)
 
     useEffect(() => {
-        // getUsers()
-        // const filtered = users.filter(u => u._id === user.follwing)
-    }, []);
+        loadUser()
+        loadUsers()
+    }, [])
 
-    async function getUsers() {
-        const users = await userService.getUsers()
-
-    }
-    const username = 'test1'
+    useEffect(() => {
+        if (users.length > 0) {
+            const filteredUsers = users.filter(suggestedUser => suggestedUser._id !== loggedinUser?._id)
+            setSuggestedUsers(filteredUsers.slice(0, 5))
+        }
+    }, [users, loggedinUser])
 
     return (
-        <div>
+        <div className='suggestion-users'>
             <span className="suggestion-span">Suggested for you</span>
-            <ul className='suggestion-ul'>
-                <li className='suggestion-li'>
-                    {/* <ImageAvatars img={user?.imgUrl || null} avatarHeight='30px !important' avatarWidth='30px !important' /> */}
-                    <ImageAvatars img={profilePic} avatarHeight='30px !important' avatarWidth='30px !important' />
-                    {username}
-                    <button className='suggest-follow-btn'>Follow</button>
-                </li>
-                <li className='suggestion-li'>test2</li>
-                <li className='suggestion-li'>test3</li>
+            <ul className="suggestion-ul">
+                {suggestedUsers.map(user => (
+                    <li key={user._id} className="suggestion-li">
+                        <section className="suggested-user-details">
+                            <ImageAvatars
+                                img={user.imgUrl || null}
+                                avatarHeight="30px !important"
+                                avatarWidth="30px !important"
+                            />
+                            <span className="suggestion-username">{user.username}</span>
+                        </section>
+                        <button className="suggest-follow-btn">Follow</button>
+                    </li>
+                ))}
             </ul>
         </div>
     )

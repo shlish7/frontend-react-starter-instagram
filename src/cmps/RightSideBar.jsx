@@ -9,7 +9,9 @@ import Suggestion from './Suggestion.jsx'
 
 export function RightSideBar() {
     const navigate = useNavigate()
-    const user = useSelector(storeState => storeState.userModule.user)
+    const user = useSelector(storeState => storeState.userModule.user)    
+    const users = useSelector(storeState => storeState?.userModule?.users)
+
     const [isRightBar, setIsRightBar] = useState()
 
     useEffect(() => {
@@ -79,7 +81,7 @@ export function RightSideBar() {
             </div>
           }
 
-          <Suggestion user={user}/>
+          <Suggestion user={user} />
         </section>  
     )
 }

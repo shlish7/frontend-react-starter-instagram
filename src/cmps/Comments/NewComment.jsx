@@ -77,7 +77,7 @@ export function NewComment({ handleCommentSubmit, fullScreen }) {
       setNewCommentTxt(comment.trim())
       fullScreen ? null : setNewComment(prev => !prev)
       const userId = user._id
-      const updatedComments = [...feedItem.comments, { userId, comment: comment.trim() }];
+      const updatedComments = [...feedItem?.comments, { userId, comment: comment.trim() }];
       console.log('updated comments', updatedComments);
       const savedFeedItem = await updateFeedItem({ ...feedItem, comments: updatedComments });
       console.log('saved item',savedFeedItem);

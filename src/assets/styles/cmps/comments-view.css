@@ -62,6 +62,8 @@
     width: 100%;
     display: flex;
     justify-content: flex-end;
+    margin-right: 0;
+    padding-right: 0;
 }
 
 .post-comment-btn-opacity{
@@ -109,6 +111,7 @@
 
 }
 
-/* .emoji-picker{
-    width: 100px;
-} */
+.emoji-picker{
+    width: 13px;
+    height: 13px;
+}
