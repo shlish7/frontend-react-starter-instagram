@@ -90,6 +90,7 @@ async function save(feedItem) {
         if (feedItem._id) {
           // savedFeedItem = await httpService.put(STORAGE_KEY, feedItem)
           savedFeedItem = await httpService.put(`feedItem/${feedItem._id}`, feedItem)
+          console.log('saved feed item put',savedFeedItem);
         }
         else {
             savedFeedItem = await httpService.post('feedItem', feedItem)

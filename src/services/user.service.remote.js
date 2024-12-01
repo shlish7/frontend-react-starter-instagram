@@ -15,6 +15,7 @@ export const userService = {
     remove,
     update,
     getEmptyUser,
+    getDefaultFilter
 }
 
 window.userService = userService
@@ -293,4 +294,13 @@ async function _createMockUsers() {
 
     return  Promise.resolve(results)
   }
+
+
+  function getDefaultFilter() {
+    return {
+      fullname: '',
+        username: ''
+
+    }
+}
 
