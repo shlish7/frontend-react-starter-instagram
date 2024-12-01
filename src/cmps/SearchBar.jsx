@@ -75,7 +75,7 @@ export function SearchBar() {
             <span className='search-span'>Search</span>
             {/* <section className="search-box"> */}
             {/* <input className='search-input' placeholder="Search" type="text" value={inputValue} onChange={onSearch}></input> */}
-            <section className="search-follows-section">
+            <section className="search-bar-section">
                 {displayIcon && searchTxt === '' && <MagnifyingGlassIcon className='magnifying-glass-icon' />}
                 <input type="text" className="input-search-follows"
                     placeholder={displayIcon ? '    Search' : 'Search'}
@@ -87,15 +87,15 @@ export function SearchBar() {
                 {searchTxt !== '' && <RemoveSearchIcon className='remove-search' onClick={onClearSearch} />}
                 {/* </section> */}
             </section>
-            <section className="seacrh-bar-list">
-                <ul className='follows-ul-modal'>
+            <section className="search-bar-users-list">
+                <ul className='search-bar-users-ul'>
                     {users.map((item, idx) => {
-                        return <li key={idx} className='follows-list'>
+                        return <li key={idx} className='search-bar-users-li'>
                             <section className="avatar-and-user-name">
                                 <ImageAvatars img={item.imgUrl} />
-                                <section className="followers">
-                                    <p className='follow-list-user-name'>{item.username}</p>
-                                    <p className='follow-list-full-name'>{item.fullname}</p>
+                                <section className="search-bar-user-details">
+                                    <p className='search-bar-user-name'>{item.username}</p>
+                                    <p className='search-bar-full-name'>{item.fullname}</p>
                                 </section>
                             </section>
                         </li>

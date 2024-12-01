@@ -20,6 +20,26 @@
 
 }
 
+/* .search-bar-section{
+    border-bottom: 0.5px solid rgb(219, 219, 219);
+
+} */
+.search-bar-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding: 8px 16px 8px 16px;
+    margin-top: 10px;
+    color: rgb(239, 239, 239);
+    position: relative;
+    height: 32px;
+    padding-bottom:40px;
+    border-bottom: 0.5px solid rgb(219, 219, 219);
+
+
+}
+
 .search-span {
     display: flex;
     justify-content: flex-start;
@@ -59,5 +79,47 @@
 
 }
 
+.search-bar-users-list{
+    width: 100%;
+    margin-top: 20px;
+}
 
+.search-bar-users-ul{
 
+    align-items: flex-start;
+    padding: 10px 0 10px 0;
+    margin-left: 10px;
+    list-style-type: none;
+    width: 100%;
+}
+
+.search-bar-user-details{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.search-bar-user-name {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+
+    color: black;
+    font-family: -apple-system, "system-ui", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    height: fit-content;
+
+}
+
+.search-bar-full-name {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    color: rgb(115, 115, 115);
+    font-family: -apple-system, "system-ui", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    height: fit-content;
+}
