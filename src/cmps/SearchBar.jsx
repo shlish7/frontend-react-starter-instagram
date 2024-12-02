@@ -16,13 +16,13 @@ export function SearchBar() {
     const [filteredUsers, setFilteredUsers] = useState(users)
 
     useEffect(() => {
-        const { username, fullname } = filterToEdit;
+        const { username, fullname } = filterToEdit
 
         const newFilteredUsers = users.filter(user => {
             const usernameMatch = user.username.toLowerCase().includes(username.toLowerCase())
             const fullnameMatch = user.fullname.toLowerCase().includes(fullname.toLowerCase())
             return usernameMatch || fullnameMatch;
-        });
+        })
 
         setFilteredUsers(newFilteredUsers);
     }, [filterToEdit]);
