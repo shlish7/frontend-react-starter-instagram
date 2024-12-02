@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import { useSelector } from 'react-redux'
 import HomeIcon from '../assets/svg/home-icon.svg?react'
-import InstagramIconLogo from '../assets/svg/instagram-side-bar-logo.svg?react'
+// import InstagramIconLogo from '../assets/svg/instagram-side-bar-logo.svg?react'
+import InstagramIconLogo from '../assets/svg/new instafood.svg?react'
 import InstagramNarrowLogo from '../assets/svg/instagram-icon-logo.svg?react'
 import SearchIcon from '../assets/svg/search-icon.svg?react'
 import ExploreIcon from '../assets/svg/explore-icon.svg?react'
@@ -19,6 +20,7 @@ import { SearchBar } from './SearchBar.jsx'
 import { useNavigate } from 'react-router'
 
 export function LeftSideBar() {
+
   const user = useSelector(storeState => storeState.userModule.user)
 
   const [openModal, setOpenModal] = useState(false)

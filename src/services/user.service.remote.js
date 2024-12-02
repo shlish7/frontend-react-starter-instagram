@@ -20,10 +20,10 @@ export const userService = {
 
 window.userService = userService
 
-async function getUsers() {
+async function getUsers(filterBy) {
     try {
 
-        const users = await httpService.get(STORAGE_KEY)
+        const users = await httpService.get(STORAGE_KEY, filterBy)
         return users
     } catch {
         console.log("failed getting users")

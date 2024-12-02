@@ -12,52 +12,32 @@ export function SearchBar() {
     const [displayIcon, setDisplayIcon] = useState(true)
     const [searchTxt, setSearchTxt] = useState('')
     const users = useSelector(storeState => storeState.userModule.users)
-    const [ filterBy, setFilterBy ] = useState(userService.getDefaultFilter())
-    const [ filterToEdit, setFilterToEdit ] = useState(structuredClone(filterBy))
+    const [ filterToEdit, setFilterToEdit ] = useState(userService.getDefaultFilter())
+
+
+    // useEffect(() => {
+    //     setFilterBy(filterToEdit)
+    // }, [filterToEdit])
 
     useEffect(() => {
-        setFilterBy(filterToEdit)
+        loadUsers(filterToEdit)
+
     }, [filterToEdit])
-
-    useEffect(() => {
-        loadUsers(filterBy)
-        console.log('filtered users', users);
-    }, [filterBy]);
 
     function handleSearchBarClick(ev) {
         ev.stopPropagation()
     }
 
-
-    // function onHandleChange({ target }) {
-    //     const { value } = target
-    //     setSearchTxt(value)
-    // }
-
     function onHandleChange({target}) {
-        const type = target.type
-        const field = target.name
-        console.log('target',target);
-        console.log('type', type);
-        console.log('field', field);
 
-        let value
+        const value = target.value
+        setFilterToEdit({ ...filterToEdit, username: value, fullname: value })
 
-        switch (type) {
-            case 'text':
-  
-        }
-    setSearchTxt(value)
-
-        setFilterToEdit({ ...filterToEdit, [field]: value })
     }
 
     function onClearSearch() {
-        setFilterToEdit({ ...filterToEdit, txt: '' })
+        setFilterToEdit({ ...filterToEdit, username: '' , fullname: ''})
     }
-    
-
-
 
     function onFocus() {
         setDisplayIcon(prev => !prev)
@@ -82,7 +62,7 @@ export function SearchBar() {
                     onFocus={onFocus}
                     onBlur={onBlur}
                     onChange={onHandleChange}
-                    value={searchTxt}
+                    value={filterToEdit.fullname}
                 />
                 {searchTxt !== '' && <RemoveSearchIcon className='remove-search' onClick={onClearSearch} />}
                 {/* </section> */}

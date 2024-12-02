@@ -9,19 +9,15 @@ export default function Suggestion() {
     const users = useSelector(storeState => storeState.userModule.users)
     const loggedinUser = useSelector(storeState => storeState.userModule.user)
 
-    console.log('users', users)
-
     useEffect(() => {
-        loadUser()
-        loadUsers()
-    }, [])
-
-    useEffect(() => {
-        if (users.length > 0) {
-            const filteredUsers = users.filter(suggestedUser => suggestedUser._id !== loggedinUser?._id)
-            setSuggestedUsers(filteredUsers.slice(0, 5))
+        if (users.length > 0 && loggedinUser) {
+            const filteredUsers = users?.filter(user => 
+                user._id !== loggedinUser._id && 
+                !loggedinUser.following.includes(user._id))
+            setSuggestedUsers(filteredUsers.slice(0, 10))
         }
     }, [users, loggedinUser])
+   
 
     return (
         <div className='suggestion-users'>
