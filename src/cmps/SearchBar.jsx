@@ -13,16 +13,19 @@ export function SearchBar() {
     const [searchTxt, setSearchTxt] = useState('')
     const users = useSelector(storeState => storeState.userModule.users)
     const [ filterToEdit, setFilterToEdit ] = useState(userService.getDefaultFilter())
-
-
-    // useEffect(() => {
-    //     setFilterBy(filterToEdit)
-    // }, [filterToEdit])
+    const [filteredUsers, setFilteredUsers] = useState(users)
 
     useEffect(() => {
-        loadUsers(filterToEdit)
+        const { username, fullname } = filterToEdit;
 
-    }, [filterToEdit])
+        const newFilteredUsers = users.filter(user => {
+            const usernameMatch = user.username.toLowerCase().includes(username.toLowerCase())
+            const fullnameMatch = user.fullname.toLowerCase().includes(fullname.toLowerCase())
+            return usernameMatch || fullnameMatch;
+        });
+
+        setFilteredUsers(newFilteredUsers);
+    }, [filterToEdit]);
 
     function handleSearchBarClick(ev) {
         ev.stopPropagation()
@@ -69,7 +72,7 @@ export function SearchBar() {
             </section>
             <section className="search-bar-users-list">
                 <ul className='search-bar-users-ul'>
-                    {users.map((item, idx) => {
+                    {filteredUsers.map((item, idx) => {
                         return <li key={idx} className='search-bar-users-li'>
                             <section className="avatar-and-user-name">
                                 <ImageAvatars img={item.imgUrl} />
