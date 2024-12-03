@@ -23,10 +23,32 @@ export function FeedItemFullScreen() {
   const feedItem = useSelector(storeState => storeState.feedItemModule.feedItem)
 
   const [ isImgDoubleClicked, setIsImgDoubleClicked ] = useState(false);
+  const [ onCloseFeedItemFullScreen, setOnCloseFeedItemFullScreen ] = useState();
 
   function onDoubleClicked() {
     setIsImgDoubleClicked(true)   
   }
+
+  useEffect(() => {
+    function handleKeyDown(event) {
+      if (event.key === 'Escape' && !event.shiftKey) {
+        navigate(-1)
+
+      }
+      if (event.key === 'Enter' && !event.shiftKey) {
+        navigate(-1)
+   
+      }
+    }
+    
+
+    document.addEventListener('keydown', handleKeyDown);
+
+    return () => {
+      document.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [onCloseFeedItemFullScreen])
+
 
   useEffect(() => {
     getFeedItem()
@@ -52,7 +74,7 @@ export function FeedItemFullScreen() {
   }
   
   function onNavigateBack() {
-    navigate(-1);
+    navigate(-1)
   }
 
   function onNavigateToProfile(){

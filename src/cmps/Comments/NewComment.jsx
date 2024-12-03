@@ -19,6 +19,7 @@ export function NewComment({ handleCommentSubmit, fullScreen }) {
   const [hidePostBtn, setHidePostBtn] = useState(fullScreen)
 
   const [postCommentBtn, setPostCommentBtn] = useState(false)
+  const [isEmojiPickerFullScreen, setIsEmojiPickerFullScreen] = useState(false)
   const [isEmojiPicker, setIsEmojiPicker] = useState(false)
   const [isLikedComment, setIsLikedComment] = useState(false)
 
@@ -39,8 +40,14 @@ export function NewComment({ handleCommentSubmit, fullScreen }) {
     function handleKeyDown(event) {
       if (event.key === 'Escape' && isEmojiPicker) {
         setIsEmojiPicker(false);
+        setIsEmojiPickerFullScreen(false)
+      }
+      if (event.key === 'Enter' && !event.shiftKey) {
+        setIsEmojiPicker(false)
+        setIsEmojiPickerFullScreen(false)      
       }
     }
+    
 
     document.addEventListener('keydown', handleKeyDown);
 
@@ -68,6 +75,9 @@ export function NewComment({ handleCommentSubmit, fullScreen }) {
     }
   }
 
+  function onOpenEmojiPickerFullScreen() {
+    setIsEmojiPickerFullScreen(prev => !prev)
+  }
   function onOpenEmojiPicker() {
     setIsEmojiPicker(prev => !prev)
   }
@@ -116,8 +126,8 @@ export function NewComment({ handleCommentSubmit, fullScreen }) {
 
       <section className="add-comment-and-emoji">
         <div className="emoji-picker-container">
-          {fullScreen && <EmojiPickerIconFullScreen className='emoji-picker' onClick={onOpenEmojiPicker} />}
-          {isEmojiPicker && (
+          {fullScreen && <EmojiPickerIconFullScreen className='emoji-picker' onClick={onOpenEmojiPickerFullScreen} />}
+          {isEmojiPickerFullScreen && (
             <div className="emoji-picker-wrapper">
               <EmojiPicker onEmojiClick={onEmojiClick} />
             </div>
@@ -147,7 +157,12 @@ export function NewComment({ handleCommentSubmit, fullScreen }) {
           Post
         </button>
 
-        {!fullScreen && <EmojiPickerIcon className='emoji-picker' />}
+        {!fullScreen && <EmojiPickerIcon className='emoji-picker' onClick={onOpenEmojiPicker}/>}
+        {isEmojiPicker && (
+            <div className="emoji-picker-wrapper">
+              <EmojiPicker onEmojiClick={onEmojiClick} />
+            </div>
+          )}
       </section>
     </>
   )

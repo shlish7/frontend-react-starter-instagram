@@ -59,11 +59,12 @@
     font-weight: 600;
     color: rgb(0, 149, 246);
     background-color: white;
-    width: 100%;
+    width: fit-content;
     display: flex;
-    justify-content: flex-end;
-    margin-right: 0;
-    padding-right: 0;
+    justify-content: flex-start;
+    margin-right: 10;
+    padding: 0;
+
 }
 
 .post-comment-btn-opacity{
