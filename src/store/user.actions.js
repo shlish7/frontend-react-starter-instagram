@@ -82,3 +82,15 @@ export async function loadUser(userId) {
         console.log('Cannot load user', err)
     }
 }
+
+export async function updateUser(user){
+    try{        
+        console.log('updatedUser Action before',user);
+        const updatedUser = await userService.update(user)
+        console.log('updatedUser Action',updatedUser);
+        store.dispatch({ type: SET_WATCHED_USER, user })
+    }catch(err){
+        showErrorMsg('Cannot update user')
+        console.log('Cannot update user', err)
+    }
+}

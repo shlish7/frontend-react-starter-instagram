@@ -49,6 +49,8 @@
 import React, { useEffect, useState } from 'react'
 import ImageAvatars from './ImageAvatars'
 import { useSelector } from 'react-redux';
+import { updateUser } from '../store/user.actions';
+import { cat } from '@cloudinary/url-gen/qualifiers/focusOn';
 
 export default function Suggestion() {
     const [suggestedUsers, setSuggestedUsers] = useState([])
@@ -56,6 +58,7 @@ export default function Suggestion() {
 
     const users = useSelector(storeState => storeState.userModule.users)
     const loggedinUser = useSelector(storeState => storeState.userModule.user)
+    console.log('users', users);
 
     useEffect(() => {
         if (users.length > 0 && loggedinUser) {
@@ -74,11 +77,27 @@ export default function Suggestion() {
         }
     }, [users, loggedinUser])
 
-    function onFollowing(userId) {
-        setButtonStates(prevStates => ({
-            ...prevStates,
-            [userId]: prevStates[userId] === 'Follow' ? 'Following' : 'Follow'
-        }))
+    async function onFollowing(userId) {
+        try{
+            setButtonStates(prevStates => ({
+                ...prevStates,
+                [userId]: prevStates[userId] === 'Follow' ? 'Following' : 'Follow'
+            }))
+    
+            console.log('Clicked userId:', userId); // Log the clicked user's ID const 
+            const isFollowing = loggedinUser?.following.includes(userId);
+            console.log('Is logged-in user following this user?', isFollowing);
+            const updatedFollowing = isFollowing ? null
+                : [...loggedinUser.following, userId]; // Add userId if not following 
+                console.log('userId',userId);
+            console.log('updatedFollowing', updatedFollowing);
+            await updateUser({ ...loggedinUser, following: updatedFollowing });
+        }
+        catch (err) {
+            console.log('Error updating following:', err);
+        }
+
+
     }
 
     return (
