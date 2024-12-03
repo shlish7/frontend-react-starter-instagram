@@ -23,7 +23,7 @@ export default function FollowsList({ onCloseModal, user, followType }) {
   }, [user])
 
   useEffect(() => {
-    const { username, fullname } = filterToEdit;
+    const { username, fullname } = filterToEdit
 
     const newFilteredUsers = followers?.filter(user => {
         const usernameMatch = user?.username.toLowerCase().includes(username.toLowerCase())
