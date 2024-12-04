@@ -88,7 +88,7 @@ export async function updateUser(user){
         console.log('updatedUser Action before',user);
         const updatedUser = await userService.update(user)
         console.log('updatedUser Action',updatedUser);
-        store.dispatch({ type: SET_WATCHED_USER, user })
+        store.dispatch({ type: SET_USER, user })
     }catch(err){
         showErrorMsg('Cannot update user')
         console.log('Cannot update user', err)

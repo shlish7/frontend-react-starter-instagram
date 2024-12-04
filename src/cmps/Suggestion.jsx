@@ -75,7 +75,7 @@ export default function Suggestion() {
             }, {})
             setButtonStates(initialStates)
         }
-    }, [users, loggedinUser])
+    }, [users])
 
     async function onFollowing(userId) {
         try{
