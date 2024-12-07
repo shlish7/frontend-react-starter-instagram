@@ -1,0 +1,21 @@
+*{
+        box-sizing: border-box;
+        padding: 0;
+        margin: 0;
+}
+
+.chat-page{
+    display: grid;
+    grid-template-columns: 72px 2fr 7fr;
+    /* grid-template-rows: 1fr 9fr; */
+    grid-template-areas:
+        "side-bar main"
+        "side-bar main";
+    min-height: 100vh;
+    width: 100vw;
+}
+
+
+.messages-list-container{
+    display: flex;
+}

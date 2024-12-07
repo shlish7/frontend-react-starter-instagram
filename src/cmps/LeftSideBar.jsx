@@ -19,7 +19,7 @@ import { login, logout, signup } from '../store/user.actions.js'
 import { SearchBar } from './SearchBar.jsx'
 import { useNavigate } from 'react-router'
 
-export function LeftSideBar() {
+export function LeftSideBar({chat = false}) {
 
   const user = useSelector(storeState => storeState.userModule.user)
 
@@ -36,10 +36,11 @@ export function LeftSideBar() {
       // Check if the window width is less than 1264px
       const isSmallScreen = window.innerWidth < 1264;
       // setIsSmallScreen(window.innerWidth < 1264)
-      setChangeToNarrow(isSmallScreen);  // Update the state based on the screen size
+      setChangeToNarrow(isSmallScreen || chat);  // Update the state based on the screen size
       setIsSidebarOpen(window.innerWidth >= 768); // Adjust the sidebar visibility as needed
 
     };
+
 
     // Initial check on component mount
     handleResize();
@@ -160,6 +161,9 @@ export function LeftSideBar() {
     else if(name.toLowerCase() === 'explore'){
       navigate('/explore')
     }
+    else if(name.toLowerCase() === 'messages'){
+      navigate('/chat')
+    }
   }
 
   function onCloseModal() {
@@ -170,8 +174,6 @@ export function LeftSideBar() {
     <>
       <section className={!changeToNarrow ? "wide-side-bar-container" : "narrow-side-bar-container"} >
         <ul className="side-bar-ul">
-          {/* {!changeToNarrow ?  <InstagramIconLogo className='instagram-logo' /> :<InstagramNarrowLogo className='instagram-narrow-logo'/>} */}
-
           {!changeToNarrow ?
             (
               <section className='instagram-logo' >
@@ -181,31 +183,21 @@ export function LeftSideBar() {
             (<section className='instagram-narrow-logo' >
               <InstagramNarrowLogo />
             </section>)
-
           }
-
-
           {instagramIcons.map((icon, idx) => (
             <li key={idx}
               data-value={icon.name}
               data-name={icon.name}
-
-              // className={!changeToNarrow ? "wide-side-bar-li" : "narrow-side-bar-li"}
-              // className={`side-bar-li ${activeOption === icon.name ? 'active-option' : ''} ${
-              //   !changeToNarrow ? "wide-side-bar-li" : "narrow-side-bar-li"
-              // }`}
               className={`side-bar-li ${activeOption === icon.name ? 'active-option' : ''} ${
                 changeToNarrow ? "narrow-side-bar-li" : "wide-side-bar-li"
               }`}
               // className='side-bar-li'
               onClick={onOpenModal}
             >
-              {/* {openModal ? <CreatePost onCloseModal={onCloseModal} /> : null} */}
               {openSerachBar ? <SearchBar /> : null}
               {icon.svg && <icon.svg />}
               {icon.name === 'Profile' && <ImageAvatars img={user?.imgUrl || null} avatarHeight='24px !important' avatarWidth='24px !important' />}
               {!changeToNarrow && icon.name}
-              {/* { icon.name === 'profile' ? <ImageAvatars/>            */}
             </li>
           ))}
         </ul>

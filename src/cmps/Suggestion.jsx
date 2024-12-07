@@ -58,7 +58,9 @@ export default function Suggestion() {
 
     const users = useSelector(storeState => storeState.userModule.users)
     const loggedinUser = useSelector(storeState => storeState.userModule.user)
+    console.log('loggedinUser',loggedinUser);
     console.log('users', users);
+    console.log('loggedinUser',loggedinUser?.following);
 
     useEffect(() => {
         if (users.length > 0 && loggedinUser) {

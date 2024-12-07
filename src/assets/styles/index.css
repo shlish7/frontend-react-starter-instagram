@@ -10,6 +10,7 @@
 @import "./cmps/right-side-bar.css";
 @import "./cmps/profile-body.css";
 @import "./cmps/suggestion.css";
+@import "./cmps/chat.css";
 
 /* @import "./cmps/home-feed.css"; */
 @import "./cmps/AvatarsStoryView.css";
