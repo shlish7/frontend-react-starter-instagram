@@ -2,29 +2,13 @@
 import { useState } from 'react';
 import '../assets/styles/cmps/carousel.css'
 import Arrow from '../assets/svg/carousel-arrow.svg?react'
-import chocolateCake from '../assets/images/chocolate_cake.jpg'
-import Potatos from '../assets/images/potatos.jpg'
-import Petitim from '../assets/images/petitim.jpg'
 
 export function Carousel({ feedItem, onDoubleClicked, isImgDoubleClicked, fullScreen }) {
 
     const [currentIndex, setCurrentIndex] = useState(0);
     const [doubleClick, setDoubleClick] = useState(isImgDoubleClicked || false)
 
-    const carouselImages = [
-        {
-            name: 'Chocolate Cake',
-            src: chocolateCake
-        },
-        {
-            name: 'Potatos',
-            src: Potatos
-        },
-        {
-            name: 'Petitim',
-            src: Petitim
-        }
-    ]
+    const carouselImages = feedItem.imageUrl
 
     function onChangeImg(event) {
         event.stopPropagation()
@@ -54,11 +38,14 @@ export function Carousel({ feedItem, onDoubleClicked, isImgDoubleClicked, fullSc
     return (
         <>
         <div className={fullScreen ? 'carousel-full-item-screen-container' : "carousel-container"}>
+
+        { feedItem.imageUrl.length > 1 && currentIndex > 0 &&
             <div className="carousel-left-arrow">
                 <button className='carousel-left-btn' value='left' onClick={onChangeImg}>
                     <Arrow className='left-arrow-icon' />
                 </button>
             </div>
+        }
             
             <div className="carousel-main-frame">
                 <div className="img-container">
@@ -81,11 +68,13 @@ export function Carousel({ feedItem, onDoubleClicked, isImgDoubleClicked, fullSc
                 </div>
             </div>
             
-            <div className="carousel-right-arrow">
-                <button className='carousel-right-btn' value='right' onClick={onChangeImg}>
-                    <Arrow className='right-arrow-icon' />
-                </button>
-            </div>
+            { feedItem.imageUrl.length > 1 && currentIndex < feedItem.imageUrl.length - 1 &&
+                <div className="carousel-right-arrow">
+                    <button className='carousel-right-btn' value='right' onClick={onChangeImg}>
+                        <Arrow className='right-arrow-icon' />
+                    </button>
+                </div>
+            }
         </div>
     </>
     )

@@ -64,7 +64,7 @@ export default function Suggestion() {
         if (users.length > 0 && loggedinUser) {
             const filteredUsers = users.filter(user =>
                 user._id !== loggedinUser._id &&
-                !loggedinUser.following.includes(user._id)
+                !loggedinUser?.following?.includes(user._id)
             )
             setSuggestedUsers(filteredUsers.slice(0, 10))
 
