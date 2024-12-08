@@ -2,6 +2,9 @@ import React, { useState, useEffect, useRef } from 'react'
 import { useSelector } from 'react-redux'
 
 import { socketService, SOCKET_EMIT_SEND_MSG, SOCKET_EVENT_ADD_MSG, SOCKET_EMIT_SET_TOPIC } from '../services/socket.service'
+import ChatIndex from '../cmps/Chat/ChatIndex'
+import {ChatMessagesDetails} from '../cmps/Chat/ChatMessagesDetails'
+import { LeftSideBar } from '../cmps/LeftSideBar.jsx';
 
 export function ChatApp() {
     const [msg, setMsg] = useState({ txt: '' })
@@ -26,6 +29,8 @@ export function ChatApp() {
 
     function addMsg(newMsg) {
         setMsgs(prevMsgs => [...prevMsgs, newMsg])
+        console.log('add msg', addMsg);
+
     }
 
     function sendBotResponse() {
@@ -53,7 +58,9 @@ export function ChatApp() {
     }
 
     return (
-        <section className="chat">
+        <div className='chat-page'> 
+        <LeftSideBar chat ={true}/>
+        {/* <section className="chat">
             <h2>Lets Chat about {topic}</h2>
 
             <label>
@@ -88,6 +95,9 @@ export function ChatApp() {
             <ul>
                 {msgs.map((msg, idx) => (<li key={idx}>{msg.from}: {msg.txt}</li>))}
             </ul>
-        </section>
+        </section> */}
+        <ChatIndex/>
+        <ChatMessagesDetails/>
+        </div>
     )
 }

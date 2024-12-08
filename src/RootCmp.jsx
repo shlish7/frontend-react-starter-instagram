@@ -4,6 +4,7 @@ import { Profile } from "./pages/Profile.jsx";
 import { FeedItemFullScreen } from "./pages/FeedItemFullScreen.jsx";
 import { LoginPage } from "./pages/LoginPage.jsx";
 import Explore from "./pages/Explore.jsx";
+import { ChatApp } from "./pages/Chat.jsx";
 
 export function RootCmp() {
   return (
@@ -19,6 +20,7 @@ export function RootCmp() {
           <Route path="/:userId" element={<Profile />}></Route>
           <Route path="/explore" element={<Explore />}></Route>
           <Route path="/login" element={<LoginPage />}/>
+          <Route path="/chat" element={<ChatApp />}/>
 
         </Routes>
 

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import { useSelector } from 'react-redux'
 import HomeIcon from '../assets/svg/home-icon.svg?react'
 // import InstagramIconLogo from '../assets/svg/instagram-side-bar-logo.svg?react'
@@ -19,7 +19,7 @@ import { login, logout, signup } from '../store/user.actions.js'
 import { SearchBar } from './SearchBar.jsx'
 import { useNavigate } from 'react-router'
 
-export function LeftSideBar() {
+export function LeftSideBar({chat = false}) {
 
   const user = useSelector(storeState => storeState.userModule.user)
 
@@ -29,17 +29,44 @@ export function LeftSideBar() {
   const [openSerachBar, setOpenSearchBar] = useState(false)
   const [activeOption, setActiveOption] = useState('Home')
 
+  const searchBarRef = useRef(null)
+
   const navigate = useNavigate()
+
+  useEffect(() => {
+    const handleKeyDown = (event) => {
+      if (event.key === 'Escape') {
+        setOpenSearchBar(false); // Close the search bar on Esc or Enter
+      }
+    };
+
+    const handleClickOutside = (event) => {
+      // Close the search bar if the click is outside the search bar
+      if (searchBarRef.current && !searchBarRef.current.contains(event.target)) {
+        setOpenSearchBar(false);
+      }
+    };
+
+    document.addEventListener('keydown', handleKeyDown);
+    document.addEventListener('mousedown', handleClickOutside);
+
+    // Cleanup the listeners
+    return () => {
+      document.removeEventListener('keydown', handleKeyDown);
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
 
   useEffect(() => {
     const handleResize = () => {
       // Check if the window width is less than 1264px
       const isSmallScreen = window.innerWidth < 1264;
       // setIsSmallScreen(window.innerWidth < 1264)
-      setChangeToNarrow(isSmallScreen);  // Update the state based on the screen size
+      setChangeToNarrow(isSmallScreen || chat);  // Update the state based on the screen size
       setIsSidebarOpen(window.innerWidth >= 768); // Adjust the sidebar visibility as needed
 
     };
+
 
     // Initial check on component mount
     handleResize();
@@ -86,14 +113,7 @@ export function LeftSideBar() {
       name: "Profile",
       svg: null
     }
-    // {
-    //     name: "Threads",
-    //     svg: ThreadsIcon
-    // },
-    // {
-    //     name: "More",
-    //     svg: MoreIcon
-    // }
+
   ]
 
   async function onLogin(credentials) {
@@ -160,6 +180,9 @@ export function LeftSideBar() {
     else if(name.toLowerCase() === 'explore'){
       navigate('/explore')
     }
+    else if(name.toLowerCase() === 'messages'){
+      navigate('/chat')
+    }
   }
 
   function onCloseModal() {
@@ -170,8 +193,6 @@ export function LeftSideBar() {
     <>
       <section className={!changeToNarrow ? "wide-side-bar-container" : "narrow-side-bar-container"} >
         <ul className="side-bar-ul">
-          {/* {!changeToNarrow ?  <InstagramIconLogo className='instagram-logo' /> :<InstagramNarrowLogo className='instagram-narrow-logo'/>} */}
-
           {!changeToNarrow ?
             (
               <section className='instagram-logo' >
@@ -181,31 +202,21 @@ export function LeftSideBar() {
             (<section className='instagram-narrow-logo' >
               <InstagramNarrowLogo />
             </section>)
-
           }
-
-
           {instagramIcons.map((icon, idx) => (
             <li key={idx}
               data-value={icon.name}
               data-name={icon.name}
-
-              // className={!changeToNarrow ? "wide-side-bar-li" : "narrow-side-bar-li"}
-              // className={`side-bar-li ${activeOption === icon.name ? 'active-option' : ''} ${
-              //   !changeToNarrow ? "wide-side-bar-li" : "narrow-side-bar-li"
-              // }`}
               className={`side-bar-li ${activeOption === icon.name ? 'active-option' : ''} ${
                 changeToNarrow ? "narrow-side-bar-li" : "wide-side-bar-li"
               }`}
               // className='side-bar-li'
               onClick={onOpenModal}
             >
-              {/* {openModal ? <CreatePost onCloseModal={onCloseModal} /> : null} */}
-              {openSerachBar ? <SearchBar /> : null}
+              {openSerachBar ? <div ref={searchBarRef}><SearchBar /></div> : null}
               {icon.svg && <icon.svg />}
               {icon.name === 'Profile' && <ImageAvatars img={user?.imgUrl || null} avatarHeight='24px !important' avatarWidth='24px !important' />}
               {!changeToNarrow && icon.name}
-              {/* { icon.name === 'profile' ? <ImageAvatars/>            */}
             </li>
           ))}
         </ul>
