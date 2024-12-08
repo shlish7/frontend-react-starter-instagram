@@ -1,3 +1,8 @@
+$fontFamily: '-apple-system', "system-ui", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+$greyClr: #737373;
+
+
+
 
 * {
     box-sizing: border-box;
@@ -137,7 +142,7 @@ html {
 }
 
 .home-title-user-name {
-    font-family: -apple-system, "system-ui", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    font-family: $fontFamily;
     font-size: 14px;
     font-weight: 600;
 }
@@ -145,10 +150,10 @@ html {
 .home-title-dot {
     display: flex;
     align-items: center;
-    color: #737373;
+    color: $greyClr;
     height: 18px;
     width: 6.5px;
-    font-family: -apple-system, "system-ui", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    font-family: $fontFamily;
     font-size: 14px;
     font-weight: 400;
     height: 18px;
@@ -161,8 +166,8 @@ html {
 }
 
 .home-posted-time {
-    color: #737373;
-    font-family: -apple-system, "system-ui", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    color: $greyClr;
+    font-family: $fontFamily;
     font-size: 14px;
     font-weight: 400;
     height: auto;
@@ -175,7 +180,7 @@ html {
 }
 
 .home-title-details {
-    font-family: -apple-system, "system-ui", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    font-family: $fontFamily;
     font-size: 12px;
     font-weight: 400;
     height: 18px;
@@ -183,7 +188,7 @@ html {
 }
 
 .home-title-caption {
-    font-family: -apple-system, "system-ui", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    font-family: $fontFamily;
     font-size: 12px;
     font-weight: 400;
     height: 18px;
@@ -198,7 +203,7 @@ a {
 .like-count-container {
     display: flex;
     gap: 4px;
-    font-family: -apple-system, "system-ui", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    font-family: $fontFamily;
     font-size: 14px;
     font-weight: 600;
     padding: 5px 0;
@@ -213,7 +218,7 @@ a {
 }
 
 .home-img-user-name {
-    font-family: -apple-system, "system-ui", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    font-family: $fontFamily;
     font-size: 14px;
     font-weight: 600;
     min-width: fit-content;
