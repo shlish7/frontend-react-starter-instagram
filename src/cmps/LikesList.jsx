@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { useSelector } from 'react-redux'
 import { userService } from '../services/user.service.remote.js';
 import ImageAvatars from './ImageAvatars.jsx'
 import CloseModal from '../assets/svg/close-btn-white.svg?react';
@@ -8,17 +9,18 @@ export default function LikesList({ feedItem, onCloseModal }) {
 
   const [likesWithUsers, setLikesWithUsers] = useState([]);
   const navigate = useNavigate()
+  const user = useSelector(storeState => storeState.userModule.user)
 
   useEffect(() => {
     const fetchUsersForLikes = async () => {
       const likesWithUserData = await Promise.all(
         feedItem?.likes?.map(async (item) => {
-          const user = await userService.getById(item.owner,_id);
+          const user = await userService.getById(item.userId);
           return { ...item, user };
         })
       );
 
-      
+  
       setLikesWithUsers(likesWithUserData);
     };
 
@@ -50,7 +52,7 @@ export default function LikesList({ feedItem, onCloseModal }) {
               {item.user.username}
               </section>
              
-              <button className='like-list-modal-button'>Follow</button>
+              {item.user._id !== user._id && <button className='like-list-modal-button'>Follow</button>}
             </li>
           )}
         </ul>
