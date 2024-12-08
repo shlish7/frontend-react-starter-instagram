@@ -44,6 +44,7 @@
 .comment-full-screen{
     display: flex;
     justify-content: flex-start;
+    align-items: center;
     flex-wrap: nowrap;
     font-family:-apple-system, "system-ui", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
     font-size: 14px;
