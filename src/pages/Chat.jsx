@@ -23,9 +23,9 @@ export function ChatApp() {
         }
     }, [])
 
-    useEffect(() => {
-        socketService.emit(SOCKET_EMIT_SET_TOPIC, topic)
-    }, [topic])
+    // useEffect(() => {
+    //     socketService.emit(SOCKET_EMIT_SET_TOPIC, topic)
+    // }, [topic])
 
     function addMsg(newMsg) {
         setMsgs(prevMsgs => [...prevMsgs, newMsg])
@@ -60,7 +60,7 @@ export function ChatApp() {
     return (
         <div className='chat-page'> 
         <LeftSideBar chat ={true}/>
-        {/* <section className="chat">
+        <section className="chat">
             <h2>Lets Chat about {topic}</h2>
 
             <label>
@@ -95,9 +95,9 @@ export function ChatApp() {
             <ul>
                 {msgs.map((msg, idx) => (<li key={idx}>{msg.from}: {msg.txt}</li>))}
             </ul>
-        </section> */}
-        <ChatIndex/>
-        <ChatMessagesDetails/>
+        </section>
+        {/* <ChatIndex/> */}
+        {/* <ChatMessagesDetails/> */}
         </div>
     )
 }
