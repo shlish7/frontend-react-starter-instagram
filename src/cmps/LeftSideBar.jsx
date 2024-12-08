@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import { useSelector } from 'react-redux'
 import HomeIcon from '../assets/svg/home-icon.svg?react'
 // import InstagramIconLogo from '../assets/svg/instagram-side-bar-logo.svg?react'
@@ -29,7 +29,33 @@ export function LeftSideBar({chat = false}) {
   const [openSerachBar, setOpenSearchBar] = useState(false)
   const [activeOption, setActiveOption] = useState('Home')
 
+  const searchBarRef = useRef(null)
+
   const navigate = useNavigate()
+
+  useEffect(() => {
+    const handleKeyDown = (event) => {
+      if (event.key === 'Escape') {
+        setOpenSearchBar(false); // Close the search bar on Esc or Enter
+      }
+    };
+
+    const handleClickOutside = (event) => {
+      // Close the search bar if the click is outside the search bar
+      if (searchBarRef.current && !searchBarRef.current.contains(event.target)) {
+        setOpenSearchBar(false);
+      }
+    };
+
+    document.addEventListener('keydown', handleKeyDown);
+    document.addEventListener('mousedown', handleClickOutside);
+
+    // Cleanup the listeners
+    return () => {
+      document.removeEventListener('keydown', handleKeyDown);
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
 
   useEffect(() => {
     const handleResize = () => {
@@ -87,14 +113,7 @@ export function LeftSideBar({chat = false}) {
       name: "Profile",
       svg: null
     }
-    // {
-    //     name: "Threads",
-    //     svg: ThreadsIcon
-    // },
-    // {
-    //     name: "More",
-    //     svg: MoreIcon
-    // }
+
   ]
 
   async function onLogin(credentials) {
@@ -194,7 +213,7 @@ export function LeftSideBar({chat = false}) {
               // className='side-bar-li'
               onClick={onOpenModal}
             >
-              {openSerachBar ? <SearchBar /> : null}
+              {openSerachBar ? <div ref={searchBarRef}><SearchBar /></div> : null}
               {icon.svg && <icon.svg />}
               {icon.name === 'Profile' && <ImageAvatars img={user?.imgUrl || null} avatarHeight='24px !important' avatarWidth='24px !important' />}
               {!changeToNarrow && icon.name}

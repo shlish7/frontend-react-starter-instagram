@@ -17,7 +17,8 @@ html {
 
 .instagram-home-page {
     display: grid;
-    grid-template-columns: 220px 1fr 319px;
+    /* grid-template-columns: 220px 1fr 319px; */
+    grid-template-columns: 72px 1fr 319px;
     grid-template-rows: 1fr 9fr;
     grid-template-areas:
         "left-aside main-header right-aside"
@@ -45,8 +46,8 @@ html {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    padding-left: 12px;
-    padding-right: 12px;
+    padding-left: 2px;
+    /* padding-right: 12px; */
     
 }
 

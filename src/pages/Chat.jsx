@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux'
 
 import { socketService, SOCKET_EMIT_SEND_MSG, SOCKET_EVENT_ADD_MSG, SOCKET_EMIT_SET_TOPIC } from '../services/socket.service'
 import ChatIndex from '../cmps/Chat/ChatIndex'
+import {ChatMessagesDetails} from '../cmps/Chat/ChatMessagesDetails'
 import { LeftSideBar } from '../cmps/LeftSideBar.jsx';
 
 export function ChatApp() {
@@ -96,6 +97,7 @@ export function ChatApp() {
             </ul>
         </section> */}
         <ChatIndex/>
+        <ChatMessagesDetails/>
         </div>
     )
 }
