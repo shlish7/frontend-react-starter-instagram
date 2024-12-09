@@ -12,19 +12,27 @@ import EmojiPickerIcon from "../assets/svg/emojiIconCreatePost.svg?react";
 
 
 
+
+
+
 export function CreatePost({ onCloseModal }) {
-  const [imageUrl, setImageUrl] = useState();
-  const feedItems = useSelector(
-    (storeState) => storeState.feedItemModule.feedItems
-  );
+  const [imageUrl, setImageUrl] = useState()
+  const [description, setDescription] = useState(false)
+  const [caption, setCaption] = useState('')
+  const [btnName, setBtnName] = useState("Next")
+  const [showNextBtn, setShowNextBtn] = useState(false)
+  const [isEmojiPicker, setIsEmojiPicker] = useState(false)
+
+  const feedItems = useSelector((storeState) => storeState.feedItemModule.feedItems);
   const user = useSelector((storeState) => storeState.userModule.user);
+
 
   console.log("user", user);
 
-  const [description, setDescription] = useState(false);
-  const [btnName, setBtnName] = useState("Next");
-  const [showNextBtn, setShowNextBtn] = useState(false);
-  const [isEmojiPicker, setIsEmojiPicker] = useState(false)
+
+
+
+
 
 
   function onClickX(ev) {
@@ -33,10 +41,12 @@ export function CreatePost({ onCloseModal }) {
     onCloseModal();
   }
 
+
   function onUploaded(imgUrl) {
     setImageUrl([imgUrl]);
     setShowNextBtn(true);
   }
+
 
   async function onSavePost(ev) {
     try {
@@ -49,13 +59,16 @@ export function CreatePost({ onCloseModal }) {
         createdAt: new Date().toISOString(),
       };
 
+
       await addFeedItem(newPost);
+
 
       ev.stopPropagation();
       ev.preventDefault();
       onCloseModal();
-    } catch {}
+    } catch { }
   }
+
 
   function onMoveToWriteDescription(ev) {
     ev.stopPropagation();
@@ -66,6 +79,7 @@ export function CreatePost({ onCloseModal }) {
       onSavePost(ev);
     }
   }
+
 
   function onMoveBack(ev) {
     ev.stopPropagation();
@@ -78,20 +92,23 @@ export function CreatePost({ onCloseModal }) {
     }
   }
 
+
   function onAddDescription({ target }) {
-    const { value } = target;
-    setDescription(value);
+    setCaption(target.value);
   }
+
+
 
 
   function onEmojiClick(emojiData) {
-    setComment(prevComment => prevComment + emojiData.emoji)
+    setCaption((prevCaption) => (prevCaption || "") + emojiData.emoji);
     setIsEmojiPicker(prev => !prev)
 
-    if (comment.trim() !== '' || emojiData.emoji) {
-      setPostCommentBtn(true)
+
+    if (caption.trim() !== '' || emojiData.emoji) {
     }
   }
+
 
   function onOpenEmojiPicker() {
     setIsEmojiPicker(prev => !prev)
@@ -104,7 +121,8 @@ export function CreatePost({ onCloseModal }) {
           onClick={onClickX}
         />
 
-        <section className="create-post-container">
+
+        <section className={"create-post-container"} >
           <section className="create-post-title-container">
             {showNextBtn && (
               <BackIcon className="back-icon" onClick={onMoveBack} />
@@ -158,17 +176,25 @@ export function CreatePost({ onCloseModal }) {
                       </section>
                       {description && (
                         <textarea
+                          value = {caption}
                           className="description-text-area"
                           onChange={onAddDescription}
                         />
                       )}
                     </section>
                   )}
-                  {/* <EmojiPickerIcon className='emoji-picker' onClick={onOpenEmojiPicker}/> */}
-                {btnName === "Share" && <EmojiPickerIcon className="create-post-emoji-icon" onEmojiClick={onEmojiClick} />}
+                  {btnName === "Share" && <EmojiPickerIcon className="create-post-emoji-icon" onClick={onOpenEmojiPicker} />}
+                  {isEmojiPicker && (
+
+
+                    <div className="emoji-picker-wrapper">
+                      <EmojiPicker onEmojiClick={onEmojiClick} />
+                    </div>
+                  )}
 
                 </section>
               </section>
+
 
               {/* <button className="save-img-to-db-btn" onClick={onSavePost}>Save Post</button> */}
             </>
@@ -178,3 +204,6 @@ export function CreatePost({ onCloseModal }) {
     </>
   );
 }
+
+
+
