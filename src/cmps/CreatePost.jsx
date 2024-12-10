@@ -52,7 +52,7 @@ export function CreatePost({ onCloseModal }) {
     try {
       const newPost = {
         imageUrl,
-        caption: description,
+        caption: caption,
         tags: [],
         comments: [],
         likes: [],
@@ -80,7 +80,6 @@ export function CreatePost({ onCloseModal }) {
     }
   }
 
-
   function onMoveBack(ev) {
     ev.stopPropagation();
     ev.preventDefault();
@@ -92,13 +91,9 @@ export function CreatePost({ onCloseModal }) {
     }
   }
 
-
   function onAddDescription({ target }) {
     setCaption(target.value);
   }
-
-
-
 
   function onEmojiClick(emojiData) {
     setCaption((prevCaption) => (prevCaption || "") + emojiData.emoji);
@@ -120,7 +115,6 @@ export function CreatePost({ onCloseModal }) {
           className="close-modal-icon-create-post"
           onClick={onClickX}
         />
-
 
         <section className={"create-post-container"} >
           <section className="create-post-title-container">
