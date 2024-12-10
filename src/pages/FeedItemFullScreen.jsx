@@ -11,22 +11,30 @@ import { NewComment } from '../cmps/Comments/NewComment.jsx';
 import { userService } from '../services/user.service.remote.js';
 import Verified from "../assets/svg/verified.svg?react";
 import { useSelector } from 'react-redux';
-import { loadFeedItem } from '../store/feedItem.actions.js';
-
+import { loadFeedItem, updateFeedItem } from '../store/feedItem.actions.js';
 
 export function FeedItemFullScreen() {
   const { pId } = useParams()
-  // const [feedItem, setFeedItem] = useState(null)
   const [user, setUser] = useState(null)
   const navigate = useNavigate()
 
   const feedItem = useSelector(storeState => storeState.feedItemModule.feedItem)
 
-  const [ isImgDoubleClicked, setIsImgDoubleClicked ] = useState(false);
+  const [ isImgDoubleClicked, setIsImgDoubleClicked ] = useState(feedItem?.likes?.some(like => like.userId === user?._id))
   const [ onCloseFeedItemFullScreen, setOnCloseFeedItemFullScreen ] = useState();
 
   function onDoubleClicked() {
-    setIsImgDoubleClicked(true)   
+    onChangeLike()
+    setIsImgDoubleClicked(prev => !prev)   
+  }
+
+  async function onChangeLike(){
+    const updatedLikes = feedItem?.likes?.some(like => like.userId === user?._id)
+      ? feedItem?.likes?.filter(like => like.userId !== user?._id)
+      : [...feedItem.likes, { userId: user?._id }]
+
+    const savedFeedItem = await updateFeedItem({ ...feedItem, likes: updatedLikes });
+    console.log("full screen saved item: ", savedFeedItem)
   }
 
   useEffect(() => {
@@ -41,7 +49,6 @@ export function FeedItemFullScreen() {
       }
     }
     
-
     document.addEventListener('keydown', handleKeyDown);
 
     return () => {
@@ -99,7 +106,7 @@ export function FeedItemFullScreen() {
           { feedItem && <CommentsIndex feedItem= {feedItem}/> }
           </section>
           <section className="full-screen-button-and-likes">
-            <ButtonsView feedItem={feedItem} isImgDoubleClicked={isImgDoubleClicked}/>
+            <ButtonsView feedItem={feedItem} isImgDoubleClicked={isImgDoubleClicked} onChangeLike={onChangeLike}/>
             { feedItem?.likes?.length > 0 && <LikesCount feedItem={feedItem}/> }
           </section>     
           <section className="full-screen-new-comment">
