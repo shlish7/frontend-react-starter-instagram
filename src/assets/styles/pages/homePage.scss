@@ -82,6 +82,7 @@ html {
 .home-feed-container {
     width: 468px;
     border-bottom: 1px solid rgb(219, 219, 219);
+    margin-top: 10px;
 
 
 }
@@ -103,12 +104,15 @@ html {
     /* justify-content: flex-start; */
     justify-content: space-between;
     padding: 5px 0;
+    margin-top: 10px;
+
 
 }
 
 .avatar-and-user-details {
     display: flex;
     justify-content: flex-start;
+    align-items: center;
     padding: 5px 0;
 }
 
@@ -150,6 +154,7 @@ html {
 .home-title-dot {
     display: flex;
     align-items: center;
+    justify-content: center;
     color: $greyClr;
     height: 18px;
     width: 6.5px;

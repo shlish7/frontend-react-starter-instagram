@@ -37,6 +37,9 @@ export function LeftSideBar({chat = false}) {
     const handleKeyDown = (event) => {
       if (event.key === 'Escape') {
         setOpenSearchBar(false); // Close the search bar on Esc or Enter
+        setChangeToNarrow(false);
+
+
       }
     };
 
@@ -44,6 +47,8 @@ export function LeftSideBar({chat = false}) {
       // Close the search bar if the click is outside the search bar
       if (searchBarRef.current && !searchBarRef.current.contains(event.target)) {
         setOpenSearchBar(false);
+        setChangeToNarrow(false);
+
       }
     };
 
