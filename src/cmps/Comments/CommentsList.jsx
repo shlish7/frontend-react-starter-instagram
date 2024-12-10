@@ -33,6 +33,12 @@ export function CommentsList({ feedItem }) {
   return (
     <section className="comments-list-section">
       <ul className="comments-list-ul-full-screen">
+      <section className="comment-li-avatar-and-comment" onClick={()=>{onNavigateToProfile(item.user._id)}}>
+              <ImageAvatars img={feedItem.owner.imgUrl} />
+              <p className='comments-user-name-full-screen'>{feedItem.owner.username}</p>
+              <p className='comment-full-screen'>{feedItem.caption}</p>
+            </section>
+
         {commentsWithUsers.map((item, index) => (
           <li className='comments-list-li-full-screen' key={index}>
             <section className="comment-li-avatar-and-comment" onClick={()=>{onNavigateToProfile(item.user._id)}}>
