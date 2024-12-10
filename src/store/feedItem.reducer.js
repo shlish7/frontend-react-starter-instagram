@@ -6,12 +6,15 @@ export const SET_FEED_ITEMS = 'SET_FEED_ITEMS'
 export const ADD_FEED_ITEM = 'ADD_FEED_ITEM'
 export const ADD_FEED_ITEM_MSG = 'ADD_FEED_ITEM_MSG'
 export const UPDATE_FEED_ITEM = 'UPDATE_FEED_ITEM'
+export const SET_CURRENT_MENU = 'SET_CURRENT_MENU'
+
 
 const initialState = {
     // feedItem: feedItemService.getLoggedinfeedItem(),
     feedItems: [],
     feedItem:null,
-    watchedfeedItem : null
+    watchedfeedItem: null,
+    currentMenu:'Home'
 }
 
 export function feedItemReducer(state = initialState, action) {
@@ -50,7 +53,14 @@ export function feedItemReducer(state = initialState, action) {
 
         case ADD_FEED_ITEM_MSG:
             newState = { }
-                break        
+                break       
+                
+        case SET_CURRENT_MENU:
+            newState = {
+               ...state, currentMenu: action.currentMenu
+            }
+                break            
+                   
 
         default:
     }

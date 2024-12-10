@@ -1,7 +1,7 @@
 
 import { feedItemService } from '../services/feeditem.service.remote'
 import { store } from './store'
-import { ADD_FEED_ITEM, REMOVE_FEED_ITEM, SET_FEED_ITEMS, SET_FEED_ITEM, ADD_FEED_ITEM_MSG, UPDATE_FEED_ITEM } from './feedItem.reducer'
+import { ADD_FEED_ITEM, REMOVE_FEED_ITEM, SET_FEED_ITEMS, SET_FEED_ITEM, ADD_FEED_ITEM_MSG, UPDATE_FEED_ITEM, SET_CURRENT_MENU } from './feedItem.reducer'
 
 export async function loadFeedItems() {
     try {       
@@ -69,6 +69,15 @@ export async function addFeedItemMsg(feedItemId, txt) {
     }
 }
 
+export async function setMenuItem(currentMenu) {
+    try {
+        store.dispatch(getCmdSetMenuItem(currentMenu))
+    } catch (err) {
+        console.log('Cannot set menu item', err)
+        throw err
+    }
+}
+
 
 
 // export async function updateTask(feedItemId, groupId, task, activityTitle) {
@@ -123,6 +132,13 @@ function getCmdAddFeedItemMsg(msg) {
     return {
         type: ADD_FEED_ITEM_MSG,
         msg
+    }
+}
+
+function getCmdSetMenuItem(currentMenu) {
+    return {
+        type: SET_CURRENT_MENU,
+        currentMenu
     }
 }
 
