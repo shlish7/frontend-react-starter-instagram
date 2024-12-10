@@ -20,7 +20,7 @@ export function FeedItemCreatorDetails({ user }) {
         <section className="home-img-title-user-details">
           <section className="home-user-title-container">
             <Link to={"/"+user?._id} className="home-title-user-name">
-              {user?.fullname}
+              {user?.username}
             </Link>
             <Verified className="home-title-verified" />
             <span className="home-title-dot">.</span>

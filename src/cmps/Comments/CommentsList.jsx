@@ -37,7 +37,7 @@ export function CommentsList({ feedItem }) {
           <li className='comments-list-li-full-screen' key={index}>
             <section className="comment-li-avatar-and-comment" onClick={()=>{onNavigateToProfile(item.user._id)}}>
               <ImageAvatars img={item.user.imgUrl} />
-              <p className='comments-user-name-full-screen'>{item.user.fullname}</p>
+              <p className='comments-user-name-full-screen'>{item.user.username}</p>
               <p className='comment-full-screen'>{item.comment}</p>
             </section>
 
