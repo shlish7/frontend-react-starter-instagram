@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import DragPhoto from "../assets/svg/drag-photos-icon.svg?react";
 import CloseModal from "../assets/svg/close-modal-icon.svg?react";
 // import CloseModal from '../assets/svg/close-btn-white.svg?react'
@@ -6,14 +6,9 @@ import BackIcon from "../assets/svg/back-icon.svg?react";
 import { ImageUploader } from "./Imageuploader";
 import { useSelector } from "react-redux";
 import { addFeedItem } from "../store/feedItem.actions";
-import ImageAvatars from "./imageAvatars.jsx";
+import ImageAvatars from "./ImageAvatars.jsx";
 import EmojiPicker from "emoji-picker-react";
 import EmojiPickerIcon from "../assets/svg/emojiIconCreatePost.svg?react";
-
-
-
-
-
 
 export function CreatePost({ onCloseModal }) {
   const [imageUrl, setImageUrl] = useState()
@@ -22,18 +17,35 @@ export function CreatePost({ onCloseModal }) {
   const [btnName, setBtnName] = useState("Next")
   const [showNextBtn, setShowNextBtn] = useState(false)
   const [isEmojiPicker, setIsEmojiPicker] = useState(false)
+  const emojiPickerRef = useRef(null); // Ref for the emoji picker
+
 
   const feedItems = useSelector((storeState) => storeState.feedItemModule.feedItems);
   const user = useSelector((storeState) => storeState.userModule.user);
 
+  // Close Emoji Picker on Escape or Click outside
 
-  console.log("user", user);
+  useEffect(() => {
+    function handleKeydown(ev) {
+      if (ev.key === "Escape") {
+        setIsEmojiPicker(false);
+      }
+    }
 
+    function handleClickOutside(ev) {
+      if (emojiPickerRef.current && !emojiPickerRef.current.contains(ev.target)) {
+        setIsEmojiPicker(false);
+      }
+    }
 
+    document.addEventListener("keydown", handleKeydown);
+    document.addEventListener("mousedown", handleClickOutside);
 
-
-
-
+    return () => {
+      document.removeEventListener("keydown", handleKeydown);
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
 
   function onClickX(ev) {
     ev.stopPropagation();
@@ -154,7 +166,7 @@ export function CreatePost({ onCloseModal }) {
                     }
                   />
                 )}
-                <section className="create-post-avatar-and-text-area">
+                {btnName==="Share" && <section className="create-post-avatar-and-text-area">
                   {btnName === "Share" && (
                     <section className="create-post-description">
                       <section className="create-post-avatar-and-username">
@@ -181,12 +193,15 @@ export function CreatePost({ onCloseModal }) {
                   {isEmojiPicker && (
 
 
-                    <div className="emoji-picker-wrapper">
+                    <div
+                    ref={emojiPickerRef}
+ 
+                    className="emoji-picker-wrapper">
                       <EmojiPicker onEmojiClick={onEmojiClick} />
                     </div>
                   )}
 
-                </section>
+                </section>}
               </section>
 
 

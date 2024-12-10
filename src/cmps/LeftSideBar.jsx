@@ -63,6 +63,10 @@ export function LeftSideBar({chat = false}) {
   }, []);
 
   useEffect(() => {
+    console.log('Active option updated to:', activeOption);
+  }, [activeOption]);
+
+  useEffect(() => {
     const handleResize = () => {
       // Check if the window width is less than 1264px
       const isSmallScreen = window.innerWidth < 1264;
@@ -121,42 +125,25 @@ export function LeftSideBar({chat = false}) {
 
   ]
 
-  async function onLogin(credentials) {
-    try {
-      const user = await login(credentials)
-      showSuccessMsg(`Welcome: ${user.fullname}`)
-    } catch (err) {
-      showErrorMsg('Cannot login')
-    }
-  }
-
-  async function onSignup(credentials) {
-    try {
-      const user = await signup(credentials)
-      showSuccessMsg(`Welcome new user:${user.fullname}`)
-    } catch (err) {
-      showErrorMsg('Cannot signup')
-    }
-  }
-
-  async function onLogout() {
-    try {
-      await logout()
-      showSuccessMsg(`Bye now`)
-    } catch (err) {
-      showErrorMsg('Cannot logout')
-    }
-  }
+  
 
   function onOpenModal(ev) {
     ev.stopPropagation()
     ev.preventDefault()
     const { value, name, textContext } = ev.currentTarget.dataset
+    console.log('icon.name:', name, 'activeOption:', activeOption)
+    setActiveOption(name)
+
+    if (activeOption === name) return
+
    
     if (name.toLowerCase() === 'create') {
       setOpenModal(prev => !prev)
+      // setActiveOption('Create')
     }
     else if(name.toLowerCase() === 'home'){
+      // setActiveOption('Home')
+
       navigate('/')
     }
     else if (name.toLowerCase() === 'search') {
@@ -175,19 +162,28 @@ export function LeftSideBar({chat = false}) {
       else if (openSerachBar && window.innerWidth < 1264) {
         setOpenSearchBar(false)
       }
+      // setActiveOption('Search')
 
 
 
     }
     else if(name.toLowerCase() === 'profile'){
+      // setActiveOption('Profile')
+
       navigate('/'+user._id)
     }
     else if(name.toLowerCase() === 'explore'){
+      // setActiveOption('Explore')
+
       navigate('/explore')
     }
     else if(name.toLowerCase() === 'messages'){
+      // setActiveOption('Messages')
+
       navigate('/chat')
     }
+
+
   }
 
   function onCloseModal() {
@@ -221,28 +217,11 @@ export function LeftSideBar({chat = false}) {
               {openSerachBar ? <div ref={searchBarRef}><SearchBar /></div> : null}
               {icon.svg && <icon.svg />}
               {icon.name === 'Profile' && <ImageAvatars img={user?.imgUrl || null} avatarHeight='24px !important' avatarWidth='24px !important' />}
-              {!changeToNarrow && icon.name}
+              {!changeToNarrow && <span>{icon.name}</span>}
             </li>
           ))}
         </ul>
         {openModal ? <CreatePost onCloseModal={onCloseModal} /> : null}
-
-
-        {/* <section className="signup-signin">
-        {user &&
-            <span className="user-info">
-                { user.imgUrl && <img src={user.imgUrl} /> }
-                { user.fullname }
-                <span className="score">{user.balance?.toLocaleString()}</span>
-                <button onClick={onLogout}>Logout</button>
-            </span>
-        }
-        {!user &&
-            <div className="user-info">
-                <LoginSignup onLogin={onLogin} onSignup={onSignup} />
-            </div>
-        }
-      </section> */}
 
         <section className='left-side-bar-footer'>
           <section className='side-bar-botton-icons'>

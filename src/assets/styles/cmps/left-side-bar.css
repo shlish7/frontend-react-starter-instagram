@@ -58,6 +58,7 @@
     border-radius: 8px;
 }
 
+
 .narrow-side-bar-li {
     display: flex;
     justify-content: flex-start;
@@ -125,3 +126,4 @@
     height: 92px;
     padding: 0 10px 0 10px;
 }
+
