@@ -40,8 +40,6 @@ export function LeftSideBar({chat = false}) {
       if (event.key === 'Escape') {
         setOpenSearchBar(false); // Close the search bar on Esc or Enter
         setChangeToNarrow(false);
-
-
       }
     };
 
@@ -64,9 +62,7 @@ export function LeftSideBar({chat = false}) {
     };
   }, []);
 
-  useEffect(() => {
-    console.log('Active option updated to:', activeOption);
-  }, [activeOption]);
+
 
   useEffect(() => {
     const handleResize = () => {
@@ -127,8 +123,6 @@ export function LeftSideBar({chat = false}) {
 
   ]
 
-  
-
   function onOpenModal(ev) {
     ev.stopPropagation()
     ev.preventDefault()
@@ -142,10 +136,10 @@ export function LeftSideBar({chat = false}) {
    
     if (name.toLowerCase() === 'create') {
       setOpenModal(prev => !prev)
-      setMenuItem('Create')
+      // setMenuItem('Create')
     }
     else if(name.toLowerCase() === 'home'){
-      setMenuItem('Home')
+      // setMenuItem('Home')
       console.log('home icon.name:', name, 'activeOption:', activeOption)
 
       navigate('/')
@@ -166,23 +160,23 @@ export function LeftSideBar({chat = false}) {
       else if (openSerachBar && window.innerWidth < 1264) {
         setOpenSearchBar(false)
       }
-      setMenuItem('Search')
+      // setMenuItem('Search')
 
 
 
     }
     else if(name.toLowerCase() === 'profile'){
-      setMenuItem('Profile')
+      // setMenuItem('Profile')
 
       navigate('/'+user._id)
     }
     else if(name.toLowerCase() === 'explore'){
-      setMenuItem('Explore')
+      // setMenuItem('Explore')
 
       navigate('/explore')
     }
     else if(name.toLowerCase() === 'messages'){
-      setMenuItem('Messages')
+      // setMenuItem('Messages')
 
       navigate('/chat')
     }
