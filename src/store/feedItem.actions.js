@@ -5,11 +5,12 @@ import { ADD_FEED_ITEM, REMOVE_FEED_ITEM, SET_FEED_ITEMS, SET_FEED_ITEM, ADD_FEE
 
 export async function loadFeedItems() {
     try {       
-        const feedItems = await feedItemService.query()
-        store.dispatch(getCmdSetFeedItems(feedItems))
+        const feedItems = await feedItemService.query();
+        const reversedFeedItems = feedItems.reverse();
+        store.dispatch(getCmdSetFeedItems(reversedFeedItems));
     } catch (err) {
-        console.log('Cannot load feedItems', err)
-        throw err
+        console.log('Cannot load feedItems', err);
+        throw err;
     }
 }
 

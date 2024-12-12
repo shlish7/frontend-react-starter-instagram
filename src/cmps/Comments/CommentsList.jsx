@@ -9,7 +9,6 @@ export function CommentsList({ feedItem }) {
   const [commentsWithUsers, setCommentsWithUsers] = useState([]);
   const navigate = useNavigate()
 
-
   useEffect(() => {
     const fetchUsersForComments = async () => {
 

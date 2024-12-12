@@ -41,9 +41,9 @@ export function feedItemReducer(state = initialState, action) {
         case ADD_FEED_ITEM:
             newState = {
                 ...state,
-                feedItems: [...state.feedItems, action.feedItem]
-            }
-            break
+                feedItems: [action.feedItem, ...state.feedItems] 
+            };
+            break;
 
         case UPDATE_FEED_ITEM:
 

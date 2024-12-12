@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-
 import ImageAvatars from "../ImageAvatars";
 import FollowsList from "./FollowsList";
 
@@ -11,11 +10,9 @@ export default function ProfileHeader({ feedItems, user }) {
   const [displayFollowingModal, setDisplayFollowingModal] = useState(false)
 
   useEffect(() => {
-    const userFeedItemsCount = feedItems.filter(feedItem => feedItem.owner._id === user._id).length;
+    const userFeedItemsCount = feedItems?.filter(feedItem => feedItem.owner._id === user._id).length;
     setProfileFeedItems(userFeedItemsCount)
-
   }, []);
-
 
   function onCloseModal() {
     setDisplayFollowersModal(false)
@@ -28,7 +25,6 @@ export default function ProfileHeader({ feedItems, user }) {
   }
   function onOpenFollowersModal(){
     setDisplayFollowersModal(true)
-
   }
 
   return (
@@ -54,7 +50,7 @@ export default function ProfileHeader({ feedItems, user }) {
             </section>
             <section className="profile-follows" onClick={onOpenFollowersModal}>
               <span className="profile-counts">
-                {user?.followers?.length}
+                {user?.followers?.length || 0}
               </span>
               <span>Followers</span>
             </section>
@@ -62,7 +58,7 @@ export default function ProfileHeader({ feedItems, user }) {
 
             <section className="profile-follows" onClick={onOpenFollowingModal}>
               <span className="profile-counts">
-                {user?.following?.length}
+                {user?.following?.length || 0}
               </span>
               <span>Following</span>
             </section>
