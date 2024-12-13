@@ -27,6 +27,7 @@ export default function Suggestion() {
         }
     }, [users])
 
+    
     async function onFollowing(userId) {
         try{
             setButtonStates(prevStates => ({
